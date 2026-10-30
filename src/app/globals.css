@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy-primary: #071B2C;
+  --color-navy-deep: #061321;
+  --color-cyan-brand: #00A6CE;
+  --color-cyan-electric: #12C8E8;
+  --color-ice-soft: #DDF7FC;
+  --color-grey-muted: #5A7184;
+  --color-white: #FFFFFF;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy-primary: #071B2C;
+  --navy-deep: #061321;
+  --cyan-brand: #00A6CE;
+  --cyan-electric: #12C8E8;
+  --ice-soft: #DDF7FC;
+  --grey-muted: #5A7184;
+  --white: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: #FFFFFF;
+  color: #071B2C;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFFFFF;
+  color: #071B2C;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4FBFD;
+}
+::-webkit-scrollbar-thumb {
+  background: #DDF7FC;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 166, 206, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00A6CE;
+}
+
+/* Glassmorphism panels for pure white theme */
+.glass-panel-white {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 166, 206, 0.16);
+  box-shadow: 0 10px 30px -5px rgba(7, 27, 44, 0.05);
+}
+
+.glass-panel-white-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-white-hover:hover {
+  background: #FFFFFF;
+  border-color: rgba(0, 166, 206, 0.38);
+  box-shadow: 0 14px 40px -8px rgba(0, 166, 206, 0.15);
+}
+
+/* Ambient lighting on white background */
+.bg-radial-lighting-light {
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(221, 247, 252, 0.6) 0%, transparent 60%),
+    radial-gradient(circle at 85% 25%, rgba(0, 166, 206, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 15% 75%, rgba(18, 200, 232, 0.06) 0%, transparent 50%),
+    #FFFFFF;
+}
+
+/* Pure White Background Section with subtle Ice Blue tint */
+.bg-soft-ice {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5FBFE 50%, #FFFFFF 100%);
+}
+
+/* Text gradients */
+.text-cyan-gradient {
+  background: linear-gradient(135deg, #071B2C 10%, #00A6CE 80%, #12C8E8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

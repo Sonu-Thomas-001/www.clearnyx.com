@@ -1,0 +1,41 @@
+export const BRAND_CONFIG = {
+  name: "CLEARNYX",
+  legalName: "CLEARNYX Orthodontic Technologies India Pvt. Ltd.",
+  tagline: "Redefining Smiles",
+  supportingMessage: "Precision. Comfort. Confidence.",
+  industry: "Clear Aligner Solutions / Orthodontic Technology",
+  market: "India",
+  targetAudience: "Dentists, Orthodontists, Dental Clinics and Dental Professionals",
+  websiteUrl: "https://www.clearnyx.com",
+  contactEmail: "info@clearnyx.com",
+  location: "India",
+  year: 2026,
+  copyright: "© 2026 CLEARNYX.",
+  socials: {
+    instagram: "https://instagram.com/clearnyx.india",
+    linkedin: "https://linkedin.com/company/clearnyx-aligners",
+  },
+  colors: {
+    primaryNavy: "#071B2C",
+    deepNavy: "#061321",
+    brandCyan: "#00A6CE",
+    electricCyan: "#12C8E8",
+    softIceBlue: "#DDF7FC",
+    pureWhite: "#FFFFFF",
+    mutedGrey: "#A8B7C3",
+  },
+  meta: {
+    title: "CLEARNYX | Premium Clear Aligner Solutions",
+    description:
+      "Discover CLEARNYX — premium clear aligner solutions for dentists and orthodontists in India. Precision, innovation and professional partnership. Launching soon.",
+    keywords: [
+      "clear aligners India",
+      "orthodontic technology",
+      "dental aligners for dentists",
+      "digital treatment planning",
+      "orthodontic lab partnerships",
+      "Clearnyx aligners",
+      "professional aligner solutions",
+    ],
+  },
+} as const;
