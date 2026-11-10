@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2, Stethoscope, Building2, UserCheck, PhoneCall } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
@@ -106,3 +105,4 @@ export function ForDentistsPreviewSection() {
     </section>
   );
 }
+

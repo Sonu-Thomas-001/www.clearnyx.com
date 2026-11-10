@@ -144,3 +144,4 @@ www.clearnyx.com/
 CLEARNYX is a B2B clear aligner solutions brand providing customized orthodontic manufacturing and digital treatment planning services exclusively to licensed dental professionals. Aligner wear schedules, treatment feasibility, and clinical decisions must always be determined by the treating dental professional based on individual clinical evaluation.
 
 © 2026 CLEARNYX. All rights reserved.
+

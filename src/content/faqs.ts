@@ -62,3 +62,4 @@ export const FAQS: FAQItem[] = [
       "Yes. CLEARNYX provides registered clinical partners with digital workflow onboarding, case submission guidance, treatment plan review walkthroughs, and clinical support documentation to assist your entire practice team.",
   },
 ];
+

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Layers, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { SOLUTIONS } from "@/content/solutions";
@@ -34,7 +34,7 @@ export function SolutionsOverviewSection() {
 
         {/* 2 Featured Solution Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {SOLUTIONS.map((solution, index) => (
+          {SOLUTIONS.map((solution) => (
             <div
               key={solution.id}
               className="bg-white rounded-2xl border border-surface-border overflow-hidden shadow-card flex flex-col justify-between hover:border-cyan-300 transition-all duration-300 group"
@@ -107,3 +107,4 @@ export function SolutionsOverviewSection() {
     </section>
   );
 }
+

@@ -1,7 +1,6 @@
 import React from "react";
-import { ArrowRight, Mail, PhoneCall, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 
 export function FinalCTASection() {
   return (
@@ -62,3 +61,4 @@ export function FinalCTASection() {
     </section>
   );
 }
+

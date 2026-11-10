@@ -1,13 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
-import { ArrowRight, Check, Eye, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Standard Clear Aligners | PETG Orthodontic Solutions",
@@ -260,3 +259,4 @@ export default function StandardAlignersPage() {
     </>
   );
 }
+

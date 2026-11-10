@@ -10,3 +10,4 @@ export function formatUrl(path: string): string {
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   return `${base}${cleanPath}`;
 }
+

@@ -1,5 +1,5 @@
 import React from "react";
-import { Crosshair, HeartPulse, Cpu, Handshake, Sparkles } from "lucide-react";
+import { Crosshair, HeartPulse, Cpu, Handshake } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
 export function BrandPillarsSection() {
@@ -111,3 +111,4 @@ export function BrandPillarsSection() {
     </section>
   );
 }
+

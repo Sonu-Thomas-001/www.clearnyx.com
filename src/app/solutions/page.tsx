@@ -1,13 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SOLUTIONS, COMPARISON_CRITERIA } from "@/content/solutions";
-import { ArrowRight, Check, Sparkles, Layers, ShieldCheck, HelpCircle } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Clear Aligner Solutions | Standard & Multi-Layer Orthodontic Systems",
@@ -290,3 +289,4 @@ export default function SolutionsPage() {
     </>
   );
 }
+

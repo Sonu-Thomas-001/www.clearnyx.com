@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Monitor, Layers, Eye, ShieldAlert, Cpu } from "lucide-react";
+import { ArrowRight, Monitor, Layers, Eye, Cpu } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
@@ -115,3 +115,4 @@ export function TechnologyPreviewSection() {
     </section>
   );
 }
+

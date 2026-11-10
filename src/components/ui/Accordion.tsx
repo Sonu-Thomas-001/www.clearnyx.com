@@ -75,3 +75,4 @@ export function Accordion({ items, allowMultiple = false, className }: Accordion
     </div>
   );
 }
+

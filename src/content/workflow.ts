@@ -105,3 +105,4 @@ export const WEAR_PROTOCOL_NOTICE = {
   disclaimer:
     "Important Clinical Notice: Recommended wear schedules (22–24 hours/day) and aligner change intervals (every 10–14 days) are indicative guidelines sourced from product documentation. The exact wear duration, staging timeline, and follow-up intervals must always be determined by the treating dental professional based on individual clinical evaluation and approved treatment planning.",
 };
+

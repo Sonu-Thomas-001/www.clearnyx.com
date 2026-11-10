@@ -92,3 +92,4 @@ export interface PartnerFormData {
   consent: boolean;
   honeypot?: string;
 }
+

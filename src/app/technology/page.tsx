@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
-import { ArrowRight, Monitor, Cpu, Layers, Sparkles, Scan, FileCheck } from "lucide-react";
+import { ArrowRight, Cpu, Layers, Scan, FileCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Orthodontic Technology & Digital Treatment Planning",
@@ -252,3 +252,4 @@ export default function TechnologyPage() {
     </>
   );
 }
+

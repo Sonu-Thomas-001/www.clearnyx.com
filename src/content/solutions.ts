@@ -147,3 +147,4 @@ export const COMPARISON_CRITERIA = [
     multiLayer: "10–14 days (determined by clinician)",
   },
 ];
+

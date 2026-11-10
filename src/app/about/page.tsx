@@ -1,12 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
-import { ArrowRight, Crosshair, Sparkles, Shield, HeartHandshake, Award } from "lucide-react";
+import { ArrowRight, Crosshair, Sparkles, HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Rethinking the Clear Aligner Experience",
@@ -284,3 +283,4 @@ export default function AboutPage() {
     </>
   );
 }
+
