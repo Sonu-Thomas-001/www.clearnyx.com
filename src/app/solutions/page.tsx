@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SOLUTIONS, COMPARISON_CRITERIA } from "@/content/solutions";
+import { ConditionsGridSection } from "@/components/sections/ConditionsGridSection";
+import { TransformationSliderSection } from "@/components/sections/TransformationSliderSection";
 import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -138,6 +140,12 @@ export default function SolutionsPage() {
           })}
         </div>
       </section>
+
+      {/* Conditions Treated Section */}
+      <ConditionsGridSection />
+
+      {/* Interactive Transformation Slider */}
+      <TransformationSliderSection />
 
       {/* Comparison Table Section */}
       <section className="py-20 md:py-28 bg-surface-soft border-y border-surface-border/60">
