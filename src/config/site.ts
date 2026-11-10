@@ -1,4 +1,65 @@
-export const SITE_CONFIG = {
+import { NavItem } from "@/types";
+
+export interface SiteConfig {
+  name: string;
+  legalName: string;
+  tagline: string;
+  supportingStatement: string;
+  description: string;
+  url: string;
+  canonicalHost: string;
+  market: string;
+  businessModel: string;
+  establishedYear: number;
+  contacts: {
+    general: string;
+    sales: string;
+    partnerships: string;
+    support: string;
+    phone: string;
+    phoneDisplay: string;
+    address: {
+      line1: string;
+      city: string;
+      state: string;
+      country: string;
+      postalCode: string;
+      note: string;
+    };
+  };
+  socials: {
+    linkedin: string;
+    instagram: string;
+    twitter: string;
+  };
+  nav: {
+    main: NavItem[];
+    cta: {
+      label: string;
+      href: string;
+    };
+    legal: { label: string; href: string }[];
+  };
+  colors: {
+    deepNavy: string;
+    darkNavy: string;
+    brandCyan: string;
+    electricCyan: string;
+    iceBlue: string;
+    pureWhite: string;
+    softWhite: string;
+    lightGrey: string;
+    slate: string;
+    darkText: string;
+  };
+  analytics: {
+    gaMeasurementId: string;
+    gtmId: string;
+    clarityId: string;
+  };
+}
+
+export const SITE_CONFIG: SiteConfig = {
   name: "CLEARNYX",
   legalName: "CLEARNYX Orthodontic Technologies India",
   tagline: "Redefining Smiles.",
@@ -15,7 +76,7 @@ export const SITE_CONFIG = {
     sales: "sales@clearnyx.com",
     partnerships: "partners@clearnyx.com",
     support: "support@clearnyx.com",
-    phone: "+91 98765 43210", // Verified representative inquiry line for India operations
+    phone: "+91 98765 43210",
     phoneDisplay: "+91 (0) 80 CLEAR-NYX",
     address: {
       line1: "India Corporate Office",
@@ -108,4 +169,4 @@ export const SITE_CONFIG = {
     gtmId: process.env.NEXT_PUBLIC_GTM_ID || "",
     clarityId: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "",
   },
-} as const;
+};
