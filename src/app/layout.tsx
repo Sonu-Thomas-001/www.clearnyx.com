@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { SiteHeader } from "@/components/clearbee/SiteHeader";
+import { SiteFooter } from "@/components/clearbee/SiteFooter";
+import { BookModalProvider } from "@/components/clearbee/BookModalContext";
+import { MobileStickyBar } from "@/components/clearbee/MobileStickyBar";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
@@ -113,9 +115,12 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-navy-900 selection:bg-ice-soft selection:text-navy-900">
-        <Header />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+        <BookModalProvider>
+          <SiteHeader />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <SiteFooter />
+          <MobileStickyBar />
+        </BookModalProvider>
       </body>
     </html>
   );

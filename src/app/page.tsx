@@ -1,59 +1,43 @@
 import React from "react";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustStrip } from "@/components/sections/TrustStrip";
-import { CapabilitiesTicker } from "@/components/sections/CapabilitiesTicker";
-import { TransformationSliderSection } from "@/components/sections/TransformationSliderSection";
-import { ConditionsGridSection } from "@/components/sections/ConditionsGridSection";
-import { SolutionsOverviewSection } from "@/components/sections/SolutionsOverviewSection";
-import { ClinicLifestyleSection } from "@/components/sections/ClinicLifestyleSection";
-import { PracticeMetricsSection } from "@/components/sections/PracticeMetricsSection";
-import { TechnologyPreviewSection } from "@/components/sections/TechnologyPreviewSection";
-import { WorkflowTimelineSection } from "@/components/sections/WorkflowTimelineSection";
-import { ForDentistsPreviewSection } from "@/components/sections/ForDentistsPreviewSection";
-import { BrandStatementSection } from "@/components/sections/BrandStatementSection";
-import { FinalCTASection } from "@/components/sections/FinalCTASection";
+import { HeroSection } from "@/components/clearbee/HeroSection";
+import { BenefitsStrip } from "@/components/clearbee/BenefitsStrip";
+import { ConditionsSection } from "@/components/clearbee/ConditionsSection";
+import { StepsSection } from "@/components/clearbee/StepsSection";
+import { LifestyleOrbitSection } from "@/components/clearbee/LifestyleOrbitSection";
+import { StatsSection } from "@/components/clearbee/StatsSection";
+import { ComparisonSection } from "@/components/clearbee/ComparisonSection";
+import { TestimonialsSection } from "@/components/clearbee/TestimonialsSection";
+import { FaqCtaSection } from "@/components/clearbee/FaqCtaSection";
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. High-Impact Editorial Hero with Kinetic Looping Headline & 3D Aligner Showcase */}
+      {/* 1. Hero Section with Eyebrow, Heading, Lead, Dual CTA, Aligner Visual & Overlapping Trust Strip */}
       <HeroSection />
 
-      {/* 2. Elevated Clinical Trust Strip */}
-      <TrustStrip />
+      {/* 2. 6-Feature Benefits Strip */}
+      <BenefitsStrip />
 
-      {/* 3. Capabilities Ticker */}
-      <CapabilitiesTicker />
+      {/* 3. Conditions We Treat (6 Malocclusion Condition Cards) */}
+      <ConditionsSection />
 
-      {/* 4. Interactive Before/After Smile Transformation Comparison Slider */}
-      <TransformationSliderSection />
+      {/* 4. 4-Step Smile Journey with Connector Progress Bar */}
+      <StepsSection />
 
-      {/* 5. Malocclusion Conditions Treated Interactive Grid */}
-      <ConditionsGridSection />
+      {/* 5. Lifestyle Orbit Section: Central Floating Aligner + 5 Interactive Moments */}
+      <LifestyleOrbitSection />
 
-      {/* 6. Solutions Portfolio Overview (Standard PETG vs Multi-Layer Composite) */}
-      <SolutionsOverviewSection />
+      {/* 6. Practice Highlights & Metric Stats Strip */}
+      <StatsSection />
 
-      {/* 7. Patient Lifestyle & Clinical Compliance Integration */}
-      <ClinicLifestyleSection />
+      {/* 7. Interactive Before/After Smile Transformation Slider */}
+      <ComparisonSection />
 
-      {/* 8. Practice Metrics & Performance Strip */}
-      <PracticeMetricsSection />
+      {/* 8. Patient & Clinician Testimonials */}
+      <TestimonialsSection />
 
-      {/* 9. Digital Orthodontic Planning & Technology */}
-      <TechnologyPreviewSection />
-
-      {/* 10. 6-Stage Clinical Workflow Timeline */}
-      <WorkflowTimelineSection />
-
-      {/* 11. Practice Partnership & Doctor Collaboration */}
-      <ForDentistsPreviewSection />
-
-      {/* 12. Visual Brand Statement */}
-      <BrandStatementSection />
-
-      {/* 13. High-Converting Final CTA Section */}
-      <FinalCTASection />
+      {/* 9. FAQ Accordion & Branded Box Transformation CTA Card */}
+      <FaqCtaSection />
     </>
   );
 }
