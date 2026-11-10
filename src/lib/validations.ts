@@ -34,9 +34,11 @@ export const contactFormSchema = z.object({
     .string()
     .min(10, "Message must be at least 10 characters")
     .max(2000, "Message cannot exceed 2000 characters"),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "You must consent to being contacted by CLEARNYX" }),
-  }),
+  consent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "You must consent to being contacted by CLEARNYX",
+    }),
   honeypot: z.string().max(0).optional(),
 });
 
@@ -80,9 +82,11 @@ export const partnerFormSchema = z.object({
     .string()
     .max(2000, "Message cannot exceed 2000 characters")
     .optional(),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to professional partnership communication" }),
-  }),
+  consent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "You must agree to professional partnership communication",
+    }),
   honeypot: z.string().max(0).optional(),
 });
 
