@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy-deep: #071B2C;
+    --color-navy-dark: #061321;
+    --color-brand-cyan: #00A6CE;
+    --color-electric-cyan: #12C8E8;
+    --color-ice-blue: #DDF7FC;
+    --color-pure-white: #FFFFFF;
+    --color-soft-white: #F8FBFD;
+    --color-light-grey: #EEF3F6;
+    --color-slate: #647887;
+    --color-dark-text: #102A3A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #102A3A;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #102A3A;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Refined typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    color: #071B2C;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    color: #102A3A;
+    line-height: 1.65;
+  }
+
+  /* Custom minimal scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F8FBFD;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBDCE4;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00A6CE;
+  }
+
+  /* Selection style */
+  ::selection {
+    background-color: #DDF7FC;
+    color: #071B2C;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 2px solid #00A6CE;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Subtle borders as alternative to shadows */
+  .border-subtle {
+    border-color: #EEF3F6;
+  }
+  
+  .border-soft {
+    border-color: #E2EBF0;
+  }
+
+  .bg-soft-white {
+    background-color: #F8FBFD;
+  }
+
+  .bg-ice-soft {
+    background-color: #DDF7FC;
+  }
+
+  .text-navy-deep {
+    color: #071B2C;
+  }
+
+  .text-brand-cyan {
+    color: #00A6CE;
+  }
+
+  .text-dark-body {
+    color: #102A3A;
+  }
+
+  .text-slate-muted {
+    color: #647887;
+  }
+}
