@@ -77,9 +77,9 @@ export function SiteHeader() {
         <div
           className={`max-w-7xl mx-auto rounded-full transition-all duration-300 border ${
             isScrolled
-              ? "bg-white/90 backdrop-blur-xl border-light-grey/80 shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2.5 px-4 sm:px-6"
-              : "bg-white/75 backdrop-blur-lg border-white/60 shadow-[0_8px_30px_rgba(7,27,44,0.04)] py-3 px-4 sm:px-7"
-          } flex items-center justify-between gap-4`}
+              ? "bg-white/95 backdrop-blur-xl border-[#E2EBF0] shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2 sm:py-2.5 px-4 sm:px-5 lg:px-6"
+              : "bg-white/90 backdrop-blur-lg border-white/80 shadow-[0_8px_30px_rgba(7,27,44,0.05)] py-2.5 sm:py-3 px-4 sm:px-5 lg:px-6"
+          } flex items-center justify-between gap-2 sm:gap-4`}
         >
           {/* Brand Logo & Trust Tag */}
           <div className="flex items-center gap-3 shrink-0">
@@ -92,30 +92,30 @@ export function SiteHeader() {
               <Image
                 src="/brand/logo-primary.png"
                 alt="CLEARNYX — Premium Clear Aligner Solutions"
-                width={160}
-                height={34}
+                width={150}
+                height={32}
                 priority
-                className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
             </Link>
 
-            {/* Desktop Verified Clinical Badge */}
-            <div className="hidden xl:flex items-center gap-1.5 pl-3 border-l border-light-grey text-[11px] text-slate font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
+            {/* Verified Clinical Badge (Visible on wider screens to prevent overflow) */}
+            <div className="hidden 2xl:flex items-center gap-1.5 pl-3 border-l border-[#E2EBF0] text-[11px] text-[#647887] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-pulse" />
               <span>CDSCO &amp; ISO 13485 Certified</span>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[13.5px] font-semibold text-navy-deep">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 text-[13px] font-semibold text-[#071B2C]">
             {/* Home */}
             <Link
               href="/"
               onClick={closeMenu}
-              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+              className={`px-3 py-1.5 rounded-full transition-all duration-200 ${
                 pathname === "/"
-                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                  ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                  : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
               }`}
             >
               Home
@@ -129,17 +129,17 @@ export function SiteHeader() {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 ${
                   activeDropdown === "solutions" || pathname.startsWith("/solutions")
-                    ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                    : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                    ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                    : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
                 }`}
                 aria-expanded={activeDropdown === "solutions"}
               >
                 <span>Aligners</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === "solutions" ? "rotate-180 text-brand-cyan" : ""
+                    activeDropdown === "solutions" ? "rotate-180 text-[#00A6CE]" : ""
                   }`}
                 />
               </button>
@@ -254,17 +254,17 @@ export function SiteHeader() {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 ${
                   activeDropdown === "conditions"
-                    ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                    : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                    ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                    : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
                 }`}
                 aria-expanded={activeDropdown === "conditions"}
               >
                 <span>Conditions</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === "conditions" ? "rotate-180 text-brand-cyan" : ""
+                    activeDropdown === "conditions" ? "rotate-180 text-[#00A6CE]" : ""
                   }`}
                 />
               </button>
@@ -272,7 +272,7 @@ export function SiteHeader() {
               {/* Flyout Panel for Conditions */}
               {activeDropdown === "conditions" && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] animate-fadeIn">
-                  <div className="bg-white/95 backdrop-blur-xl border border-light-grey/80 rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)]">
+                  <div className="bg-white/95 backdrop-blur-xl border border-[#E2EBF0] rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)]">
                     <div className="flex items-center justify-between mb-3 px-1">
                       <p className="text-[11px] font-bold uppercase tracking-wider text-slate">
                         Malocclusions We Treat
@@ -301,7 +301,7 @@ export function SiteHeader() {
                           onClick={closeMenu}
                           className="flex items-center gap-3 p-2 rounded-xl hover:bg-soft-white transition-colors group"
                         >
-                          <div className="w-10 h-8 rounded-lg bg-soft-white flex items-center justify-center shrink-0 border border-light-grey group-hover:border-brand-cyan/30">
+                          <div className="w-10 h-8 rounded-lg bg-soft-white flex items-center justify-center shrink-0 border border-[#E2EBF0] group-hover:border-[#00A6CE]/30">
                             <Image
                               src={item.img}
                               alt={item.title}
@@ -330,7 +330,7 @@ export function SiteHeader() {
             <Link
               href="/#how-it-works"
               onClick={closeMenu}
-              className="px-3.5 py-2 rounded-full text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white transition-all duration-200"
+              className="px-2.5 xl:px-3 py-1.5 rounded-full text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD] transition-all duration-200"
             >
               How It Works
             </Link>
@@ -339,13 +339,13 @@ export function SiteHeader() {
             <Link
               href="/for-dentists"
               onClick={closeMenu}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                 pathname === "/for-dentists"
-                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                  ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                  : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
               }`}
             >
-              <Stethoscope className="w-3.5 h-3.5 text-brand-cyan" />
+              <Stethoscope className="w-3.5 h-3.5 text-[#00A6CE]" />
               <span>For Dentists</span>
             </Link>
 
@@ -353,10 +353,10 @@ export function SiteHeader() {
             <Link
               href="/about"
               onClick={closeMenu}
-              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+              className={`px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                 pathname === "/about"
-                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                  ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                  : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
               }`}
             >
               About
@@ -366,10 +366,10 @@ export function SiteHeader() {
             <Link
               href="/contact"
               onClick={closeMenu}
-              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+              className={`px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                 pathname === "/contact"
-                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
-                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                  ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                  : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
               }`}
             >
               Contact
@@ -377,41 +377,48 @@ export function SiteHeader() {
           </nav>
 
           {/* Right Action / CTA Area */}
-          <div className="flex items-center gap-2.5 shrink-0">
-            {/* Direct Doctor Phone Support (Desktop) */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {/* Direct Doctor Phone Support (Full on 2XL) */}
             <a
               href="tel:+919072334032"
-              className="hidden xl:flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold text-navy-deep hover:bg-soft-white border border-transparent hover:border-light-grey transition-all"
+              className="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-[#071B2C] hover:bg-[#F8FBFD] border border-transparent hover:border-[#E2EBF0] transition-all"
               title="Call Clinical Support"
             >
-              <div className="w-6 h-6 rounded-full bg-ice-blue/80 flex items-center justify-center text-brand-cyan">
-                <Phone className="w-3 h-3" />
+              <div className="w-5 h-5 rounded-full bg-[#DDF7FC] flex items-center justify-center text-[#00A6CE]">
+                <Phone className="w-2.5 h-2.5" />
               </div>
               <span>+91 9072334032</span>
             </a>
 
-            {/* High-Impact Modern Gradient CTA */}
+            {/* Compact Phone Pill for XL Screens */}
+            <a
+              href="tel:+919072334032"
+              className="hidden xl:flex 2xl:hidden w-8 h-8 rounded-full bg-[#DDF7FC] text-[#00A6CE] items-center justify-center hover:bg-[#00A6CE] hover:text-white transition-colors"
+              title="Call Clinical Support: +91 9072334032"
+              aria-label="Call Doctor Hotline"
+            >
+              <Phone className="w-3.5 h-3.5" />
+            </a>
+
+            {/* High-Impact Modern Solid Brand Cyan CTA */}
             <button
               type="button"
               onClick={() => openModal("consultation")}
-              className="relative group overflow-hidden px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-cyan to-electric-cyan text-white text-xs sm:text-[13px] font-bold shadow-[0_4px_20px_rgba(0,166,206,0.3)] hover:shadow-[0_6px_25px_rgba(0,166,206,0.45)] transition-all duration-200 active:scale-95 flex items-center gap-2"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] text-white text-xs sm:text-[13px] font-bold shadow-[0_4px_14px_rgba(0,166,206,0.35)] hover:shadow-[0_6px_20px_rgba(0,166,206,0.5)] transition-all duration-200 active:scale-95 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
             >
-              <span className="relative z-10 flex items-center gap-1.5">
-                <span>Book Consultation</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span>Book Consultation</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
 
             {/* Mobile Hamburger Toggle Button */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full bg-soft-white hover:bg-light-grey flex items-center justify-center text-navy-deep border border-light-grey transition-colors"
+              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] flex items-center justify-center text-[#071B2C] border border-[#E2EBF0] transition-colors"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
         </div>

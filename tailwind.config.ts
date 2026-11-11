@@ -9,6 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "brand-cyan": "#00A6CE",
+        "electric-cyan": "#12C8E8",
+        "ice-blue": "#DDF7FC",
+        "navy-deep": "#071B2C",
+        "navy-dark": "#061321",
+        "light-grey": "#EEF3F6",
+        "soft-white": "#F8FBFD",
+        "dark-text": "#102A3A",
         navy: {
           deep: "#071B2C",
           dark: "#061321",
