@@ -100,22 +100,20 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
               </div>
             ) : (
               <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-ice-blue/60 flex items-center justify-center p-2 border border-brand-cyan/20">
-                    <Image
-                      src="/brand/logo-symbol.png"
-                      alt="CLEARNYX"
-                      width={28}
-                      height={28}
-                      className="object-contain"
-                    />
-                  </div>
+                <div className="flex items-center justify-between gap-3 mb-6 pb-4 border-b border-light-grey">
                   <div>
-                    <h3 className="text-xl font-bold text-navy-deep">
-                      {modalType === "partner" ? "Partner with CLEARNYX" : "Book a Consultation"}
-                    </h3>
-                    <p className="text-xs text-slate">Experience premium precision orthodontic solutions</p>
+                    <Image
+                      src="/brand/logo-primary.png"
+                      alt="CLEARNYX — Premium Clear Aligner Solutions"
+                      width={160}
+                      height={33}
+                      className="h-7 sm:h-8 w-auto object-contain"
+                    />
+                    <p className="text-[11px] text-slate mt-1 font-medium">Precision. Comfort. Confidence.</p>
                   </div>
+                  <span className="text-[11px] font-bold tracking-wider uppercase text-brand-cyan bg-ice-blue px-3 py-1 rounded-full border border-brand-cyan/20">
+                    {modalType === "partner" ? "Partner" : "Consultation"}
+                  </span>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

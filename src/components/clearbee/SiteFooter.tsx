@@ -14,26 +14,17 @@ export function SiteFooter() {
         {/* Brand Column */}
         <div className="footer-brand">
           <Link
-            className="wordmark footer-wordmark flex items-center gap-2"
-            aria-label="CLEARNYX Aligner home"
+            className="flex items-center shrink-0 mb-3 group focus-visible:outline-none"
+            aria-label="CLEARNYX Home"
             href="/"
           >
-            <div className="relative w-7 h-7 flex-shrink-0">
-              <Image
-                src="/brand/logo-symbol.png"
-                alt="CLEARNYX"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold tracking-tight text-xl text-navy-deep leading-none">
-                CLEARNYX
-              </span>
-              <span className="text-[8px] font-semibold tracking-[0.22em] text-brand-cyan uppercase leading-tight mt-0.5">
-                ALIGNER
-              </span>
-            </div>
+            <Image
+              src="/brand/logo-primary.png"
+              alt="CLEARNYX — Premium Clear Aligner Solutions"
+              width={175}
+              height={36}
+              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            />
           </Link>
           <p>Virtually invisible aligners for a remarkably confident you.</p>
 
