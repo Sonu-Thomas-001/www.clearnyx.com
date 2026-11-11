@@ -1,234 +1,580 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useBookModal } from "./BookModalContext";
+import {
+  ChevronDown,
+  Layers,
+  Sparkles,
+  Stethoscope,
+  Phone,
+  ArrowRight,
+  ShieldCheck,
+  X,
+  Menu,
+  Activity,
+  ArrowUpRight,
+} from "lucide-react";
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<"solutions" | "conditions" | null>(null);
   const pathname = usePathname();
   const { openModal } = useBookModal();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 25);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  const handleMouseEnter = (menu: "solutions" | "conditions") => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setActiveDropdown(menu);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 180);
+  };
+
   const closeMenu = () => {
     setIsMobileMenuOpen(false);
-    setIsDropdownOpen(false);
+    setActiveDropdown(null);
   };
 
   return (
-    <header
-      className={`site-header ${isScrolled ? "is-solid" : "is-over-hero"} ${
-        isMobileMenuOpen ? "is-menu-open" : ""
-      }`}
-    >
-      {/* Actual Official CLEARNYX Logo */}
-      <Link
-        href="/"
-        className="flex items-center shrink-0 group focus-visible:outline-none"
-        aria-label="CLEARNYX Home"
-        onClick={closeMenu}
+    <>
+      {/* Top Floating Island Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 md:px-8 ${
+          isScrolled ? "pt-2 sm:pt-3" : "pt-4 sm:pt-6"
+        }`}
       >
-        <Image
-          src="/brand/logo-primary.png"
-          alt="CLEARNYX — Premium Clear Aligner Solutions"
-          width={175}
-          height={36}
-          priority
-          className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-        />
-      </Link>
-
-      {/* Mobile Hamburger Button */}
-      <button
-        className={`menu-button ${isMobileMenuOpen ? "is-open" : ""}`}
-        aria-expanded={isMobileMenuOpen}
-        aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
-        type="button"
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      >
-        <span />
-        <span />
-      </button>
-
-      {/* Navigation Links */}
-      <nav
-        className={`nav-links ${isMobileMenuOpen ? "is-open" : ""}`}
-        aria-label="Main navigation"
-      >
-        <Link
-          href="/"
-          className={pathname === "/" ? "is-active" : ""}
-          onClick={closeMenu}
-        >
-          Home
-        </Link>
-        <Link
-          href="/about"
-          className={pathname === "/about" ? "is-active" : ""}
-          onClick={closeMenu}
-        >
-          About
-        </Link>
-        <Link
-          href="/solutions"
-          className={pathname.startsWith("/solutions") ? "is-active" : ""}
-          onClick={closeMenu}
-        >
-          Aligners
-        </Link>
-
-        {/* Conditions Dropdown */}
         <div
-          className="nav-dropdown relative"
-          onMouseEnter={() => setIsDropdownOpen(true)}
-          onMouseLeave={() => setIsDropdownOpen(false)}
+          className={`max-w-7xl mx-auto rounded-full transition-all duration-300 border ${
+            isScrolled
+              ? "bg-white/90 backdrop-blur-xl border-light-grey/80 shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2.5 px-4 sm:px-6"
+              : "bg-white/75 backdrop-blur-lg border-white/60 shadow-[0_8px_30px_rgba(7,27,44,0.04)] py-3 px-4 sm:px-7"
+          } flex items-center justify-between gap-4`}
         >
-          <button
-            type="button"
-            className="nav-dropdown-trigger flex items-center gap-1"
-            aria-expanded={isDropdownOpen}
-            aria-haspopup="true"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            <span>Conditions</span>
-            <svg
-              className={`nav-dropdown-chevron transition-transform duration-200 ${
-                isDropdownOpen ? "rotate-180" : ""
-              }`}
-              viewBox="0 0 12 12"
-              width="12"
-              height="12"
-              aria-hidden="true"
-              focusable="false"
+          {/* Brand Logo & Trust Tag */}
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="flex items-center shrink-0 group focus-visible:outline-none"
+              aria-label="CLEARNYX Home"
             >
-              <path
-                d="M2.5 4.2 6 7.8l3.5-3.6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <Image
+                src="/brand/logo-primary.png"
+                alt="CLEARNYX — Premium Clear Aligner Solutions"
+                width={160}
+                height={34}
+                priority
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
-            </svg>
-          </button>
+            </Link>
 
-          {isDropdownOpen && (
-            <div className="nav-dropdown-menu" role="menu">
-              <div className="nav-dropdown-menu-inner">
+            {/* Desktop Verified Clinical Badge */}
+            <div className="hidden xl:flex items-center gap-1.5 pl-3 border-l border-light-grey text-[11px] text-slate font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
+              <span>CDSCO &amp; ISO 13485 Certified</span>
+            </div>
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[13.5px] font-semibold text-navy-deep">
+            {/* Home */}
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+                pathname === "/"
+                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* Aligners / Solutions Mega Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("solutions")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                type="button"
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+                  activeDropdown === "solutions" || pathname.startsWith("/solutions")
+                    ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                    : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                }`}
+                aria-expanded={activeDropdown === "solutions"}
+              >
+                <span>Aligners</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    activeDropdown === "solutions" ? "rotate-180 text-brand-cyan" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Flyout Panel for Aligners */}
+              {activeDropdown === "solutions" && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[560px] animate-fadeIn">
+                  <div className="bg-white/95 backdrop-blur-xl border border-light-grey/80 rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)] grid grid-cols-12 gap-4">
+                    <div className="col-span-7 space-y-2">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate px-2">
+                        Orthodontic Systems
+                      </p>
+
+                      <Link
+                        href="/solutions/standard-aligners"
+                        onClick={closeMenu}
+                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
+                      >
+                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
+                          <Layers className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
+                              Standard Aligners
+                            </span>
+                            <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-soft-white text-slate border border-light-grey">
+                              Single-Layer
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
+                            High-clarity medical PETG for mild-to-moderate tooth alignment.
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/multi-layer-aligners"
+                        onClick={closeMenu}
+                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
+                      >
+                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
+                          <Sparkles className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
+                              Multi-Layer Composite
+                            </span>
+                            <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                              Pro
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
+                            Elastomeric core for continuous orthodontic biomechanical force.
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/technology"
+                        onClick={closeMenu}
+                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
+                      >
+                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
+                          <Activity className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
+                            Digital Treatment Planning
+                          </span>
+                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
+                            High-precision 3D digital staging and doctor approval software.
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Right Featured Card */}
+                    <div className="col-span-5 bg-gradient-to-br from-soft-white to-ice-blue/40 rounded-2xl p-4 border border-brand-cyan/15 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-brand-cyan">
+                          Precision Material
+                        </span>
+                        <h4 className="text-xs font-bold text-navy-deep mt-1 leading-snug">
+                          Sub-Millimeter 0.01mm Accuracy
+                        </h4>
+                        <p className="text-[11px] text-slate mt-1.5 leading-relaxed">
+                          Certified biocompatible polymers engineered for sustained tooth movement and maximum transparency.
+                        </p>
+                      </div>
+
+                      <Link
+                        href="/solutions"
+                        onClick={closeMenu}
+                        className="mt-3 text-[11px] font-bold text-brand-cyan hover:text-electric-cyan flex items-center gap-1 group/btn"
+                      >
+                        <span>Explore All Solutions</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Conditions Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("conditions")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                type="button"
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+                  activeDropdown === "conditions"
+                    ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                    : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+                }`}
+                aria-expanded={activeDropdown === "conditions"}
+              >
+                <span>Conditions</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    activeDropdown === "conditions" ? "rotate-180 text-brand-cyan" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Flyout Panel for Conditions */}
+              {activeDropdown === "conditions" && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] animate-fadeIn">
+                  <div className="bg-white/95 backdrop-blur-xl border border-light-grey/80 rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)]">
+                    <div className="flex items-center justify-between mb-3 px-1">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate">
+                        Malocclusions We Treat
+                      </p>
+                      <Link
+                        href="/solutions#conditions"
+                        onClick={closeMenu}
+                        className="text-[11px] font-semibold text-brand-cyan hover:underline"
+                      >
+                        Clinical Overview
+                      </Link>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      {[
+                        { title: "Crowding", desc: "Overlapping or shifted teeth", img: "/images/conditions/crowding.png" },
+                        { title: "Spacing", desc: "Excessive gaps between teeth", img: "/images/conditions/spacing.png" },
+                        { title: "Open Bite", desc: "Upper and lower teeth do not meet", img: "/images/conditions/open-bite.png" },
+                        { title: "Deep Bite", desc: "Excessive overlap of front teeth", img: "/images/conditions/deep-bite.png" },
+                        { title: "Cross Bite", desc: "Upper teeth fit inside lower teeth", img: "/images/conditions/cross-bite.png" },
+                        { title: "Under Bite", desc: "Lower teeth extend past upper teeth", img: "/images/conditions/under-bite.png" },
+                      ].map((item) => (
+                        <Link
+                          key={item.title}
+                          href="/#conditions"
+                          onClick={closeMenu}
+                          className="flex items-center gap-3 p-2 rounded-xl hover:bg-soft-white transition-colors group"
+                        >
+                          <div className="w-10 h-8 rounded-lg bg-soft-white flex items-center justify-center shrink-0 border border-light-grey group-hover:border-brand-cyan/30">
+                            <Image
+                              src={item.img}
+                              alt={item.title}
+                              width={36}
+                              height={28}
+                              className="object-contain max-h-6"
+                            />
+                          </div>
+                          <div>
+                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors block leading-tight">
+                              {item.title}
+                            </span>
+                            <span className="text-[10px] text-slate line-clamp-1">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* How It Works */}
+            <Link
+              href="/#how-it-works"
+              onClick={closeMenu}
+              className="px-3.5 py-2 rounded-full text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white transition-all duration-200"
+            >
+              How It Works
+            </Link>
+
+            {/* For Dentists (B2B Hero Link) */}
+            <Link
+              href="/for-dentists"
+              onClick={closeMenu}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full transition-all duration-200 ${
+                pathname === "/for-dentists"
+                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+              }`}
+            >
+              <Stethoscope className="w-3.5 h-3.5 text-brand-cyan" />
+              <span>For Dentists</span>
+            </Link>
+
+            {/* About */}
+            <Link
+              href="/about"
+              onClick={closeMenu}
+              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+                pathname === "/about"
+                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+              }`}
+            >
+              About
+            </Link>
+
+            {/* Contact */}
+            <Link
+              href="/contact"
+              onClick={closeMenu}
+              className={`px-3.5 py-2 rounded-full transition-all duration-200 ${
+                pathname === "/contact"
+                  ? "bg-ice-blue/70 text-brand-cyan font-bold"
+                  : "text-navy-deep/80 hover:text-navy-deep hover:bg-soft-white"
+              }`}
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Right Action / CTA Area */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* Direct Doctor Phone Support (Desktop) */}
+            <a
+              href="tel:+919072334032"
+              className="hidden xl:flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold text-navy-deep hover:bg-soft-white border border-transparent hover:border-light-grey transition-all"
+              title="Call Clinical Support"
+            >
+              <div className="w-6 h-6 rounded-full bg-ice-blue/80 flex items-center justify-center text-brand-cyan">
+                <Phone className="w-3 h-3" />
+              </div>
+              <span>+91 9072334032</span>
+            </a>
+
+            {/* High-Impact Modern Gradient CTA */}
+            <button
+              type="button"
+              onClick={() => openModal("consultation")}
+              className="relative group overflow-hidden px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-cyan to-electric-cyan text-white text-xs sm:text-[13px] font-bold shadow-[0_4px_20px_rgba(0,166,206,0.3)] hover:shadow-[0_6px_25px_rgba(0,166,206,0.45)] transition-all duration-200 active:scale-95 flex items-center gap-2"
+            >
+              <span className="relative z-10 flex items-center gap-1.5">
+                <span>Book Consultation</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </span>
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            </button>
+
+            {/* Mobile Hamburger Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden w-10 h-10 rounded-full bg-soft-white hover:bg-light-grey flex items-center justify-center text-navy-deep border border-light-grey transition-colors"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Modern Full-Screen Mobile Drawer */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden bg-navy-deep/40 backdrop-blur-md animate-fadeIn">
+          <div className="fixed inset-x-3 top-20 bottom-6 bg-white rounded-3xl shadow-2xl border border-light-grey flex flex-col overflow-hidden animate-fadeIn">
+            {/* Drawer Header */}
+            <div className="p-5 border-b border-light-grey flex items-center justify-between">
+              <Image
+                src="/brand/logo-primary.png"
+                alt="CLEARNYX"
+                width={140}
+                height={30}
+                className="h-7 w-auto object-contain"
+              />
+              <button
+                onClick={closeMenu}
+                className="w-8 h-8 rounded-full bg-soft-white flex items-center justify-center text-slate hover:text-navy-deep"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Drawer Scrollable Links */}
+            <div className="flex-1 overflow-y-auto p-5 space-y-4">
+              <div className="space-y-1">
                 <Link
-                  role="menuitem"
-                  href="/#conditions"
+                  href="/"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
-                  Crowding
+                  <span>Home</span>
+                  <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
+
                 <Link
-                  role="menuitem"
-                  href="/#conditions"
+                  href="/solutions"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
-                  Spacing
+                  <div className="flex items-center gap-2.5">
+                    <Layers className="w-4 h-4 text-brand-cyan" />
+                    <span>Clear Aligner Solutions</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
+
+                <div className="pl-6 space-y-1 py-1">
+                  <Link
+                    href="/solutions/standard-aligners"
+                    onClick={closeMenu}
+                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
+                  >
+                    • Standard Aligners (Single-Layer)
+                  </Link>
+                  <Link
+                    href="/solutions/multi-layer-aligners"
+                    onClick={closeMenu}
+                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
+                  >
+                    • Multi-Layer Composite Aligners (Pro)
+                  </Link>
+                  <Link
+                    href="/technology"
+                    onClick={closeMenu}
+                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
+                  >
+                    • Digital Treatment Planning
+                  </Link>
+                </div>
+
                 <Link
-                  role="menuitem"
                   href="/#conditions"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
-                  Open Bite
+                  <div className="flex items-center gap-2.5">
+                    <Sparkles className="w-4 h-4 text-brand-cyan" />
+                    <span>Conditions We Treat</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
+
                 <Link
-                  role="menuitem"
-                  href="/#conditions"
+                  href="/#how-it-works"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
-                  Deep Bite
+                  <span>How It Works</span>
+                  <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
+
                 <Link
-                  role="menuitem"
-                  href="/#conditions"
+                  href="/for-dentists"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-brand-cyan bg-ice-blue/50 border border-brand-cyan/20"
                 >
-                  Cross Bite
+                  <div className="flex items-center gap-2.5">
+                    <Stethoscope className="w-4 h-4" />
+                    <span>For Dentists &amp; Clinics</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4" />
                 </Link>
+
                 <Link
-                  role="menuitem"
-                  href="/#conditions"
+                  href="/about"
                   onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
-                  Under Bite
+                  <span>About CLEARNYX</span>
+                  <ArrowRight className="w-4 h-4 text-slate" />
+                </Link>
+
+                <Link
+                  href="/contact"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
+                >
+                  <span>Contact</span>
+                  <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
               </div>
+
+              {/* Trust Badges */}
+              <div className="p-4 rounded-2xl bg-soft-white border border-light-grey space-y-2">
+                <div className="flex items-center gap-2 text-xs font-semibold text-navy-deep">
+                  <ShieldCheck className="w-4 h-4 text-brand-cyan shrink-0" />
+                  <span>Certified Medical Grade Orthodontics</span>
+                </div>
+                <p className="text-[11px] text-slate leading-relaxed">
+                  CDSCO MD-5 and ISO 13485 certified facilities. Customized for licensed dentists across India.
+                </p>
+              </div>
             </div>
-          )}
+
+            {/* Drawer Footer Action Buttons */}
+            <div className="p-5 border-t border-light-grey space-y-2.5 bg-soft-white/60">
+              <button
+                type="button"
+                onClick={() => {
+                  closeMenu();
+                  openModal("consultation");
+                }}
+                className="w-full py-3 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide shadow-md flex items-center justify-center gap-2"
+              >
+                <span>Book Doctor Consultation</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="tel:+919072334032"
+                className="w-full py-2.5 px-4 rounded-full bg-white border border-light-grey text-navy-deep text-xs font-bold flex items-center justify-center gap-2"
+              >
+                <Phone className="w-3.5 h-3.5 text-brand-cyan" />
+                <span>Call Clinical Support: +91 9072334032</span>
+              </a>
+            </div>
+          </div>
         </div>
-
-        <Link
-          href="/contact"
-          className={pathname === "/contact" ? "is-active" : ""}
-          onClick={closeMenu}
-        >
-          Contact
-        </Link>
-
-        {/* Mobile inside CTA */}
-        <button
-          type="button"
-          className="book-link nav-mobile-cta"
-          onClick={() => {
-            closeMenu();
-            openModal("consultation");
-          }}
-        >
-          Book Consultation{" "}
-          <span aria-hidden="true" className="arrow diagonal">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" focusable="false">
-              <path
-                d="M3 8h9.2M8.5 3.8 12.7 8l-4.2 4.2"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </button>
-      </nav>
-
-      {/* Desktop Header CTA */}
-      <button
-        type="button"
-        className="book-link header-cta"
-        onClick={() => openModal("consultation")}
-      >
-        Book Consultation{" "}
-        <span aria-hidden="true" className="arrow diagonal">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" focusable="false">
-            <path
-              d="M3 8h9.2M8.5 3.8 12.7 8l-4.2 4.2"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
-    </header>
+      )}
+    </>
   );
 }
-
