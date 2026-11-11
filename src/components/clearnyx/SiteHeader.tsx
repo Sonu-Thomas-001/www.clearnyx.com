@@ -70,15 +70,15 @@ export function SiteHeader() {
     <>
       {/* Top Floating Island Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 md:px-8 ${
-          isScrolled ? "pt-2 sm:pt-3" : "pt-4 sm:pt-6"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-2.5 sm:px-6 md:px-8 ${
+          isScrolled ? "pt-2 sm:pt-3" : "pt-3 sm:pt-6"
         }`}
       >
         <div
           className={`max-w-7xl mx-auto rounded-full transition-all duration-300 border ${
             isScrolled
-              ? "bg-white/95 backdrop-blur-xl border-[#E2EBF0] shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2 sm:py-2.5 px-4 sm:px-5 lg:px-6"
-              : "bg-white/90 backdrop-blur-lg border-white/80 shadow-[0_8px_30px_rgba(7,27,44,0.05)] py-2.5 sm:py-3 px-4 sm:px-5 lg:px-6"
+              ? "bg-white/95 backdrop-blur-xl border-[#E2EBF0] shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2 sm:py-2.5 px-3 sm:px-5 lg:px-6"
+              : "bg-white/90 backdrop-blur-lg border-white/80 shadow-[0_8px_30px_rgba(7,27,44,0.05)] py-2 sm:py-3 px-3.5 sm:px-5 lg:px-6"
           } flex items-center justify-between gap-2 sm:gap-4`}
         >
           {/* Brand Logo & Trust Tag */}
@@ -95,7 +95,7 @@ export function SiteHeader() {
                 width={150}
                 height={32}
                 priority
-                className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-6 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
             </Link>
 
@@ -107,12 +107,12 @@ export function SiteHeader() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 text-[13px] font-semibold text-[#071B2C]">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 text-xs xl:text-[13px] font-semibold text-[#071B2C]">
             {/* Home */}
             <Link
               href="/"
               onClick={closeMenu}
-              className={`px-3 py-1.5 rounded-full transition-all duration-200 ${
+              className={`px-2 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                 pathname === "/"
                   ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
                   : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
@@ -129,7 +129,7 @@ export function SiteHeader() {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 ${
+                className={`flex items-center gap-1 px-2 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                   activeDropdown === "solutions" || pathname.startsWith("/solutions")
                     ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
                     : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
@@ -254,7 +254,7 @@ export function SiteHeader() {
             >
               <button
                 type="button"
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-200 ${
+                className={`flex items-center gap-1 px-2 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                   activeDropdown === "conditions"
                     ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
                     : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
@@ -377,7 +377,7 @@ export function SiteHeader() {
           </nav>
 
           {/* Right Action / CTA Area */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Direct Doctor Phone Support (Full on 2XL) */}
             <a
               href="tel:+919072334032"
@@ -400,11 +400,11 @@ export function SiteHeader() {
               <Phone className="w-3.5 h-3.5" />
             </a>
 
-            {/* High-Impact Modern Solid Brand Cyan CTA */}
+            {/* High-Impact Modern Solid Brand Cyan CTA (Hidden on mobile phones where MobileStickyBar provides thumb access) */}
             <button
               type="button"
               onClick={() => openModal("consultation")}
-              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] text-white text-xs sm:text-[13px] font-bold shadow-[0_4px_14px_rgba(0,166,206,0.35)] hover:shadow-[0_6px_20px_rgba(0,166,206,0.5)] transition-all duration-200 active:scale-95 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 lg:px-4 xl:px-5 py-2 sm:py-2.5 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] text-white text-xs xl:text-[13px] font-bold shadow-[0_4px_14px_rgba(0,166,206,0.35)] hover:shadow-[0_6px_20px_rgba(0,166,206,0.5)] transition-all duration-200 active:scale-95 shrink-0 whitespace-nowrap"
             >
               <span>Book Consultation</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -414,7 +414,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] flex items-center justify-center text-[#071B2C] border border-[#E2EBF0] transition-colors"
+              className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] flex items-center justify-center text-[#071B2C] border border-[#E2EBF0] transition-colors"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
             >

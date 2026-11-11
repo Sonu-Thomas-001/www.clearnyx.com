@@ -1421,3 +1421,159 @@
     text-align: center;
   }
 }
+
+/* ================= Small-Screen Responsive Refinements (<= 480px) ================= */
+@media (max-width: 480px) {
+  .section-pad {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .lp-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .lp-section-head {
+    margin-bottom: 32px;
+  }
+
+  .lp-section-head h2 {
+    font-size: 26px;
+  }
+
+  /* Hero adjustments */
+  .lp-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lp-hero-actions .button {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 13.5px;
+  }
+
+  /* Trust card */
+  .lp-trust-card {
+    padding: 14px 16px;
+    gap: 14px;
+    border-radius: 16px;
+  }
+
+  .lp-trust-item {
+    flex: 1 1 100%;
+  }
+
+  /* Orbit Stage */
+  .lp-orbit {
+    width: min(320px, 86vw);
+  }
+
+  .lp-life-moment {
+    width: 48px;
+    height: 48px;
+  }
+
+  .lp-life-badge {
+    width: 18px;
+    height: 18px;
+  }
+
+  .lp-life-badge svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .lp-life-moment-copy {
+    width: 88px;
+  }
+
+  .lp-life-moment-copy p {
+    font-size: 10px;
+  }
+
+  .lp-life-moment-copy span {
+    display: none;
+  }
+
+  .lp-life-aside {
+    display: none;
+  }
+
+  /* Stats row */
+  .lp-stats-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 8px;
+  }
+
+  .lp-stat {
+    gap: 12px;
+  }
+
+  .lp-stat-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lp-stat strong {
+    font-size: 24px;
+  }
+
+  /* Steps */
+  .lp-steps {
+    padding-left: 42px;
+    gap: 24px;
+  }
+
+  .lp-steps-line {
+    left: 16px;
+  }
+
+  .lp-step-num {
+    left: -42px;
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* Comparison Stage */
+  .comparison-shell {
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .comparison-stage {
+    min-height: 240px;
+    border-radius: 14px;
+  }
+
+  /* Mobile Drawer Safe Insets */
+  .drawer-links-scroll {
+    max-height: calc(100vh - 200px);
+  }
+}
+
+/* Tiny screen adjustments (<= 360px) */
+@media (max-width: 360px) {
+  .section-pad {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .lp-orbit {
+    width: min(290px, 88vw);
+  }
+
+  .lp-life-moment {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lp-life-moment-copy {
+    width: 80px;
+  }
+}
+
