@@ -15,10 +15,11 @@ export function MobileNav() {
   const [expandedDropdowns, setExpandedDropdowns] = useState<string[]>(["Solutions"]);
   const pathname = usePathname();
 
-  // Close drawer upon route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   // Prevent background scrolling when mobile menu is active
   useEffect(() => {
