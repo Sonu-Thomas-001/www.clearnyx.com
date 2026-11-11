@@ -1,13 +1,13 @@
 import React from "react";
-import { HeroSection } from "@/components/clearbee/HeroSection";
-import { BenefitsStrip } from "@/components/clearbee/BenefitsStrip";
-import { ConditionsSection } from "@/components/clearbee/ConditionsSection";
-import { StepsSection } from "@/components/clearbee/StepsSection";
-import { LifestyleOrbitSection } from "@/components/clearbee/LifestyleOrbitSection";
-import { StatsSection } from "@/components/clearbee/StatsSection";
-import { ComparisonSection } from "@/components/clearbee/ComparisonSection";
-import { TestimonialsSection } from "@/components/clearbee/TestimonialsSection";
-import { FaqCtaSection } from "@/components/clearbee/FaqCtaSection";
+import { HeroSection } from "@/components/clearnyx/HeroSection";
+import { BenefitsStrip } from "@/components/clearnyx/BenefitsStrip";
+import { ConditionsSection } from "@/components/clearnyx/ConditionsSection";
+import { StepsSection } from "@/components/clearnyx/StepsSection";
+import { LifestyleOrbitSection } from "@/components/clearnyx/LifestyleOrbitSection";
+import { StatsSection } from "@/components/clearnyx/StatsSection";
+import { ComparisonSection } from "@/components/clearnyx/ComparisonSection";
+import { TestimonialsSection } from "@/components/clearnyx/TestimonialsSection";
+import { FaqCtaSection } from "@/components/clearnyx/FaqCtaSection";
 
 export default function HomePage() {
   return (

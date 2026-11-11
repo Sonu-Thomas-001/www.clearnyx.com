@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/clearbee/SiteHeader";
-import { SiteFooter } from "@/components/clearbee/SiteFooter";
-import { BookModalProvider } from "@/components/clearbee/BookModalContext";
-import { MobileStickyBar } from "@/components/clearbee/MobileStickyBar";
+import { SiteHeader } from "@/components/clearnyx/SiteHeader";
+import { SiteFooter } from "@/components/clearnyx/SiteFooter";
+import { BookModalProvider } from "@/components/clearnyx/BookModalContext";
+import { MobileStickyBar } from "@/components/clearnyx/MobileStickyBar";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
