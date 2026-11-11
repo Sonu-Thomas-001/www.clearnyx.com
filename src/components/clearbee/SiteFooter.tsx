@@ -313,8 +313,9 @@ export function SiteFooter() {
 
         {/* 4. Bottom Copyright & Legal Links */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-muted">
-          <div className="flex items-center gap-2">
-            <span>© 2026 CLEARNYX Technologies Pvt. Ltd. All rights reserved.</span>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span>© 2026 Clearnyx Aligner.</span>
+            <span>All rights reserved by <strong className="font-bold text-white">MidCell Studios</strong>.</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-6">

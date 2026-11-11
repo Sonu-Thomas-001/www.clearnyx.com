@@ -214,7 +214,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-8 border-t border-navy-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-muted">
           <p>
-            © {currentYear} {SITE_CONFIG.name}. {SITE_CONFIG.tagline} {SITE_CONFIG.supportingStatement} All rights reserved.
+            © 2026 Clearnyx Aligner. All rights reserved by <strong className="font-bold text-white">MidCell Studios</strong>.
           </p>
           <div className="flex items-center space-x-6">
             <Link
