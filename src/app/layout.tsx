@@ -109,12 +109,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${plusJakartaSans.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <OrganizationSchema />
         <WebSiteSchema />
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-white text-navy-900 selection:bg-ice-soft selection:text-navy-900">
+      <body
+        className="min-h-screen flex flex-col font-sans bg-white text-navy-900 selection:bg-ice-soft selection:text-navy-900"
+        suppressHydrationWarning
+      >
         <BookModalProvider>
           <SiteHeader />
           <main className="flex-1 flex flex-col">{children}</main>
