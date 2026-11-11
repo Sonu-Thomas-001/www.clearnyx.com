@@ -75,13 +75,13 @@ export function SiteHeader() {
         }`}
       >
         <div
-          className={`max-w-7xl mx-auto rounded-full transition-all duration-300 border ${
+          className={`w-full max-w-7xl 2xl:max-w-[1360px] mx-auto rounded-full transition-all duration-300 border ${
             isScrolled
               ? "bg-white/95 backdrop-blur-xl border-[#E2EBF0] shadow-[0_12px_40px_rgba(7,27,44,0.08)] py-2 sm:py-2.5 px-3 sm:px-5 lg:px-6"
               : "bg-white/90 backdrop-blur-lg border-white/80 shadow-[0_8px_30px_rgba(7,27,44,0.05)] py-2 sm:py-3 px-3.5 sm:px-5 lg:px-6"
           } flex items-center justify-between gap-2 sm:gap-4`}
         >
-          {/* Brand Logo & Trust Tag */}
+          {/* Brand Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/"
@@ -95,15 +95,9 @@ export function SiteHeader() {
                 width={150}
                 height={32}
                 priority
-                className="h-6 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-6 sm:h-7 md:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
             </Link>
-
-            {/* Verified Clinical Badge (Visible on wider screens to prevent overflow) */}
-            <div className="hidden 2xl:flex items-center gap-1.5 pl-3 border-l border-[#E2EBF0] text-[11px] text-[#647887] font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-pulse" />
-              <span>CDSCO &amp; ISO 13485 Certified</span>
-            </div>
           </div>
 
           {/* Desktop Navigation Links */}

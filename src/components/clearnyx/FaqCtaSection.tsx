@@ -94,13 +94,14 @@ export function FaqCtaSection() {
 
       {/* Right Column: CTA Box Card */}
       <aside className="lp-cta-card">
-        <div className="lp-cta-media relative w-full h-[220px] flex items-center justify-center">
+        <div className="lp-cta-media relative w-full h-[200px] flex items-center justify-center">
+          <div className="absolute w-44 h-44 bg-brand-cyan/20 rounded-full blur-2xl pointer-events-none" />
           <Image
-            src="/images/showcase/clearnyx-box.png"
-            alt="CLEARNYX Premium Packaging Box"
-            width={260}
-            height={200}
-            className="object-contain drop-shadow-2xl"
+            src="/images/showcase/aligner-cutout.png"
+            alt="CLEARNYX Precision Clear Aligner Tray"
+            width={240}
+            height={160}
+            className="relative z-10 object-contain drop-shadow-xl transition-transform duration-300 hover:scale-105"
           />
         </div>
 

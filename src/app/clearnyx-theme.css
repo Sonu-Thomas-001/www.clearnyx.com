@@ -843,14 +843,14 @@
   height: 82px;
   transform: translate(-50%, -50%);
   z-index: 3;
-  opacity: 0.65;
+  opacity: 0.88;
   transition: opacity 0.3s, transform 0.3s;
 }
 
 .lp-life-moment.is-active,
 .lp-life-moment:hover {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .lp-life-moment-inner {
@@ -1548,6 +1548,18 @@
   .comparison-stage {
     min-height: 240px;
     border-radius: 14px;
+  }
+
+  /* Testimonials */
+  .lp-testimonial {
+    max-width: 100%;
+    padding: 24px 20px 20px;
+  }
+
+  /* CTA card */
+  .lp-cta-card {
+    padding: 24px 18px;
+    gap: 20px;
   }
 
   /* Mobile Drawer Safe Insets */
