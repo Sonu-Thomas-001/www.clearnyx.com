@@ -7,7 +7,6 @@ import {
   ArrowRight,
   Clock,
   Sparkles,
-  CheckCircle2,
   ShieldCheck,
   Stethoscope,
   ChevronRight,
@@ -24,7 +23,6 @@ interface ConditionItem {
   tag: string;
   duration: string;
   description: string;
-  clinicalSolution: string;
   image: string;
 }
 
@@ -36,7 +34,6 @@ const conditions: ConditionItem[] = [
     tag: "Arch Expansion",
     duration: "4–9 Mos",
     description: "Narrow dental arch causes teeth to bunch together, overlap, or rotate out of alignment.",
-    clinicalSolution: "Sequential arch expansion & precision IPR provide space for gentle realignment.",
     image: "/images/conditions/crowding.png",
   },
   {
@@ -46,7 +43,6 @@ const conditions: ConditionItem[] = [
     tag: "Diastema Closure",
     duration: "3–6 Mos",
     description: "Visible gaps between adjacent teeth, often caused by missing teeth or proportional tooth size disparity.",
-    clinicalSolution: "Bodily tooth translation safely closes gaps while keeping root axes completely parallel.",
     image: "/images/conditions/spacing.png",
   },
   {
@@ -56,7 +52,6 @@ const conditions: ConditionItem[] = [
     tag: "Vertical Staging",
     duration: "6–12 Mos",
     description: "Upper and lower front teeth fail to meet when back teeth are closed, impairing chewing and speech.",
-    clinicalSolution: "Anterior extrusion and posterior intrusion restore natural occlusion and proper contact.",
     image: "/images/conditions/open-bite.png",
   },
   {
@@ -66,7 +61,6 @@ const conditions: ConditionItem[] = [
     tag: "Bite Elevation",
     duration: "6–10 Mos",
     description: "Upper incisors cover lower front teeth excessively, risking premature enamel abrasion and gum wear.",
-    clinicalSolution: "Biomechanical intrusion of anterior teeth creates optimal vertical clearance.",
     image: "/images/conditions/deep-bite.png",
   },
   {
@@ -76,7 +70,6 @@ const conditions: ConditionItem[] = [
     tag: "Transverse Alignment",
     duration: "6–12 Mos",
     description: "One or more upper teeth sit inside lower teeth when biting, causing jaw strain and asymmetric wear.",
-    clinicalSolution: "Transverse arch widening and sectional movement align upper and lower dental arches.",
     image: "/images/conditions/cross-bite.png",
   },
   {
@@ -86,7 +79,6 @@ const conditions: ConditionItem[] = [
     tag: "Sagittal Correction",
     duration: "8–14 Mos",
     description: "Lower front teeth sit ahead of upper front teeth, altering facial profile and biting mechanics.",
-    clinicalSolution: "Class III biomechanical staging realigns the anterior inter-arch relationship safely.",
     image: "/images/conditions/under-bite.png",
   },
 ];
@@ -206,15 +198,6 @@ export function ConditionsSection() {
                 <p className="mt-2 text-sm text-[#647887] leading-relaxed">
                   {item.description}
                 </p>
-
-                {/* Clinical Staging Note Pill */}
-                <div className="mt-4 p-3 rounded-xl bg-[#F8FBFD] border border-[#EEF3F6] flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#00A6CE] shrink-0 mt-0.5" />
-                  <p className="text-xs text-[#071B2C]/80 leading-snug">
-                    <span className="font-bold text-[#071B2C]">CLEARNYX Approach:</span>{" "}
-                    {item.clinicalSolution}
-                  </p>
-                </div>
               </div>
 
               {/* Bottom Card Action Footer */}
