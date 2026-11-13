@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
 
 export function HeroSection() {
@@ -68,29 +69,29 @@ export function HeroSection() {
         <div className="lp-trust-card">
           <div className="lp-trust-item">
             <span className="lp-trust-seal" aria-hidden="true">
-              ✓
+              <Check className="w-4 h-4 stroke-[2.5]" />
             </span>
             <div>
-              <b>CDSCO MD-5 Certified</b>
-              <small>Medical Grade Quality &amp; Safety</small>
+              <b>100% Doctor Supervised</b>
+              <small>Personalized Staging by Orthodontists</small>
             </div>
           </div>
           <div className="lp-trust-item">
             <span className="lp-trust-seal" aria-hidden="true">
-              ✓
+              <Check className="w-4 h-4 stroke-[2.5]" />
             </span>
             <div>
-              <b>ISO 13485 Certified</b>
-              <small>International Standards Assured</small>
+              <b>0.01mm 3D Precision</b>
+              <small>Sub-Millimeter Digital Staging</small>
             </div>
           </div>
           <div className="lp-trust-item">
             <span className="lp-trust-seal" aria-hidden="true">
-              ✓
+              <Check className="w-4 h-4 stroke-[2.5]" />
             </span>
             <div>
-              <b>Custom 3D Engineered</b>
-              <small>0.01mm Sub-Millimeter Precision</small>
+              <b>CDSCO &amp; ISO 13485 Certified</b>
+              <small>Medical-Grade Biocompatible Safety</small>
             </div>
           </div>
         </div>
