@@ -116,11 +116,11 @@ export function ConditionsSection() {
           </div>
 
           {/* Interactive Filter Pills */}
-          <div className="flex items-center gap-2 p-1.5 bg-[#EEF3F6]/80 backdrop-blur-sm rounded-full border border-[#E2EBF0] shrink-0 self-start lg:self-auto overflow-x-auto max-w-full">
+          <div className="w-full sm:w-auto flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 bg-[#EEF3F6]/80 backdrop-blur-sm rounded-full border border-[#E2EBF0] shrink-0 self-start lg:self-auto overflow-x-auto no-scrollbar scroll-smooth">
             <button
               type="button"
               onClick={() => setActiveFilter("all")}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-200 whitespace-nowrap ${
                 activeFilter === "all"
                   ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/25 scale-[1.02]"
                   : "text-[#071B2C]/70 hover:text-[#071B2C] hover:bg-white/60"
@@ -131,7 +131,7 @@ export function ConditionsSection() {
             <button
               type="button"
               onClick={() => setActiveFilter("alignment")}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-200 whitespace-nowrap ${
                 activeFilter === "alignment"
                   ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/25 scale-[1.02]"
                   : "text-[#071B2C]/70 hover:text-[#071B2C] hover:bg-white/60"
@@ -142,7 +142,7 @@ export function ConditionsSection() {
             <button
               type="button"
               onClick={() => setActiveFilter("bite")}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-200 whitespace-nowrap ${
                 activeFilter === "bite"
                   ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/25 scale-[1.02]"
                   : "text-[#071B2C]/70 hover:text-[#071B2C] hover:bg-white/60"
@@ -158,7 +158,7 @@ export function ConditionsSection() {
           {filteredConditions.map((item) => (
             <div
               key={item.id}
-              className="group relative bg-white rounded-3xl p-6 sm:p-7 border border-[#E2EBF0] hover:border-[#00A6CE]/50 shadow-[0_8px_30px_rgba(7,27,44,0.04)] hover:shadow-[0_20px_45px_rgba(0,166,206,0.12)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              className="group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-[#E2EBF0] hover:border-[#00A6CE]/50 shadow-[0_8px_30px_rgba(7,27,44,0.04)] hover:shadow-[0_20px_45px_rgba(0,166,206,0.12)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
             >
               {/* Subtle top ambient accent line on hover */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -166,12 +166,12 @@ export function ConditionsSection() {
               <div>
                 {/* Card Header: Mechanism Tag & Timeline */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FBFD] text-[#00A6CE] border border-[#00A6CE]/20 text-[11px] font-bold uppercase tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
+                  <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#F0FBFD] text-[#00A6CE] border border-[#00A6CE]/20 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] shrink-0" />
                     <span>{item.tag}</span>
                   </span>
 
-                  <span className="text-[11px] font-semibold text-[#8295A3] flex items-center gap-1.5">
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-[#8295A3] flex items-center gap-1 shrink-0 whitespace-nowrap">
                     <Clock className="w-3.5 h-3.5 text-[#00A6CE]" />
                     <span>{item.duration}</span>
                   </span>
@@ -201,19 +201,19 @@ export function ConditionsSection() {
               </div>
 
               {/* Bottom Card Action Footer */}
-              <div className="mt-6 pt-4 border-t border-[#EEF3F6] flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-[#EEF3F6] flex items-center justify-between gap-2">
                 <Link
                   href={`/solutions#${item.id}`}
-                  className="text-xs font-bold text-[#00A6CE] hover:text-[#0087AB] inline-flex items-center gap-1.5 transition-colors group/link"
+                  className="text-[11px] sm:text-xs font-bold text-[#00A6CE] hover:text-[#0087AB] inline-flex items-center gap-1 transition-colors group/link whitespace-nowrap"
                 >
                   <span>Learn how it&apos;s treated</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1 shrink-0" />
                 </Link>
 
                 <button
                   type="button"
                   onClick={() => openModal("consultation")}
-                  className="text-[11px] font-semibold text-[#8295A3] hover:text-[#071B2C] transition-colors"
+                  className="text-[10px] sm:text-[11px] font-semibold text-[#8295A3] hover:text-[#071B2C] transition-colors whitespace-nowrap shrink-0"
                 >
                   Book Assessment
                 </button>

@@ -309,6 +309,8 @@ export function LifestyleOrbitSection() {
                     src="/images/showcase/aligner-cutout.png"
                     alt="CLEARNYX Precision Aligner Tray"
                     fill
+                    priority
+                    sizes="(max-width: 640px) 256px, 340px"
                     className="object-contain"
                   />
                 </div>

@@ -420,24 +420,27 @@ export function SiteHeader() {
 
       {/* Modern Full-Screen Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden bg-navy-deep/40 backdrop-blur-md animate-fadeIn">
-          <div className="fixed inset-x-3 top-20 bottom-6 bg-white rounded-3xl shadow-2xl border border-light-grey flex flex-col overflow-hidden animate-fadeIn">
-            {/* Drawer Header */}
-            <div className="p-5 border-b border-light-grey flex items-center justify-between">
+        <div className="fixed inset-0 z-[5000] lg:hidden bg-white flex flex-col overflow-hidden animate-fadeIn">
+          {/* Drawer Top Navigation Bar */}
+          <div className="px-5 py-4 border-b border-[#E2EBF0] flex items-center justify-between bg-white/95 backdrop-blur-md">
+            <Link href="/" onClick={closeMenu} className="flex items-center">
               <Image
                 src="/brand/logo-primary.png"
                 alt="CLEARNYX"
                 width={140}
                 height={30}
+                priority
                 className="h-7 w-auto object-contain"
               />
-              <button
-                onClick={closeMenu}
-                className="w-8 h-8 rounded-full bg-soft-white flex items-center justify-center text-slate hover:text-navy-deep"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
+            </Link>
+            <button
+              onClick={closeMenu}
+              className="w-9 h-9 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] border border-[#E2EBF0] flex items-center justify-center text-[#071B2C] active:scale-95 transition-all"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
             {/* Drawer Scrollable Links */}
             <div className="flex-1 overflow-y-auto p-5 space-y-4">
@@ -573,7 +576,6 @@ export function SiteHeader() {
                 <span>Call Clinical Support: +91 9072334032</span>
               </a>
             </div>
-          </div>
         </div>
       )}
     </>

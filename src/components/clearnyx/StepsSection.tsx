@@ -166,9 +166,9 @@ export function StepsSection() {
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#00A6CE]/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#4DD4F0] text-xs font-bold tracking-wide uppercase mb-3 border border-white/10">
-              <CalendarCheck className="w-3.5 h-3.5" />
-              <span>Personalized Orthodontic Care</span>
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/10 text-[#4DD4F0] text-[10px] sm:text-xs font-bold tracking-normal sm:tracking-wide uppercase mb-3 border border-white/10">
+              <CalendarCheck className="w-3.5 h-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Personalized Orthodontic Care</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Ready to start your clear aligner journey?

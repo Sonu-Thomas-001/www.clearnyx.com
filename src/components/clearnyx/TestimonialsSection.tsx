@@ -98,16 +98,16 @@ export function TestimonialsSection() {
           </h2>
 
           {/* Social Proof Aggregator Rating Pill */}
-          <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-3 px-4 py-2 rounded-full bg-white border border-[#E2EBF0] shadow-xs text-xs font-semibold text-[#071B2C]">
+          <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2.5 sm:py-2 rounded-2xl sm:rounded-full bg-white border border-[#E2EBF0] shadow-xs text-xs font-semibold text-[#071B2C]">
             <div className="flex items-center gap-1 text-[#FFB800]">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-current" />
               ))}
               <span className="font-black text-[#071B2C] ml-1">4.9 / 5.0</span>
             </div>
-            <span className="text-[#D0DFE8]">•</span>
+            <span className="text-[#D0DFE8] hidden sm:inline">•</span>
             <span className="text-[#647887]">2,800+ Completed Smiles</span>
-            <span className="text-[#D0DFE8]">•</span>
+            <span className="text-[#D0DFE8] hidden sm:inline">•</span>
             <span className="text-[#00A6CE] font-bold">98% Recommendation Rate</span>
           </div>
         </div>
@@ -117,7 +117,7 @@ export function TestimonialsSection() {
           {testimonials.map((t) => (
             <article
               key={t.id}
-              className="group relative bg-white rounded-3xl p-7 sm:p-8 border border-[#E2EBF0] hover:border-[#00A6CE]/50 shadow-[0_4px_24px_-4px_rgba(7,27,44,0.05)] hover:shadow-[0_20px_45px_-8px_rgba(0,166,206,0.16)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
+              className="group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-[#E2EBF0] hover:border-[#00A6CE]/50 shadow-[0_4px_24px_-4px_rgba(7,27,44,0.05)] hover:shadow-[0_20px_45px_-8px_rgba(0,166,206,0.16)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
             >
               {/* Top Gradient Accent on Hover */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
