@@ -26,7 +26,7 @@ export function SiteFooter() {
 
       {/* 1. Interactive Pre-Footer Banner: The Doctor & Practice Gateway */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
-        <div className="relative rounded-3xl p-8 sm:p-12 overflow-hidden border border-brand-cyan/25 bg-gradient-to-br from-navy-dark via-navy-deep to-[#0c283f] shadow-[0_20px_60px_rgba(0,166,206,0.15)]">
+        <div className="relative rounded-3xl p-6 sm:p-12 overflow-hidden border border-brand-cyan/25 bg-gradient-to-br from-navy-dark via-navy-deep to-[#0c283f] shadow-[0_20px_60px_rgba(0,166,206,0.15)]">
           {/* Subtle Grid Pattern Overlay */}
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -36,9 +36,9 @@ export function SiteFooter() {
             }}
           />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-center sm:text-left">
             {/* Left Copy */}
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 space-y-4 flex flex-col items-center sm:items-start text-center sm:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/15 border border-brand-cyan/30 text-electric-cyan text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>B2B Orthodontic Collaboration</span>
@@ -51,12 +51,12 @@ export function SiteFooter() {
                 </span>
               </h2>
 
-              <p className="text-slate-muted text-sm sm:text-base leading-relaxed max-w-xl">
+              <p className="text-slate-muted text-sm sm:text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
                 Partner with an advanced clear aligner solutions manufacturer. Receive sub-millimeter 0.01mm 3D staging, certified biocompatible materials, and dedicated clinical case planning.
               </p>
 
               {/* Trust Pill Tags */}
-              <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-white/80">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2 text-xs text-white/80">
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
                   <span>CDSCO MD-5 Certified</span>
@@ -73,7 +73,7 @@ export function SiteFooter() {
             </div>
 
             {/* Right Quick Action Triggers */}
-            <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center lg:items-end">
+            <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center items-center lg:items-end w-full">
               <button
                 type="button"
                 onClick={() => openModal("partner")}
@@ -99,10 +99,10 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-white/10">
           {/* Column 1: Brand Authority (4 Cols) */}
-          <div className="lg:col-span-4 space-y-5">
+          <div className="lg:col-span-4 space-y-5 flex flex-col items-center sm:items-start text-center sm:text-left">
             <Link
               href="/"
-              className="inline-flex items-center group focus-visible:outline-none"
+              className="inline-flex items-center justify-center sm:justify-start group focus-visible:outline-none"
               aria-label="CLEARNYX Home"
             >
               <Image
@@ -114,15 +114,15 @@ export function SiteFooter() {
               />
             </Link>
 
-            <p className="text-slate-muted text-sm leading-relaxed max-w-sm">
+            <p className="text-slate-muted text-sm leading-relaxed max-w-sm mx-auto sm:mx-0">
               CLEARNYX is an orthodontic technology brand providing premium clear aligner systems, digital 3D treatment planning, and clinical collaboration for dentists across India.
             </p>
 
-            <div className="pt-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-white/50 block mb-3">
+            <div className="pt-2 w-full flex flex-col items-center sm:items-start">
+              <span className="text-xs font-bold uppercase tracking-wider text-white/50 block mb-3 text-center sm:text-left">
                 Connect with our team
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center sm:justify-start gap-3">
                 {/* Instagram */}
                 <a
                   href="https://www.instagram.com/clearnyx"
@@ -177,11 +177,11 @@ export function SiteFooter() {
           </div>
 
           {/* Column 2: Solutions (2.5 Cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4 text-center sm:text-left flex flex-col items-center sm:items-start">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
               Solutions
             </h3>
-            <ul className="space-y-2.5 text-sm text-slate-muted">
+            <ul className="space-y-2.5 text-sm text-slate-muted flex flex-col items-center sm:items-start">
               <li>
                 <Link
                   href="/solutions/standard-aligners"
@@ -226,11 +226,11 @@ export function SiteFooter() {
           </div>
 
           {/* Column 3: Conditions (2.5 Cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4 text-center sm:text-left flex flex-col items-center sm:items-start">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
               Conditions
             </h3>
-            <ul className="space-y-2.5 text-sm text-slate-muted">
+            <ul className="space-y-2.5 text-sm text-slate-muted flex flex-col items-center sm:items-start">
               <li>
                 <Link href="/#conditions" className="hover:text-brand-cyan transition-colors">
                   Crowding
@@ -260,20 +260,20 @@ export function SiteFooter() {
           </div>
 
           {/* Column 4: Contact & Dispatch (3.5 Cols) */}
-          <div className="lg:col-span-4 space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+          <div className="lg:col-span-4 space-y-4 text-center sm:text-left flex flex-col items-center sm:items-start">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white w-full text-center sm:text-left">
               Central Clinical Support
             </h3>
 
-            <div className="space-y-3 text-sm text-slate-muted">
+            <div className="space-y-3 text-sm text-slate-muted w-full max-w-sm mx-auto sm:max-w-none sm:mx-0">
               <a
                 href="tel:+919072334032"
-                className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-cyan/40 hover:bg-white/10 transition-all text-white group"
+                className="flex items-center justify-center sm:justify-start gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-cyan/40 hover:bg-white/10 transition-all text-white group"
               >
-                <div className="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
-                <div>
+                <div className="text-left">
                   <span className="text-[11px] text-slate-muted block">Direct Doctor Line</span>
                   <span className="font-bold text-sm text-white group-hover:text-brand-cyan transition-colors">
                     +91 9072334032
@@ -283,12 +283,12 @@ export function SiteFooter() {
 
               <a
                 href="mailto:info@clearnyx.com"
-                className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-cyan/40 hover:bg-white/10 transition-all text-white group"
+                className="flex items-center justify-center sm:justify-start gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-cyan/40 hover:bg-white/10 transition-all text-white group"
               >
-                <div className="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
-                <div>
+                <div className="text-left">
                   <span className="text-[11px] text-slate-muted block">Partner Inquiries</span>
                   <span className="font-bold text-sm text-white group-hover:text-brand-cyan transition-colors">
                     info@clearnyx.com
@@ -296,8 +296,8 @@ export function SiteFooter() {
                 </div>
               </a>
 
-              <div className="flex items-start gap-2.5 text-xs text-slate-muted pt-1">
-                <Clock className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" />
+              <div className="flex items-center justify-center sm:justify-start gap-2.5 text-xs text-slate-muted pt-1 text-center sm:text-left">
+                <Clock className="w-4 h-4 text-brand-cyan shrink-0" />
                 <span>Mon – Sat: 9:00 AM – 7:00 PM IST (Orthodontic Dispatch)</span>
               </div>
             </div>
@@ -305,20 +305,20 @@ export function SiteFooter() {
         </div>
 
         {/* 3. Regulatory Disclaimer */}
-        <div className="py-6 border-b border-white/10 text-xs text-white/50 leading-relaxed">
-          <p>
+        <div className="py-6 border-b border-white/10 text-xs text-white/50 leading-relaxed text-center sm:text-left">
+          <p className="max-w-4xl mx-auto sm:mx-0">
             <strong className="text-white/70">Clinical Compliance &amp; B2B Notice:</strong> CLEARNYX is a B2B orthodontic technology brand and clear aligner manufacturer. Orthodontic treatments are strictly evaluated, planned, and prescribed by certified licensed orthodontists and practicing dentists. Results depend on individual malocclusion complexity and patient wear compliance (recommended 22–24 hours daily).
           </p>
         </div>
 
         {/* 4. Bottom Copyright & Legal Links */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-muted">
-          <div className="flex flex-wrap items-center gap-1.5">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-muted text-center sm:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
             <span>© 2026 Clearnyx Aligner.</span>
             <span>All rights reserved by <strong className="font-bold text-white">MidCell Studios</strong>.</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6">
             <Link href="/privacy-policy" className="hover:text-brand-cyan transition-colors">
               Privacy Policy
             </Link>
