@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Sparkles,
   ChevronsLeftRight,
@@ -14,6 +15,8 @@ import {
   Quote,
 } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function ComparisonSection() {
   const [sliderPos, setSliderPos] = useState<number>(50);
@@ -32,29 +35,53 @@ export function ComparisonSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#4DD4F0] text-xs font-bold tracking-wide uppercase border border-white/10 mb-4 shadow-xs">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: luxuryEase }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#4DD4F0] text-xs font-bold tracking-wide uppercase border border-white/10 mb-4 shadow-xs"
+          >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Real transformation</span>
-          </div>
+          </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: luxuryEase }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
             See the difference{" "}
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#00A6CE] via-[#2ED9FC] to-[#00A6CE] italic">
               CLEARNYX
             </span>{" "}
             makes
-          </h2>
+          </motion.h2>
 
-          <p className="mt-4 text-base sm:text-lg text-[#94A9B8] leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: luxuryEase }}
+            className="mt-4 text-base sm:text-lg text-[#94A9B8] leading-relaxed"
+          >
             Drag the interactive slider to compare real patient clinical outcomes.
             Sub-millimeter 3D aligner staging delivers predictable, lasting alignment you can see.
-          </p>
+          </motion.p>
         </div>
 
         {/* Main Transformation Cockpit Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center max-w-6xl mx-auto">
           {/* Left Column: Interactive Before/After Split Viewer (7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col">
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, ease: luxuryEase }}
+            className="lg:col-span-7 flex flex-col"
+          >
             <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#0B2540] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.6)] aspect-[4/3] sm:aspect-[16/11] select-none group">
               {/* After Image Layer (Base) */}
               <div className="absolute inset-0">
@@ -90,43 +117,42 @@ export function ComparisonSection() {
               </div>
 
               {/* Floating Badge: After (Right) */}
-              <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-[#00A6CE]/90 backdrop-blur-md text-white text-xs font-black tracking-wider uppercase border border-[#00A6CE]/40 shadow-md flex items-center gap-1.5 pointer-events-none">
-                <Sparkles className="w-3.5 h-3.5 text-white" />
+              <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-[#00A6CE]/80 backdrop-blur-md text-white text-xs font-bold tracking-wider uppercase border border-white/20 shadow-md flex items-center gap-1.5 pointer-events-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 <span>After CLEARNYX</span>
               </div>
 
-              {/* Vertical Divider Line with Glow */}
+              {/* Divider Line & Circular Grab Handle */}
               <div
-                className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A6CE] via-white to-[#00A6CE] shadow-[0_0_12px_rgba(0,166,206,0.9)] pointer-events-none z-20"
+                className="absolute inset-y-0 w-1 bg-white shadow-[0_0_12px_rgba(0,166,206,0.8)] pointer-events-none z-30"
                 style={{ left: `${sliderPos}%` }}
               >
-                {/* Center Drag Handle Disc */}
-                <div className="absolute top-1/2 -translate-y-1/2 -left-5 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#071B2C] shadow-[0_8px_24px_rgba(0,0,0,0.4)] border-2 border-[#00A6CE] flex items-center justify-center transition-transform duration-150 group-hover:scale-110">
-                  <ChevronsLeftRight className="w-5 h-5 text-[#00A6CE] stroke-[2.5]" />
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-[#071B2C] shadow-2xl flex items-center justify-center border-2 border-[#00A6CE] group-hover:scale-110 transition-transform">
+                  <ChevronsLeftRight className="w-5 h-5 text-[#00A6CE]" />
                 </div>
               </div>
 
-              {/* Full-Surface Invisible Range Slider for drag & touch control */}
+              {/* Range Input Overlay for Drag / Touch Interactions */}
               <input
                 type="range"
-                min="0"
-                max="100"
+                min={0}
+                max={100}
                 value={sliderPos}
                 onChange={(e) => setSliderPos(Number(e.target.value))}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0"
-                aria-label="Drag to compare before and after CLEARNYX treatment"
+                className="absolute inset-0 opacity-0 cursor-ew-resize z-40 w-full h-full"
+                aria-label="Before and after smile comparison slider"
               />
             </div>
 
-            {/* Quick-Toggle Preset Controls */}
+            {/* Bottom Slider Presets */}
             <div className="flex items-center justify-between mt-4 px-2">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setSliderPos(100)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     sliderPos >= 90
-                      ? "bg-white/20 text-white border border-white/30"
+                      ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
                   }`}
                 >
@@ -135,7 +161,7 @@ export function ComparisonSection() {
                 <button
                   type="button"
                   onClick={() => setSliderPos(50)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     sliderPos >= 40 && sliderPos <= 60
                       ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
@@ -146,7 +172,7 @@ export function ComparisonSection() {
                 <button
                   type="button"
                   onClick={() => setSliderPos(0)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     sliderPos <= 10
                       ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
@@ -160,10 +186,16 @@ export function ComparisonSection() {
                 Drag slider or tap preset
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Verified Clinical Case Breakdown Card (5 Cols) */}
-          <div className="lg:col-span-5 bg-white/5 rounded-3xl p-6 sm:p-8 border border-white/10 backdrop-blur-md flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.15, ease: luxuryEase }}
+            className="lg:col-span-5 bg-white/5 rounded-3xl p-6 sm:p-8 border border-white/10 backdrop-blur-md flex flex-col justify-between"
+          >
             <div>
               {/* Card Top Pill & Case ID */}
               <div className="flex items-center justify-between mb-4">
@@ -253,7 +285,7 @@ export function ComparisonSection() {
               <button
                 type="button"
                 onClick={() => openModal("consultation")}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#00A6CE]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#00A6CE]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <span>Get Your Free Smile Assessment</span>
                 <ArrowRight className="w-4 h-4" />
@@ -262,7 +294,7 @@ export function ComparisonSection() {
                 * Includes 3D digital simulation of your expected alignment result.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Clinical Disclaimer Note */}

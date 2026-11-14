@@ -1,10 +1,21 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function StatsSection() {
   return (
     <section className="lp-stats section-pad" aria-label="CLEARNYX highlights">
       <div className="lp-stats-row">
-        <div className="lp-stat">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.05, ease: luxuryEase }}
+          className="lp-stat"
+        >
           <span className="lp-stat-icon">
             <svg
               className="lp-stat-svg"
@@ -25,9 +36,15 @@ export function StatsSection() {
             <b>1 Million+</b>
             <small>Happy Smiles</small>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="lp-stat">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: luxuryEase }}
+          className="lp-stat"
+        >
           <span className="lp-stat-icon">
             <svg
               className="lp-stat-svg"
@@ -49,9 +66,15 @@ export function StatsSection() {
             <b>3000+</b>
             <small>Certified Doctors</small>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="lp-stat">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: luxuryEase }}
+          className="lp-stat"
+        >
           <span className="lp-stat-icon">
             <svg
               className="lp-stat-svg"
@@ -71,9 +94,15 @@ export function StatsSection() {
             <b>500+</b>
             <small>Cities</small>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="lp-stat">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.35, ease: luxuryEase }}
+          className="lp-stat"
+        >
           <span className="lp-stat-icon">
             <svg
               className="lp-stat-svg"
@@ -93,9 +122,8 @@ export function StatsSection() {
             <b>100%</b>
             <small>Satisfaction Rate</small>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

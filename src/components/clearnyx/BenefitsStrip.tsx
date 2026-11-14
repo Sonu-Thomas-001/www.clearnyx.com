@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 interface BenefitItem {
   id: string;
@@ -142,7 +145,14 @@ const GROUP_ITEMS = [...BENEFITS, ...BENEFITS];
 
 export function BenefitsStrip() {
   return (
-    <section className="lp-benefits-strip" aria-label="CLEARNYX Clinical Benefits">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="lp-benefits-strip"
+      aria-label="CLEARNYX Clinical Benefits"
+    >
       <div className="lp-benefits-marquee-wrapper">
         <div className="lp-benefits-track">
           {/* Primary Group */}
@@ -170,6 +180,6 @@ export function BenefitsStrip() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

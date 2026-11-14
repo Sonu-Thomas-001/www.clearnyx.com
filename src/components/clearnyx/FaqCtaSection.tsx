@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useBookModal } from "./BookModalContext";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 interface FaqItem {
   id: string;
@@ -54,22 +57,45 @@ export function FaqCtaSection() {
     <section id="faq" className="lp-faq-cta section-pad max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Left Column: FAQ Accordion */}
       <div className="lp-faq-col">
-        <p className="lp-eyebrow">FAQ</p>
-        <h2>Frequently asked questions</h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: luxuryEase }}
+          className="lp-eyebrow"
+        >
+          FAQ
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: luxuryEase }}
+        >
+          Frequently asked questions
+        </motion.h2>
 
         <div className="accordion">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={faq.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                  ease: luxuryEase,
+                }}
                 className={`faq-item ${isOpen ? "is-open" : ""}`}
               >
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => toggleFaq(index)}
-                  className="flex items-center justify-between w-full py-5 text-left"
+                  className="flex items-center justify-between w-full py-5 text-left cursor-pointer"
                 >
                   <span className="text-slate text-xs font-mono w-10">
                     {faq.num}
@@ -86,14 +112,20 @@ export function FaqCtaSection() {
                     <p>{faq.answer}</p>
                   </div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </div>
 
       {/* Right Column: CTA Box Card */}
-      <aside className="lp-cta-card">
+      <motion.aside
+        initial={{ opacity: 0, scale: 0.96, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: luxuryEase }}
+        className="lp-cta-card"
+      >
         <div className="lp-cta-media relative w-full h-[200px] flex items-center justify-center">
           <div className="absolute w-44 h-44 bg-brand-cyan/20 rounded-full blur-2xl pointer-events-none" />
           <Image
@@ -114,7 +146,7 @@ export function FaqCtaSection() {
           </p>
           <button
             type="button"
-            className="book-link button button-yellow inline-flex items-center gap-2"
+            className="book-link button button-yellow inline-flex items-center gap-2 cursor-pointer"
             onClick={() => openModal("consultation")}
           >
             <span>Book Consultation</span>
@@ -131,8 +163,7 @@ export function FaqCtaSection() {
             </span>
           </button>
         </div>
-      </aside>
+      </motion.aside>
     </section>
   );
 }
-

@@ -228,27 +228,51 @@ export function LifestyleOrbitSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-4 shadow-xs">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-4 shadow-xs"
+          >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Built around your life</span>
-          </div>
+          </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-[1.15]">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-[1.15]"
+          >
             Your treatment should fit your life.{" "}
             <br className="hidden sm:inline" />
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#00A6CE] via-[#00BCE6] to-[#0092B5] italic">
               Not the other way around.
             </span>
-          </h2>
+          </motion.h2>
 
-          <p className="mt-4 text-base sm:text-lg text-[#647887] leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-4 text-base sm:text-lg text-[#647887] leading-relaxed"
+          >
             CLEARNYX aligners adapt seamlessly to your everyday routine. Eat, brush,
             speak, and socialize with zero wire interference. Same you. Brighter tomorrow.
-          </p>
+          </motion.p>
         </div>
 
         {/* 1. Interactive Moment Navigation Rail (Top Tabs) */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-3 mb-8 sm:mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-3 mb-8 sm:mb-12"
+        >
           {moments.map((m, idx) => {
             const TabIcon = m.icon;
             const isCurrent = idx === activeIndex;
@@ -280,10 +304,16 @@ export function LifestyleOrbitSection() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* 2. Main Cinematic Interactive Stage (Editorial Split Showcase) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-10 sm:mb-14"
+        >
           {/* Left Column: Rich Lifestyle Photographic Canvas (5 Cols) */}
           <div className="lg:col-span-5 relative flex flex-col justify-between">
             <div className="relative w-full h-[380px] sm:h-[460px] lg:h-full min-h-[380px] lg:min-h-[520px] rounded-3xl overflow-hidden border border-[#DCE8EE] shadow-[0_16px_40px_-8px_rgba(7,27,44,0.12)] bg-[#071B2C]">
@@ -456,10 +486,16 @@ export function LifestyleOrbitSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* 3. Interactive Mini-Thumbnail Gallery (Visual Anchor Rail) */}
-        <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-14 sm:mb-18">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-14 sm:mb-18"
+        >
           {moments.map((m, idx) => {
             const isCurrent = idx === activeIndex;
 
@@ -516,10 +552,16 @@ export function LifestyleOrbitSection() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* 4. Centerpiece Engineering Showcase Card (Physical Appliance Distinction) */}
-        <div className="bg-gradient-to-r from-[#071B2C] via-[#0B2540] to-[#071B2C] rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-2xl shadow-[#071B2C]/15 border border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 32, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-gradient-to-r from-[#071B2C] via-[#0B2540] to-[#071B2C] rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-2xl shadow-[#071B2C]/15 border border-white/10"
+        >
           {/* Subtle Ambient Radial Lighting */}
           <div className="absolute -right-24 -top-24 w-80 h-80 bg-[#00A6CE]/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -left-24 -bottom-24 w-80 h-80 bg-[#00A6CE]/15 rounded-full blur-3xl pointer-events-none" />
@@ -636,7 +678,7 @@ export function LifestyleOrbitSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

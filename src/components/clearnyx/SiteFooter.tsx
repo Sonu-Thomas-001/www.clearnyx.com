@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useBookModal } from "./BookModalContext";
 import {
   Phone,
@@ -25,7 +26,13 @@ export function SiteFooter() {
       <div className="absolute bottom-0 left-10 w-[500px] h-[350px] bg-electric-cyan/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* 1. Interactive Pre-Footer Banner: The Doctor & Practice Gateway */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 32, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10"
+      >
         <div className="relative rounded-3xl p-6 sm:p-12 overflow-hidden border border-brand-cyan/25 bg-gradient-to-br from-navy-dark via-navy-deep to-[#0c283f] shadow-[0_20px_60px_rgba(0,166,206,0.15)]">
           {/* Subtle Grid Pattern Overlay */}
           <div
@@ -77,7 +84,7 @@ export function SiteFooter() {
               <button
                 type="button"
                 onClick={() => openModal("partner")}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-brand-cyan to-electric-cyan hover:from-electric-cyan hover:to-brand-cyan text-navy-deep font-bold text-sm shadow-[0_10px_30px_rgba(0,166,206,0.35)] transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-brand-cyan to-electric-cyan hover:from-electric-cyan hover:to-brand-cyan text-navy-deep font-bold text-sm shadow-[0_10px_30px_rgba(0,166,206,0.35)] transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>Partner with CLEARNYX</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -93,10 +100,16 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* 2. Main High-Density Multi-Column Directory */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-white/10">
           {/* Column 1: Brand Authority (4 Cols) */}
           <div className="lg:col-span-4 space-y-5 flex flex-col items-center sm:items-start text-center sm:text-left">
@@ -334,7 +347,7 @@ export function SiteFooter() {
             </span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* 5. Luxury Giant Watermark at Bottom */}
       <div

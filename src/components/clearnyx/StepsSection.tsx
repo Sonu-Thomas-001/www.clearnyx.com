@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Sparkles,
   Stethoscope,
@@ -10,11 +11,12 @@ import {
   PackageCheck,
   CheckCircle2,
   ArrowRight,
-  CalendarCheck,
   ChevronRight,
   ShieldCheck,
 } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 interface StepItem {
   number: string;
@@ -79,123 +81,148 @@ export function StepsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-4 shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: luxuryEase }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-4 shadow-xs"
+          >
             <Sparkles className="w-3.5 h-3.5" />
             <span>How It Works</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-[1.15]">
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: luxuryEase }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-[1.15]"
+          >
             Your smile journey in 4 simple steps
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#647887] leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: luxuryEase }}
+            className="mt-4 text-base sm:text-lg text-[#647887] leading-relaxed"
+          >
             From initial clinical assessment to your custom aligners arriving at your clinic or doorstep,
             CLEARNYX makes achieving your dream smile predictable and effortless.
-          </p>
+          </motion.p>
         </div>
 
-        {/* 4 Connected Step Cards */}
+        {/* 4 Connected Step Cards with Staggered Scroll Triggers */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isLast = idx === steps.length - 1;
 
             return (
-              <div key={step.number} className="relative flex">
-                <article className="w-full relative group bg-white rounded-3xl p-6 sm:p-7 border border-[#E2EBF0] hover:border-[#00A6CE]/60 shadow-[0_4px_24px_-4px_rgba(7,27,44,0.05)] hover:shadow-[0_20px_45px_-8px_rgba(0,166,206,0.18)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden">
-                  {/* Top Glowing Gradient Accent on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 32, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.6,
+                  delay: idx * 0.12,
+                  ease: luxuryEase,
+                }}
+                className="group relative bg-white rounded-3xl p-6 sm:p-7 border border-[#E2EBF0] hover:border-[#00A6CE]/50 shadow-[0_10px_30px_rgba(7,27,44,0.04)] hover:shadow-[0_20px_45px_rgba(0,166,206,0.12)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              >
+                {/* Background Giant Step Watermark */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-3 right-3 text-7xl sm:text-8xl font-black text-[#00A6CE]/[0.07] select-none pointer-events-none group-hover:text-[#00A6CE]/[0.12] group-hover:scale-105 transition-all duration-300"
+                >
+                  {step.number}
+                </span>
 
-                  {/* Watermark Ghost Step Number - positioned cleanly within bounds */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-4 right-5 text-6xl font-black text-[#E8F3F7] group-hover:text-[#D4EDF5] transition-colors duration-300 select-none pointer-events-none font-mono"
-                  >
-                    {step.number}
-                  </span>
-
-                  <div>
-                    {/* Top Row: Step Badge */}
-                    <div className="flex items-center justify-between mb-5 relative z-10">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF8FB] border border-[#00A6CE]/25 text-[#00A6CE] text-xs font-extrabold tracking-wider uppercase shadow-xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-pulse" />
-                        <span>{step.badge}</span>
-                      </div>
-                    </div>
-
-                    {/* Icon Pedestal - Guaranteed High Contrast in both Normal and Hover states */}
-                    <div className="w-14 h-14 rounded-2xl bg-[#EBF8FB] text-[#00A6CE] border border-[#00A6CE]/25 flex items-center justify-center group-hover:bg-[#00A6CE] group-hover:text-white group-hover:border-[#00A6CE] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#00A6CE]/35 transition-all duration-300 mb-5 relative z-10">
-                      <Icon className="w-6 h-6 transition-transform duration-300 group-hover:rotate-3 stroke-[2.2]" />
-                    </div>
-
-                    {/* Step Title */}
-                    <h3 className="text-xl sm:text-2xl font-black text-[#071B2C] group-hover:text-[#00A6CE] transition-colors duration-200 tracking-tight mb-2.5 relative z-10">
-                      {step.title}
-                    </h3>
-
-                    {/* Step Description */}
-                    <p className="text-sm text-[#647887] leading-relaxed relative z-10">
-                      {step.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Milestone Highlight */}
-                  <div className="mt-6 pt-4 border-t border-[#F0F4F7] flex items-center justify-between relative z-10">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#071B2C] bg-[#F2F7FA] group-hover:bg-[#EBF8FB] group-hover:text-[#008BAF] border border-transparent group-hover:border-[#00A6CE]/20 transition-all px-3 py-1.5 rounded-lg">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#00A6CE]" />
-                      <span>{step.highlight}</span>
+                <div>
+                  {/* Top Step Pill & Connector Indicator */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F8FB] text-[#00A6CE] text-xs font-bold uppercase tracking-wider border border-[#00A6CE]/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
+                      <span>{step.badge}</span>
                     </span>
-                  </div>
-                </article>
 
-                {/* Desktop Connector Arrow between step cards */}
-                {!isLast && (
-                  <div
-                    aria-hidden="true"
-                    className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-[#D5E4EC] shadow-sm items-center justify-center text-[#00A6CE] pointer-events-none group-hover:scale-110 transition-transform"
-                  >
-                    <ChevronRight className="w-4 h-4" />
+                    {/* Subtle right chevron connector for non-last steps */}
+                    {!isLast && (
+                      <span className="hidden lg:flex w-7 h-7 rounded-full bg-[#F4F9FB] text-[#8AA2B2] group-hover:text-[#00A6CE] group-hover:bg-[#E8F8FB] items-center justify-center transition-colors">
+                        <ChevronRight className="w-4 h-4" />
+                      </span>
+                    )}
                   </div>
-                )}
-              </div>
+
+                  {/* Icon Avatar Halo */}
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EBF9FC] to-[#DDF7FC] text-[#00A6CE] border border-[#00A6CE]/20 flex items-center justify-center mb-6 shadow-xs group-hover:scale-108 group-hover:shadow-md transition-all duration-300">
+                    <Icon className="w-7 h-7 stroke-[2]" />
+                  </div>
+
+                  {/* Title & Body */}
+                  <h3 className="text-xl font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[#647887] leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Bottom Highlight Pill */}
+                <div className="pt-6 mt-6 border-t border-[#EEF3F6]">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors">
+                    <CheckCircle2 className="w-4 h-4 text-[#00A6CE] shrink-0" />
+                    <span>{step.highlight}</span>
+                  </span>
+                </div>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Bottom Callout & Action Bar */}
-        <div className="mt-12 sm:mt-16 bg-gradient-to-r from-[#071B2C] via-[#0B2540] to-[#071B2C] rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden shadow-xl shadow-[#071B2C]/10 border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
-          {/* Subtle background glow circle */}
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#00A6CE]/20 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/10 text-[#4DD4F0] text-[10px] sm:text-xs font-bold tracking-normal sm:tracking-wide uppercase mb-3 border border-white/10">
-              <CalendarCheck className="w-3.5 h-3.5 shrink-0" />
-              <span className="whitespace-nowrap">Personalized Orthodontic Care</span>
+        {/* Bottom Interactive Workflow Reassurance Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65, delay: 0.25, ease: luxuryEase }}
+          className="mt-14 sm:mt-18 p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8EE] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4 text-center sm:text-left">
+            <span
+              aria-hidden="true"
+              className="w-12 h-12 rounded-2xl bg-[#DDF7FC] text-[#00A6CE] flex items-center justify-center shrink-0"
+            >
+              <ShieldCheck className="w-6 h-6" />
+            </span>
+            <div>
+              <p className="text-sm sm:text-base font-bold text-[#071B2C]">
+                Clear aligner precision at every turn
+              </p>
+              <p className="text-xs sm:text-sm text-[#647887]">
+                Every treatment phase is certified by certified orthodontists and licensed dental doctors.
+              </p>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Ready to start your clear aligner journey?
-            </h3>
-            <p className="mt-2 text-sm text-[#94A9B8] leading-relaxed">
-              Book a consultation with our orthodontic specialists or learn how our certified dental protocol ensures safe, lasting alignment.
-            </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => openModal("consultation")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0095BA] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#00A6CE]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
+              className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-[#00A6CE]/25 cursor-pointer flex items-center justify-center gap-2"
             >
-              <span>Book Consultation</span>
+              <span>Start Your Journey</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <Link
               href="/how-it-works"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-sm tracking-wide border border-white/15 hover:border-white/30 transition-all duration-200 whitespace-nowrap"
+              className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#F4F9FB] hover:bg-[#EAF5F8] text-[#071B2C] font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 border border-[#DCE8EE]"
             >
-              <span>Explore Clinical Protocol</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore Full Clinical Journey</span>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
