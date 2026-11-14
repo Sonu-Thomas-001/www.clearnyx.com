@@ -8,6 +8,7 @@
 /coverage
 /e2e-screenshots
 /visual-audit-shots
+/mobile-audit-shots
 
 # next.js
 /.next/
