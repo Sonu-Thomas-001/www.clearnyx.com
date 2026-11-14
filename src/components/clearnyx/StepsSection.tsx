@@ -100,11 +100,14 @@ export function StepsSection() {
 
             return (
               <div key={step.number} className="relative flex">
-                <article className="w-full relative group bg-white rounded-3xl p-6 sm:p-7 border border-[#E2EBF0] shadow-[0_4px_24px_-4px_rgba(7,27,44,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(0,166,206,0.18)] hover:border-[#00A6CE]/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden">
-                  {/* Watermark Ghost Step Number */}
+                <article className="w-full relative group bg-white rounded-3xl p-6 sm:p-7 border border-[#E2EBF0] hover:border-[#00A6CE]/60 shadow-[0_4px_24px_-4px_rgba(7,27,44,0.05)] hover:shadow-[0_20px_45px_-8px_rgba(0,166,206,0.18)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden">
+                  {/* Top Glowing Gradient Accent on Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Watermark Ghost Step Number - positioned cleanly within bounds */}
                   <span
                     aria-hidden="true"
-                    className="absolute -top-3 -right-2 text-7xl font-black text-[#F1F6F9] group-hover:text-[#E3F4FA] transition-colors duration-300 select-none pointer-events-none font-mono"
+                    className="absolute top-4 right-5 text-6xl font-black text-[#E8F3F7] group-hover:text-[#D4EDF5] transition-colors duration-300 select-none pointer-events-none font-mono"
                   >
                     {step.number}
                   </span>
@@ -112,15 +115,15 @@ export function StepsSection() {
                   <div>
                     {/* Top Row: Step Badge */}
                     <div className="flex items-center justify-between mb-5 relative z-10">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF8FB] border border-[#00A6CE]/20 text-[#00A6CE] text-xs font-extrabold tracking-wider uppercase shadow-xs">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF8FB] border border-[#00A6CE]/25 text-[#00A6CE] text-xs font-extrabold tracking-wider uppercase shadow-xs">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-pulse" />
                         <span>{step.badge}</span>
                       </div>
                     </div>
 
-                    {/* Icon Pedestal */}
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EBF8FB] to-[#F4FAFC] border border-[#00A6CE]/20 flex items-center justify-center text-[#00A6CE] group-hover:bg-[#00A6CE] group-hover:text-white group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-[#00A6CE]/30 transition-all duration-300 mb-5 relative z-10">
-                      <Icon className="w-6 h-6 transition-transform duration-300 group-hover:rotate-3" />
+                    {/* Icon Pedestal - Guaranteed High Contrast in both Normal and Hover states */}
+                    <div className="w-14 h-14 rounded-2xl bg-[#EBF8FB] text-[#00A6CE] border border-[#00A6CE]/25 flex items-center justify-center group-hover:bg-[#00A6CE] group-hover:text-white group-hover:border-[#00A6CE] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#00A6CE]/35 transition-all duration-300 mb-5 relative z-10">
+                      <Icon className="w-6 h-6 transition-transform duration-300 group-hover:rotate-3 stroke-[2.2]" />
                     </div>
 
                     {/* Step Title */}
@@ -136,14 +139,11 @@ export function StepsSection() {
 
                   {/* Bottom Milestone Highlight */}
                   <div className="mt-6 pt-4 border-t border-[#F0F4F7] flex items-center justify-between relative z-10">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#071B2C]/80 bg-[#F4F8FA] group-hover:bg-[#EBF8FB] group-hover:text-[#00A6CE] transition-colors px-2.5 py-1 rounded-lg">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#071B2C] bg-[#F2F7FA] group-hover:bg-[#EBF8FB] group-hover:text-[#008BAF] border border-transparent group-hover:border-[#00A6CE]/20 transition-all px-3 py-1.5 rounded-lg">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#00A6CE]" />
                       <span>{step.highlight}</span>
                     </span>
                   </div>
-
-                  {/* Active Gradient Border Accent on Hover */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </article>
 
                 {/* Desktop Connector Arrow between step cards */}
