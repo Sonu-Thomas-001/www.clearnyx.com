@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/clearnyx/SiteHeader";
 import { SiteFooter } from "@/components/clearnyx/SiteFooter";
 import { BookModalProvider } from "@/components/clearnyx/BookModalContext";
 import { MobileStickyBar } from "@/components/clearnyx/MobileStickyBar";
+import { CinematicPreloader } from "@/components/clearnyx/CinematicPreloader";
+import { PageTransition } from "@/components/clearnyx/PageTransition";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
@@ -122,9 +124,12 @@ export default function RootLayout({
         className="min-h-screen flex flex-col font-sans bg-white text-navy-900 selection:bg-ice-soft selection:text-navy-900"
         suppressHydrationWarning
       >
+        <CinematicPreloader />
         <BookModalProvider>
           <SiteHeader />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <main className="flex-1 flex flex-col">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <SiteFooter />
           <MobileStickyBar />
         </BookModalProvider>
