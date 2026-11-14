@@ -45,6 +45,10 @@
     line-height: 1.65;
   }
 
+  footer p {
+    color: inherit;
+  }
+
   /* Custom minimal scrollbar */
   ::-webkit-scrollbar {
     width: 7px;
