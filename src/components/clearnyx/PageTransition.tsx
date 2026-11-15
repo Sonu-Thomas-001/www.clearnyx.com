@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -69,21 +68,9 @@ export function PageTransition({ children }: PageTransitionProps) {
       </div>
 
       {/* CINEMATIC PAGE SWITCHING CONTENT CONTAINER */}
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0, y: 12, filter: "blur(3px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -8, filter: "blur(2px)" }}
-          transition={{
-            duration: 0.32,
-            ease: [0.22, 1, 0.36, 1], // Luxury cubic easing
-          }}
-          className="flex-1 flex flex-col w-full"
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      <div className="flex-1 flex flex-col w-full">
+        {children}
+      </div>
     </>
   );
 }

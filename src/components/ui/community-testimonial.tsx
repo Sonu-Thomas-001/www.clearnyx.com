@@ -2,6 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export interface TestimonialItem {
   id: string;
@@ -116,7 +119,13 @@ export interface TestimonialsSectionProps {
 export default function TestimonialsSection({ data }: TestimonialsSectionProps) {
   return (
     <section className="testimonials-section relative flex flex-col items-center gap-10 sm:gap-14 py-20 px-4 w-full max-w-7xl mx-auto overflow-hidden">
-      <div className="flex flex-col items-center gap-4 text-center z-10 max-w-2xl px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: luxuryEase }}
+        className="flex flex-col items-center gap-4 text-center z-10 max-w-2xl px-4"
+      >
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F5FA] border border-[#00A6CE]/25 text-[#00A6CE] text-xs font-bold uppercase tracking-wider">
           Patient & Doctor Stories
         </div>
@@ -126,9 +135,15 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
         <p className="text-sm sm:text-base text-[#556977] leading-relaxed max-w-xl">
           {data.subtitle}
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col gap-6 z-10 w-full max-w-7xl">
+      <motion.div
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.7, delay: 0.15, ease: luxuryEase }}
+        className="flex flex-col gap-6 z-10 w-full max-w-7xl"
+      >
         {data.rows.map((row) => (
           <HorizontalScroller key={row.id} speed={row.speed} direction={row.direction}>
             {row.testimonials.map((t) => (
@@ -142,7 +157,7 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
             ))}
           </HorizontalScroller>
         ))}
-      </div>
+      </motion.div>
 
       <div
         className="absolute inset-0 pointer-events-none"
@@ -156,3 +171,4 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
     </section>
   );
 }
+
