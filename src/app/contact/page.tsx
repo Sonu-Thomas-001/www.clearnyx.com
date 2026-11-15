@@ -5,6 +5,7 @@ import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { SITE_CONFIG } from "@/config/site";
 import { Mail, MapPin, ShieldCheck, Clock } from "lucide-react";
+import { LocationMapSection } from "@/components/clearnyx/LocationMapSection";
 
 export const metadata: Metadata = {
   title: "Contact CLEARNYX | Professional Clear Aligner Enquiries",
@@ -149,6 +150,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <LocationMapSection />
     </>
   );
 }
