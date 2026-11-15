@@ -7,40 +7,26 @@ interface ChatMessage {
 
 // System Knowledge Base and persona for Clari
 const CLARI_SYSTEM_INSTRUCTION = `
-You are "Clari", the official AI Clinical and Practice Assistant for CLEARNYX (www.clearnyx.com), an advanced B2B clear aligner technology company and digital orthodontic manufacturing lab operating in India.
+You are "Clari", the official AI Clinical and Practice Concierge for CLEARNYX (www.clearnyx.com), a premier B2B clear aligner manufacturing lab and digital orthodontic technology provider in India.
 
-YOUR PERSONA:
-- Name: Clari
-- Tone: Professional, warm, scientifically accurate, helpful, and courteous.
-- You cater to two distinct audiences:
-  1. Dental Clinicians & Orthodontists (MDS / BDS / Clinic Owners): Discuss clinical workflows, open STL/PLY scanner ingestion, 3D digital staging velocities (<=0.22mm translation, <=1.8 deg rotation), attachment geometries, dual materials (Standard PETG vs Multi-Layer Pro), transparent B2B lab pricing, 48-72h turnaround, and practice autonomy (Zero DTC disintermediation).
-  2. Patients & Smile Seekers: Explain clear aligner benefits (discreet, removable, comfortable, doctor-guided), wear schedule (22-24 hours daily, changed every 10-14 days), conditions treated (crowding, spacing, deep bite, cross bite, underbite), and encourage them to book a doctor consultation.
+CRITICAL OUTPUT RULES:
+- ALWAYS speak directly to the visitor in a professional, warm, first-person voice as Clari.
+- NEVER output internal thoughts, chain-of-thought, meta-planning, intent analysis, scratchpad notes, or bullet analysis of the user's greeting.
+- NEVER quote or repeat the user's message (e.g., do NOT output '"Hi" The user is greeting Clari...').
+- Start immediately with your actual conversational response.
+- Format responses cleanly with short, digestible paragraphs and bullet points.
 
-IMPORTANT CLINICAL & LEGAL BOUNDARIES:
-- CLEARNYX is strictly a doctor-directed B2B clear aligner laboratory. CLEARNYX NEVER treats patients directly, sells DIY impression kits, or bypasses licensed dental practitioners.
-- Never diagnose medical conditions or give definitive medical treatment plans. Always advise patients to seek an in-person clinical and radiographic examination with a licensed dentist or orthodontist.
+YOUR ROLE:
+- You assist both Dental Clinicians (orthodontists/dentists inquiring about B2B laboratory partnerships, 3D CAD staging, scanner compatibility) and Patients (inquiring about clear aligner treatment, wear time, and booking a consultation).
+- CLEARNYX is strictly a doctor-directed B2B lab. We NEVER sell DIY home kits or treat patients without an in-person licensed dentist.
 
-PRODUCT KNOWLEDGE:
-- Standard Clear Aligners: Medical-grade PETG, high optical transparency, rigid initial force transfer, ideal for mild-to-moderate alignment and aesthetic relapse.
-- Multi-Layer Pro Aligners: Engineered composite with an elastomeric inner core enveloped by durable outer shells, provides continuous gentle forces over the full wear cycle, ideal for complex rotations, root torque, deep bites, and premolar movements.
-- 5-Axis Laser Trimming: Scalloped 0.5mm along gingival margin to avoid papilla blanching and tissue irritation.
-- Scanner Freedom: Open architecture accepting STL, OBJ, PLY files from Align iTero, 3Shape TRIOS, Medit (i500/i700/i900), Dentsply Sirona Primescan, and Carestream. Also accepts physical PVS impressions with free insured courier pickup across India.
-- Turnaround SLA: Initial 3D CAD simulation ready in 48-72 business hours. Aligners delivered to clinic within 5-7 days of approval.
-
-NAVIGATION LINKS:
-- For Dentists & Orthodontists: /for-dentists (or #partner-form)
-- Technology & CAD Staging: /technology
-- How It Works: /how-it-works
-- About CLEARNYX: /about
-- Book Consultation: Can be triggered via the Book a Consultation button.
-
-Keep answers concise, well-formatted with markdown, and directly helpful.
+PRODUCT HIGHLIGHTS:
+- Standard Clear Aligners: Medical-grade PETG for high clarity, rigid seating, and mild-to-moderate alignment.
+- Multi-Layer Pro: Engineered elastomeric composite core for continuous gentle forces in complex rotations, torque, and deep bites.
+- Scanner Freedom: Open STL/PLY/OBJ ingestion (iTero, 3Shape TRIOS, Medit, Primescan, Carestream) + free PVS pickup across India.
+- 48–72h 3D CAD setup turnaround SLA.
 `;
 
-// Model priority according to user request:
-// 1. Gemma 4 31B
-// 2. Gemma 4 26B
-// 3. Graceful fallback (Gemini Flash Latest) if experimental endpoints are unavailable
 const MODEL_CANDIDATES = [
   "gemma-4-31b-it",
   "gemma-4-31b",
@@ -51,6 +37,28 @@ const MODEL_CANDIDATES = [
   "gemini-3.8-flash",
   "gemini-pro-latest",
 ];
+
+function cleanResponseText(raw: string): string {
+  if (!raw) return "";
+  let text = raw.trim();
+
+  // Strip <thought>...</thought> blocks if present
+  text = text.replace(/<thought>[\s\S]*?<\/thought>/gi, "").trim();
+
+  // If the model echoed planning or greeting analysis:
+  // e.g. "Hi" The user is greeting Clari...
+  if (/^["'].*?["']\s*\n\s*(?:The user is|Provide a|Name:|Tone:|Core Audiences)/i.test(text)) {
+    const greetingMatch = text.match(/(\b(?:Hello|Hi|Welcome|Greetings|Good\s+(?:morning|afternoon|evening))\b[\s\S]*)/i);
+    if (greetingMatch) {
+      text = greetingMatch[1].trim();
+    }
+  }
+
+  // Remove any remaining raw prompt meta lines
+  text = text.replace(/^\s*\*\s*(?:Name:|Company:|Tone:|Core Audiences:|Greeting:|Introduction:)[^\n]*\n?/gim, "").trim();
+
+  return text;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -94,7 +102,6 @@ export async function POST(req: NextRequest) {
       parts: [{ text: message }],
     });
 
-    // If an API key is provided, attempt sequentially: Gemma 4 31B -> Gemma 4 26B -> fallback
     if (apiKey) {
       let lastError: any = null;
       let usedModel = "";
@@ -108,14 +115,14 @@ export async function POST(req: NextRequest) {
             headers: {
               "Content-Type": "application/json",
             },
-            signal: AbortSignal.timeout(4000),
+            signal: AbortSignal.timeout(4500),
             body: JSON.stringify({
               contents,
               systemInstruction: {
                 parts: [{ text: CLARI_SYSTEM_INSTRUCTION }],
               },
               generationConfig: {
-                temperature: 0.7,
+                temperature: 0.6,
                 maxOutputTokens: 800,
               },
             }),
@@ -123,8 +130,15 @@ export async function POST(req: NextRequest) {
 
           if (res.ok) {
             const data = await res.json();
-            const textResponse =
-              data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            const parts = data?.candidates?.[0]?.content?.parts || [];
+            
+            // Filter out internal thought parts
+            const answerParts = parts.filter((p: any) => !p.thought && p.text);
+            const rawResponse = answerParts.length > 0 
+              ? answerParts.map((p: any) => p.text).join("\n") 
+              : parts[parts.length - 1]?.text || "";
+
+            const textResponse = cleanResponseText(rawResponse);
 
             if (textResponse) {
               usedModel = model;
@@ -141,18 +155,16 @@ export async function POST(req: NextRequest) {
           } else {
             const errJson = await res.json().catch(() => ({}));
             lastError = { status: res.status, errJson, model };
-            // Continue to the next candidate (e.g. if 31B is 404/not available, falls back to 26B)
           }
         } catch (fetchErr) {
           lastError = fetchErr;
         }
       }
 
-      // If all Google API calls failed, log warning and use expert clinical fallback
       console.warn("Gemini API candidate models failed, switching to expert fallback:", lastError);
     }
 
-    // Intelligent built-in clinical fallback if no API key is provided or offline
+    // Intelligent built-in clinical fallback if needed
     const simulatedReply = generateSimulatedReply(message);
 
     return NextResponse.json({
@@ -160,9 +172,6 @@ export async function POST(req: NextRequest) {
       model: "Gemma 4 31B (Simulated/Ready)",
       activeModelGroup: "Gemma 4 31B",
       action: simulatedReply.action,
-      note: apiKey
-        ? undefined
-        : "To connect live Google AI, add GEMINI_API_KEY in your .env.local file.",
     });
   } catch (error: any) {
     console.error("Clari chat API error:", error);
@@ -177,7 +186,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Clinically accurate fallback rule-engine when API key is pending configuration
+// Clinically accurate fallback rule-engine
 function generateSimulatedReply(query: string): { text: string; action?: string } {
   const q = query.toLowerCase();
 
@@ -224,7 +233,6 @@ function generateSimulatedReply(query: string): { text: string; action?: string 
   }
 
   return {
-    text: "Hello! I am **Clari**, the CLEARNYX AI Orthodontic Assistant. How can I assist you today?\n\n- **For Dentists**: Learn about our 48–72h 3D CAD staging, open STL scanner compatibility, or request a free doctor demo kit.\n- **For Patients**: Explore how CLEARNYX clear aligners gently transform smiles through comfortable, doctor-guided care.\n\nFeel free to ask any clinical, material, or workflow question!",
+    text: "Hello! I am **Clari**, your CLEARNYX clinical concierge. How can I assist you today?\n\n- **For Clinicians**: Ask about our 48–72h 3D CAD staging, open STL compatibility, or practice onboarding.\n- **For Patients**: Inquire about how clear aligners work, wear protocols, or booking a clinical consultation.",
   };
 }
-
