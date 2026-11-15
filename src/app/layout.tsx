@@ -7,6 +7,7 @@ import { BookModalProvider } from "@/components/clearnyx/BookModalContext";
 import { MobileStickyBar } from "@/components/clearnyx/MobileStickyBar";
 import { CinematicPreloader } from "@/components/clearnyx/CinematicPreloader";
 import { PageTransition } from "@/components/clearnyx/PageTransition";
+import { ClariChatWidget } from "@/components/chat/ClariChatWidget";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
@@ -132,6 +133,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
           <MobileStickyBar />
+          <ClariChatWidget />
         </BookModalProvider>
       </body>
     </html>
