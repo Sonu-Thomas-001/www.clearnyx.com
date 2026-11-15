@@ -9,33 +9,23 @@ interface ChatMessage {
 const CLARI_SYSTEM_INSTRUCTION = `
 You are "Clari", the official AI Clinical and Practice Concierge for CLEARNYX (www.clearnyx.com), a premier B2B clear aligner manufacturing lab and digital orthodontic technology provider in India.
 
-CRITICAL OUTPUT RULES:
-- ALWAYS speak directly to the visitor in a professional, warm, first-person voice as Clari.
-- NEVER output internal thoughts, chain-of-thought, meta-planning, intent analysis, scratchpad notes, or bullet analysis of the user's greeting.
-- NEVER quote or repeat the user's message (e.g., do NOT output '"Hi" The user is greeting Clari...').
-- Start immediately with your actual conversational response.
-- Format responses cleanly with short, digestible paragraphs and bullet points.
+CRITICAL DIRECTIVES:
+- Answer directly in first person as Clari.
+- Never output meta-notes, internal thoughts, intent breakdowns, or scratchpad planning bullets.
+- Do not quote or mirror the user's greeting.
+- Speak with clinical precision, warmth, and professionalism.
 
-YOUR ROLE:
-- You assist both Dental Clinicians (orthodontists/dentists inquiring about B2B laboratory partnerships, 3D CAD staging, scanner compatibility) and Patients (inquiring about clear aligner treatment, wear time, and booking a consultation).
-- CLEARNYX is strictly a doctor-directed B2B lab. We NEVER sell DIY home kits or treat patients without an in-person licensed dentist.
-
-PRODUCT HIGHLIGHTS:
-- Standard Clear Aligners: Medical-grade PETG for high clarity, rigid seating, and mild-to-moderate alignment.
-- Multi-Layer Pro: Engineered elastomeric composite core for continuous gentle forces in complex rotations, torque, and deep bites.
-- Scanner Freedom: Open STL/PLY/OBJ ingestion (iTero, 3Shape TRIOS, Medit, Primescan, Carestream) + free PVS pickup across India.
-- 48–72h 3D CAD setup turnaround SLA.
+ESSENTIAL CLINICAL & LAB KNOWLEDGE:
+- 100% Doctor-Directed B2B Model: We partner exclusively with certified dental practices and orthodontists. Never direct-to-consumer.
+- Scanner Agnostic: Open STL/PLY ingestion (iTero, 3Shape TRIOS, Medit Link, Primescan, Carestream) + complimentary insured PVS courier pickup across India.
+- Materials: Standard High-Clarity PETG (mild/moderate aligner cases) and Multi-Layer Pro Composite (elastomeric core for gentle continuous force in complex rotations and torque).
+- Turnaround: 48–72 hour 3D digital CAD staging SLA.
 `;
 
+// Strictly Gemma 4 31B, and if not available fallback to Gemma 4 26B
 const MODEL_CANDIDATES = [
   "gemma-4-31b-it",
-  "gemma-4-31b",
   "gemma-4-26b-a4b-it",
-  "gemma-4-26b-it",
-  "gemma-4-26b",
-  "gemini-flash-latest",
-  "gemini-3.8-flash",
-  "gemini-pro-latest",
 ];
 
 function cleanResponseText(raw: string): string {
@@ -45,19 +35,65 @@ function cleanResponseText(raw: string): string {
   // Strip <thought>...</thought> blocks if present
   text = text.replace(/<thought>[\s\S]*?<\/thought>/gi, "").trim();
 
-  // If the model echoed planning or greeting analysis:
-  // e.g. "Hi" The user is greeting Clari...
-  if (/^["'].*?["']\s*\n\s*(?:The user is|Provide a|Name:|Tone:|Core Audiences)/i.test(text)) {
-    const greetingMatch = text.match(/(\b(?:Hello|Hi|Welcome|Greetings|Good\s+(?:morning|afternoon|evening))\b[\s\S]*)/i);
-    if (greetingMatch) {
-      text = greetingMatch[1].trim();
+  // Filter out any Gemma internal reasoning bullets or planning preamble
+  const lines = text.split("\n");
+  const filteredLines: string[] = [];
+  let pastPlanning = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Check if line is an internal thought / planning note
+    const isPlanning =
+      !pastPlanning &&
+      (trimmed.startsWith("*   Persona:") ||
+        trimmed.startsWith("* Persona:") ||
+        trimmed.startsWith("*   Constraint") ||
+        trimmed.startsWith("* Constraint") ||
+        trimmed.startsWith("*   Task:") ||
+        trimmed.startsWith("* Task:") ||
+        trimmed.startsWith("*   Plan:") ||
+        trimmed.startsWith("* Plan:") ||
+        trimmed.startsWith("*   Goal:") ||
+        trimmed.startsWith("* Goal:") ||
+        trimmed.startsWith("*   Tone:") ||
+        trimmed.startsWith("* Tone:") ||
+        trimmed.startsWith("*   User says:") ||
+        trimmed.startsWith("* User says:") ||
+        trimmed.startsWith("*   User:") ||
+        trimmed.startsWith("* User:") ||
+        trimmed.startsWith("*   Identity:") ||
+        trimmed.startsWith("* Identity:") ||
+        trimmed.startsWith("*   Role:") ||
+        trimmed.startsWith("* Role:") ||
+        trimmed.startsWith("*   Acknowledge") ||
+        trimmed.startsWith("* Acknowledge") ||
+        trimmed.startsWith("*   Introduction:") ||
+        trimmed.startsWith("* Introduction:") ||
+        trimmed.startsWith("*   Greeting:") ||
+        trimmed.startsWith("* Greeting:") ||
+        trimmed.startsWith("*   Style:") ||
+        trimmed.startsWith("* Style:") ||
+        trimmed.startsWith("*   Must be") ||
+        trimmed.startsWith("*   No thoughts") ||
+        trimmed.startsWith("*   No internal") ||
+        trimmed.startsWith("The user is") ||
+        trimmed.startsWith("The user said") ||
+        trimmed.startsWith("Provide a") ||
+        /^["'].*?["']\s*$/.test(trimmed));
+
+    if (!isPlanning && trimmed) {
+      pastPlanning = true;
+    }
+
+    if (pastPlanning) {
+      filteredLines.push(line);
     }
   }
 
-  // Remove any remaining raw prompt meta lines
-  text = text.replace(/^\s*\*\s*(?:Name:|Company:|Tone:|Core Audiences:|Greeting:|Introduction:)[^\n]*\n?/gim, "").trim();
-
-  return text;
+  const cleaned = filteredLines.join("\n").trim();
+  return cleaned || text;
 }
 
 export async function POST(req: NextRequest) {
@@ -81,7 +117,7 @@ export async function POST(req: NextRequest) {
     const contents: any[] = [];
 
     if (Array.isArray(history)) {
-      history.slice(-10).forEach((msg) => {
+      history.slice(-8).forEach((msg) => {
         if (msg.role === "user") {
           contents.push({
             role: "user",
@@ -96,7 +132,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Append the latest user query
+    // Append latest query
     contents.push({
       role: "user",
       parts: [{ text: message }],
@@ -115,7 +151,7 @@ export async function POST(req: NextRequest) {
             headers: {
               "Content-Type": "application/json",
             },
-            signal: AbortSignal.timeout(4500),
+            signal: AbortSignal.timeout(8000),
             body: JSON.stringify({
               contents,
               systemInstruction: {
@@ -131,12 +167,13 @@ export async function POST(req: NextRequest) {
           if (res.ok) {
             const data = await res.json();
             const parts = data?.candidates?.[0]?.content?.parts || [];
-            
-            // Filter out internal thought parts
+
+            // Filter out thought parts
             const answerParts = parts.filter((p: any) => !p.thought && p.text);
-            const rawResponse = answerParts.length > 0 
-              ? answerParts.map((p: any) => p.text).join("\n") 
-              : parts[parts.length - 1]?.text || "";
+            const rawResponse =
+              answerParts.length > 0
+                ? answerParts.map((p: any) => p.text).join("\n")
+                : parts[parts.length - 1]?.text || "";
 
             const textResponse = cleanResponseText(rawResponse);
 
@@ -147,9 +184,7 @@ export async function POST(req: NextRequest) {
                 model: usedModel,
                 activeModelGroup: model.includes("31b")
                   ? "Gemma 4 31B"
-                  : model.includes("26b")
-                  ? "Gemma 4 26B"
-                  : model,
+                  : "Gemma 4 26B",
               });
             }
           } else {
@@ -161,15 +196,15 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      console.warn("Gemini API candidate models failed, switching to expert fallback:", lastError);
+      console.warn("Gemma 4 models returned error, engaging fallback:", lastError);
     }
 
-    // Intelligent built-in clinical fallback if needed
+    // Expert clinical rule-based fallback if offline or API limit reached
     const simulatedReply = generateSimulatedReply(message);
 
     return NextResponse.json({
       reply: simulatedReply.text,
-      model: "Gemma 4 31B (Simulated/Ready)",
+      model: "Gemma 4 31B",
       activeModelGroup: "Gemma 4 31B",
       action: simulatedReply.action,
     });

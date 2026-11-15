@@ -129,7 +129,7 @@ export function ClariChatWidget() {
       const line = rawLine.trim();
 
       if (!line) {
-        return <div key={idx} className="h-2" />;
+        return <div key={idx} className="h-1.5" />;
       }
 
       // Format bold, italic, and links inline
@@ -156,21 +156,47 @@ export function ClariChatWidget() {
       if (line.startsWith("* ") || line.startsWith("- ")) {
         const bulletText = parsed.replace(/^[\*\-]\s+/, "");
         return (
-          <div key={idx} className="flex items-start gap-2 my-1 pl-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] shrink-0 mt-1.5" />
+          <div key={idx} className="flex items-start gap-2.5 my-1.5 pl-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] shrink-0 mt-2" />
             <span
-              className="text-xs text-[#415360] leading-relaxed flex-1"
+              className="text-[13px] text-[#334756] leading-relaxed flex-1"
               dangerouslySetInnerHTML={{ __html: bulletText }}
             />
           </div>
         );
       }
 
+      // Numbered lists e.g. "1. "
+      if (/^\d+\.\s/.test(line)) {
+        const numMatch = line.match(/^(\d+)\.\s+(.*)/);
+        if (numMatch) {
+          const num = numMatch[1];
+          const rest = numMatch[2]
+            .replace(/\*\*(.*?)\*\*/g, "<strong class='font-bold text-[#071B2C]'>$1</strong>")
+            .replace(/\*(.*?)\*/g, "<em class='text-slate-600'>$1</em>")
+            .replace(
+              /\[(.*?)\]\((.*?)\)/g,
+              '<a href="$2" class="text-[#00A6CE] font-bold underline decoration-[#00A6CE]/30 hover:decoration-[#00A6CE] transition-colors">$1</a>'
+            );
+          return (
+            <div key={idx} className="flex items-start gap-2.5 my-1.5 pl-0.5">
+              <span className="w-4 h-4 rounded-full bg-[#E7F6FA] text-[#00A6CE] font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                {num}
+              </span>
+              <span
+                className="text-[13px] text-[#334756] leading-relaxed flex-1"
+                dangerouslySetInnerHTML={{ __html: rest }}
+              />
+            </div>
+          );
+        }
+      }
+
       // Regular paragraph
       return (
         <p
           key={idx}
-          className="text-xs text-[#334756] leading-relaxed my-1"
+          className="text-[13px] text-[#334756] leading-relaxed my-1"
           dangerouslySetInnerHTML={{ __html: parsed }}
         />
       );
@@ -284,30 +310,42 @@ export function ClariChatWidget() {
                   >
                     {/* User Question View */}
                     {!isAssistant ? (
-                      <div className="flex flex-col items-end max-w-[85%]">
-                        <div className="bg-[#071B2C] text-white px-4 py-2.5 rounded-[20px] rounded-br-[4px] shadow-sm">
-                          <p className="text-xs leading-relaxed text-white font-normal break-words">
-                            {msg.content}
-                          </p>
+                      <div className="flex items-start gap-2 max-w-[88%] self-end">
+                        <div className="flex flex-col items-end flex-1">
+                          <div className="bg-[#071B2C] text-white px-4 py-3 rounded-2xl rounded-tr-xs shadow-[0_4px_14px_rgba(7,27,44,0.1)] border border-[#163859]">
+                            <p className="text-[13px] leading-relaxed text-white font-normal break-words select-text">
+                              {msg.content}
+                            </p>
+                          </div>
+                          <span className="text-[10px] text-slate-400 mt-1 mr-1 font-sans">
+                            {msg.timestamp}
+                          </span>
                         </div>
-                        <span className="text-[10px] text-slate-400 mt-1 px-1 font-mono">
-                          {msg.timestamp}
-                        </span>
+                        <div className="w-7 h-7 rounded-full bg-[#EBF3F7] border border-[#D5E2EC] text-[#071B2C] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                          <User className="w-3.5 h-3.5 text-[#334756]" />
+                        </div>
                       </div>
                     ) : (
                       /* Assistant Clari Response View */
-                      <div className="flex items-start gap-2.5 max-w-[90%]">
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#071B2C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-[11px] shrink-0 mt-1 shadow-xs">
-                          C
+                      <div className="flex items-start gap-2.5 max-w-[92%] self-start">
+                        <div className="relative shrink-0 mt-0.5">
+                          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                            C
+                          </div>
+                          <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
                         </div>
 
-                        <div className="bg-white border border-[#E2EBF0] text-[#071B2C] rounded-[20px] rounded-tl-[4px] p-4 shadow-[0_2px_8px_rgba(7,27,44,0.04)] flex-1">
+                        <div className="bg-white border border-[#E2EBF0] text-[#071B2C] rounded-2xl rounded-tl-xs p-4 sm:p-4.5 shadow-[0_2px_12px_rgba(7,27,44,0.04)] flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-[#F0F4F7]">
-                            <span className="text-[11px] font-bold text-[#071B2C] flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                              Clari
-                            </span>
-                            <span className="text-[10px] text-slate-400 font-mono">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-bold text-[#071B2C]">
+                                Clari
+                              </span>
+                              <span className="text-[9px] font-bold uppercase tracking-wider text-[#00A6CE] px-1.5 py-0.2 rounded-full bg-[#E7F6FA]">
+                                Clinical Concierge
+                              </span>
+                            </div>
+                            <span className="text-[10px] text-slate-400 font-sans">
                               {msg.timestamp}
                             </span>
                           </div>
@@ -318,14 +356,14 @@ export function ClariChatWidget() {
 
                           {/* Contextual Action Buttons */}
                           {msg.action === "consultation" && (
-                            <div className="mt-3 pt-3 border-t border-[#EAEFF3]">
+                            <div className="mt-3.5 pt-3 border-t border-[#EAEFF3]">
                               <button
                                 type="button"
                                 onClick={() => {
                                   openModal("consultation");
                                   setIsOpen(false);
                                 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00A6CE] to-[#0094BA] text-white font-bold text-xs hover:shadow-md hover:brightness-105 transition-all cursor-pointer"
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00A6CE] to-[#0094BA] hover:from-[#0094BA] hover:to-[#0082A4] text-white font-bold text-xs shadow-xs hover:shadow transition-all cursor-pointer"
                               >
                                 <Calendar className="w-3.5 h-3.5" />
                                 <span>Book Doctor Consultation</span>
@@ -335,11 +373,11 @@ export function ClariChatWidget() {
                           )}
 
                           {msg.action === "partner" && (
-                            <div className="mt-3 pt-3 border-t border-[#EAEFF3]">
+                            <div className="mt-3.5 pt-3 border-t border-[#EAEFF3]">
                               <Link
                                 href="/for-dentists#partner-form"
                                 onClick={() => setIsOpen(false)}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#071B2C] text-white font-bold text-xs hover:bg-[#00A6CE] transition-colors"
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#071B2C] hover:bg-[#00A6CE] text-white font-bold text-xs transition-colors shadow-xs"
                               >
                                 <Stethoscope className="w-3.5 h-3.5 text-[#12C8E8]" />
                                 <span>Open Partner Application</span>
@@ -357,10 +395,10 @@ export function ClariChatWidget() {
               {/* Typing Indicator */}
               {isLoading && (
                 <div className="flex items-start gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#071B2C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-[11px] shrink-0 mt-1 shadow-xs">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0 mt-0.5">
                     C
                   </div>
-                  <div className="bg-white border border-[#E2EBF0] rounded-2xl rounded-tl-[4px] p-3 shadow-xs flex items-center gap-1.5">
+                  <div className="bg-white border border-[#E2EBF0] rounded-2xl rounded-tl-xs p-3.5 shadow-xs flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce" />
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.18s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.36s]" />
