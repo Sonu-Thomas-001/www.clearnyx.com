@@ -114,6 +114,19 @@ export function SiteHeader() {
               Home
             </Link>
 
+            {/* How It Works */}
+            <Link
+              href="/how-it-works"
+              onClick={closeMenu}
+              className={`px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
+                pathname === "/how-it-works"
+                  ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
+                  : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
+              }`}
+            >
+              How It Works
+            </Link>
+
             {/* Conditions Dropdown */}
             <div
               className="relative"
@@ -193,15 +206,6 @@ export function SiteHeader() {
                 </div>
               )}
             </div>
-
-            {/* How It Works */}
-            <Link
-              href="/#how-it-works"
-              onClick={closeMenu}
-              className="px-2.5 xl:px-3 py-1.5 rounded-full text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD] transition-all duration-200"
-            >
-              How It Works
-            </Link>
 
             {/* For Dentists (B2B Hero Link) */}
             <Link
@@ -329,6 +333,15 @@ export function SiteHeader() {
                 </Link>
 
                 <Link
+                  href="/how-it-works"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
+                >
+                  <span>How It Works</span>
+                  <ArrowRight className="w-4 h-4 text-slate" />
+                </Link>
+
+                <Link
                   href="/#conditions"
                   onClick={closeMenu}
                   className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
@@ -337,15 +350,6 @@ export function SiteHeader() {
                     <span className="w-2 h-2 rounded-full bg-brand-cyan" />
                     <span>Conditions We Treat</span>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
-                <Link
-                  href="/#how-it-works"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <span>How It Works</span>
                   <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
 
