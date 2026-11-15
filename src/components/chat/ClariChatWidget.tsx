@@ -219,15 +219,15 @@ export function ClariChatWidget() {
               <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className="flex items-center gap-3 p-2 pl-2 pr-4 rounded-full bg-white/95 backdrop-blur-xl border border-[#D0DFE8] shadow-[0_12px_32px_rgba(7,27,44,0.12)] hover:shadow-[0_16px_40px_rgba(0,166,206,0.22)] hover:border-[#00A6CE]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer"
-                aria-label="Open Clari Clinical Concierge"
+                className="flex items-center gap-2.5 p-1.5 pl-1.5 pr-4 rounded-full bg-white/95 backdrop-blur-xl border border-[#D0DFE8] shadow-[0_10px_28px_rgba(7,27,44,0.12)] hover:shadow-[0_14px_36px_rgba(0,166,206,0.22)] hover:border-[#00A6CE]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer"
+                aria-label="Open Clari"
               >
                 {/* 3D Character Avatar */}
                 <div className="relative">
                   <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#00A6CE]/30 group-hover:border-[#00A6CE] shadow-sm group-hover:scale-105 transition-all bg-[#EAF5F8]">
                     <Image
                       src="/brand/clari-avatar.png"
-                      alt="Clari AI Concierge"
+                      alt="Clari"
                       width={40}
                       height={40}
                       priority
@@ -237,19 +237,9 @@ export function ClariChatWidget() {
                   <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white shadow-xs" />
                 </div>
 
-                <div className="flex flex-col text-left">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[13px] font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors leading-tight">
-                      Clari
-                    </span>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#00A6CE] px-1.5 py-0.2 rounded-full bg-[#E7F6FA]">
-                      Online
-                    </span>
-                  </div>
-                  <span className="text-[11px] text-[#556977] leading-tight font-medium">
-                    Clinical Concierge
-                  </span>
-                </div>
+                <span className="text-sm font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors pr-0.5">
+                  Clari
+                </span>
               </button>
             </motion.div>
           )}
