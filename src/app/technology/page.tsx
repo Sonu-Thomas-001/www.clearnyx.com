@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { ArrowRight, Cpu, Layers, Scan, FileCheck } from "lucide-react";
+import { TechPolymerParallax } from "@/components/clearnyx/TechPolymerParallax";
 
 export const metadata: Metadata = {
   title: "Orthodontic Technology & Digital Treatment Planning",
@@ -163,6 +164,9 @@ export default function TechnologyPage() {
           </div>
         </div>
       </section>
+
+      {/* Exploded Tri-Laminate Polymer Parallax */}
+      <TechPolymerParallax />
 
       {/* Section 3: Materials: PETG & Multi-Layer Composite */}
       <section className="py-20 md:py-28 bg-surface-soft border-b border-surface-border/60">

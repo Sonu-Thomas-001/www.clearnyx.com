@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { WORKFLOW_STAGES, WEAR_PROTOCOL_NOTICE } from "@/content/workflow";
+import { SequentialStagingParallax } from "@/components/clearnyx/SequentialStagingParallax";
 import {
   ScanLine,
   MonitorSmartphone,
@@ -81,6 +82,9 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+
+      {/* Sequential Orthodontic Staging Parallax */}
+      <SequentialStagingParallax />
 
       {/* Detailed 6-Stage Timeline */}
       <section className="py-16 md:py-24 bg-surface-soft border-y border-surface-border/60">

@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroSection } from "@/components/clearnyx/HeroSection";
 import { BenefitsStrip } from "@/components/clearnyx/BenefitsStrip";
+import { HomeAlignerParallax } from "@/components/clearnyx/HomeAlignerParallax";
 import { ConditionsSection } from "@/components/clearnyx/ConditionsSection";
 import { StepsSection } from "@/components/clearnyx/StepsSection";
 import { DualPolymerSection } from "@/components/clearnyx/DualPolymerSection";
@@ -19,6 +20,9 @@ export default function HomePage() {
 
       {/* 2. 6-Feature Benefits Strip */}
       <BenefitsStrip />
+
+      {/* 2b. Scroll-Triggered Aligner Anatomy Parallax */}
+      <HomeAlignerParallax />
 
       {/* 3. Conditions We Treat (6 Malocclusion Condition Cards) */}
       <ConditionsSection />
