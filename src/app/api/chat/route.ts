@@ -225,3 +225,4 @@ function generateSimulatedReply(query: string): { text: string; action?: string 
     text: "Hello! I am **Clari**, the CLEARNYX AI Orthodontic Assistant. How can I assist you today?\n\n- **For Dentists**: Learn about our 48–72h 3D CAD staging, open STL scanner compatibility, or request a free doctor demo kit.\n- **For Patients**: Explore how CLEARNYX clear aligners gently transform smiles through comfortable, doctor-guided care.\n\nFeel free to ask any clinical, material, or workflow question!",
   };
 }
+
