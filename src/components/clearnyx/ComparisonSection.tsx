@@ -3,19 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ChevronsLeftRight,
-  CheckCircle2,
-  Clock,
-  Layers,
-  ShieldCheck,
-  ArrowRight,
-  Quote,
+  Calendar,
+  FileText,
+  Stethoscope,
 } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
-
-const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function ComparisonSection() {
   const [sliderPos, setSliderPos] = useState<number>(50);
@@ -24,282 +18,276 @@ export function ComparisonSection() {
   return (
     <section
       id="results"
-      className="relative py-20 sm:py-28 overflow-hidden bg-[#071B2C] text-white"
+      className="relative py-20 sm:py-28 bg-[#F8FAFC] border-t border-b border-[#E2EBF0] text-[#071B2C] overflow-hidden"
     >
-      {/* Background Lighting & Fine Precision Mesh */}
-      <div className="absolute -top-32 left-1/4 w-[600px] h-[350px] bg-[#00A6CE]/12 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 right-1/4 w-[500px] h-[350px] bg-[#4DD4F0]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#00A6CE_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.035] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: luxuryEase }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#4DD4F0] text-xs font-bold tracking-wide uppercase border border-white/10 mb-4 shadow-xs"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4DD4F0]" />
-            <span>Real transformation</span>
-          </motion.div>
+        {/* Section Header - Authentic Medical Editorial Style */}
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7F6FA] text-[#00A6CE] text-xs font-bold tracking-wider uppercase mb-3.5 border border-[#C5ECF5]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
+            <span>Clinical Case Dossier • Case #CN-4820</span>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: luxuryEase }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
-          >
-            See the difference{" "}
-            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#00A6CE] via-[#2ED9FC] to-[#00A6CE] italic">
-              CLEARNYX
-            </span>{" "}
-            makes
-          </motion.h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-[1.15]">
+            Documented Clinical Outcomes.
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: luxuryEase }}
-            className="mt-4 text-base sm:text-lg text-[#94A9B8] leading-relaxed"
-          >
-            Drag the interactive slider to compare real patient clinical outcomes.
-            Sub-millimeter 3D aligner staging delivers predictable, lasting alignment you can see.
-          </motion.p>
+          <p className="mt-4 text-base sm:text-lg text-[#556977] leading-relaxed max-w-2xl">
+            Standardized photographic clinical record of sequential clear aligner therapy.
+            Sub-millimeter 3D digital CAD staging ensures predictable biomechanical tracking from
+            baseline to finished alignment.
+          </p>
         </div>
 
-        {/* Main Transformation Cockpit Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center max-w-6xl mx-auto">
-          {/* Left Column: Interactive Before/After Split Viewer (7 Cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: -32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.75, ease: luxuryEase }}
-            className="lg:col-span-7 flex flex-col"
-          >
-            <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#0B2540] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.6)] aspect-[4/3] sm:aspect-[16/11] select-none group">
-              {/* After Image Layer (Base) */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/images/comparison/after.jpg"
-                  alt="Smile after CLEARNYX clear aligner treatment"
-                  fill
-                  priority
-                  className="object-cover object-center pointer-events-none"
-                />
-              </div>
-
-              {/* Before Image Layer (Clipped Top Layer) */}
-              <div
-                className="absolute inset-0 overflow-hidden"
-                style={{
-                  clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
-                }}
-              >
-                <Image
-                  src="/images/comparison/before.jpg"
-                  alt="Smile before CLEARNYX treatment"
-                  fill
-                  priority
-                  className="object-cover object-center pointer-events-none"
-                />
-              </div>
-
-              {/* Floating Badge: Before (Left) */}
-              <div className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-full bg-[#071B2C]/80 backdrop-blur-md text-white/90 text-xs font-bold tracking-wider uppercase border border-white/15 shadow-md flex items-center gap-1.5 pointer-events-none">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                <span>Before</span>
-              </div>
-
-              {/* Floating Badge: After (Right) */}
-              <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-[#00A6CE]/80 backdrop-blur-md text-white text-xs font-bold tracking-wider uppercase border border-white/20 shadow-md flex items-center gap-1.5 pointer-events-none">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span>After CLEARNYX</span>
-              </div>
-
-              {/* Divider Line & Circular Grab Handle */}
-              <div
-                className="absolute inset-y-0 w-1 bg-white shadow-[0_0_12px_rgba(0,166,206,0.8)] pointer-events-none z-30"
-                style={{ left: `${sliderPos}%` }}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-[#071B2C] shadow-2xl flex items-center justify-center border-2 border-[#00A6CE] group-hover:scale-110 transition-transform">
-                  <ChevronsLeftRight className="w-5 h-5 text-[#00A6CE]" />
+        {/* Main Clinical Case Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Left Column: Clinical Photographic Inspection Viewer (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="bg-white rounded-2xl border border-[#D5E2EC] shadow-[0_8px_30px_rgba(7,27,44,0.06)] overflow-hidden">
+              {/* Viewer Diagnostic Header Bar */}
+              <div className="px-4 py-3 bg-[#F4F8FA] border-b border-[#E2EBF0] flex items-center justify-between text-xs text-[#556977]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="font-semibold text-[#071B2C]">
+                    Standardized 1:1 Orthodontic Photographic View
+                  </span>
                 </div>
+                <span className="font-mono text-[11px] text-[#718594] hidden sm:inline-block">
+                  Calibrated Focal Distance • Frontal Occlusion
+                </span>
               </div>
 
-              {/* Range Input Overlay for Drag / Touch Interactions */}
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={sliderPos}
-                onChange={(e) => setSliderPos(Number(e.target.value))}
-                className="absolute inset-0 opacity-0 cursor-ew-resize z-40 w-full h-full"
-                aria-label="Before and after smile comparison slider"
-              />
-            </div>
+              {/* Photographic Comparison Frame */}
+              <div className="relative aspect-[4/3] sm:aspect-[16/11] select-none overflow-hidden bg-slate-100 group">
+                {/* After Image Layer (Base) */}
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/comparison/after.jpg"
+                    alt="Clinical post-treatment outcome with CLEARNYX aligners"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 650px"
+                    className="object-cover object-center pointer-events-none"
+                  />
+                </div>
 
-            {/* Bottom Slider Presets */}
-            <div className="flex items-center justify-between mt-4 px-2">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setSliderPos(100)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    sliderPos >= 90
-                      ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
-                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
-                  }`}
+                {/* Before Image Layer (Clipped Top Layer) */}
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  style={{
+                    clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
+                  }}
                 >
-                  Before
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSliderPos(50)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    sliderPos >= 40 && sliderPos <= 60
-                      ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
-                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
-                  }`}
+                  <Image
+                    src="/images/comparison/before.jpg"
+                    alt="Clinical baseline pre-treatment presentation"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 650px"
+                    className="object-cover object-center pointer-events-none"
+                  />
+                </div>
+
+                {/* Clinical Label: Baseline (Left) */}
+                <div className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-lg bg-[#071B2C]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wider uppercase shadow-sm pointer-events-none border border-white/10">
+                  <span className="text-slate-300 font-normal mr-1.5">Pre-Op:</span>
+                  Baseline
+                </div>
+
+                {/* Clinical Label: Finished (Right) */}
+                <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-lg bg-[#00A6CE]/95 backdrop-blur-sm text-white text-[11px] font-bold tracking-wider uppercase shadow-sm pointer-events-none border border-white/20">
+                  <span className="text-white/80 font-normal mr-1.5">Finished:</span>
+                  Month 5.5
+                </div>
+
+                {/* Precision Divider Line & Grip Handle */}
+                <div
+                  className="absolute inset-y-0 w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.35)] pointer-events-none z-30"
+                  style={{ left: `${sliderPos}%` }}
                 >
-                  50 / 50 Split
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSliderPos(0)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    sliderPos <= 10
-                      ? "bg-[#00A6CE] text-white shadow-md shadow-[#00A6CE]/30"
-                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-transparent"
-                  }`}
-                >
-                  After
-                </button>
+                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#071B2C] shadow-lg flex items-center justify-center border-2 border-[#00A6CE] transition-transform">
+                    <ChevronsLeftRight className="w-4 h-4 text-[#00A6CE]" />
+                  </div>
+                </div>
+
+                {/* Accessible Input Slider for Drag / Touch */}
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={sliderPos}
+                  onChange={(e) => setSliderPos(Number(e.target.value))}
+                  className="absolute inset-0 opacity-0 cursor-ew-resize z-40 w-full h-full"
+                  aria-label="Interactive baseline and post-treatment clinical comparison slider"
+                />
               </div>
 
-              <span className="text-xs text-[#647887] hidden sm:inline-block">
-                Drag slider or tap preset
-              </span>
-            </div>
-          </motion.div>
+              {/* View Controls & Diagnostic Tabs */}
+              <div className="p-3.5 bg-white border-t border-[#E2EBF0] flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-semibold text-[#556977] mr-1 hidden sm:inline-block">
+                    View Mode:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSliderPos(100)}
+                    className={`px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                      sliderPos >= 90
+                        ? "bg-[#071B2C] text-white shadow-xs"
+                        : "bg-[#F4F8FA] text-[#556977] hover:bg-[#EAEFF3] hover:text-[#071B2C]"
+                    }`}
+                  >
+                    Baseline (0%)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSliderPos(50)}
+                    className={`px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                      sliderPos >= 40 && sliderPos <= 60
+                        ? "bg-[#00A6CE] text-white shadow-xs"
+                        : "bg-[#F4F8FA] text-[#556977] hover:bg-[#EAEFF3] hover:text-[#071B2C]"
+                    }`}
+                  >
+                    50 / 50 Split
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSliderPos(0)}
+                    className={`px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                      sliderPos <= 10
+                        ? "bg-[#071B2C] text-white shadow-xs"
+                        : "bg-[#F4F8FA] text-[#556977] hover:bg-[#EAEFF3] hover:text-[#071B2C]"
+                    }`}
+                  >
+                    Finished (100%)
+                  </button>
+                </div>
 
-          {/* Right Column: Verified Clinical Case Breakdown Card (5 Cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.75, delay: 0.15, ease: luxuryEase }}
-            className="lg:col-span-5 bg-white/5 rounded-3xl p-6 sm:p-8 border border-white/10 backdrop-blur-md flex flex-col justify-between"
-          >
+                <span className="text-[11px] text-[#718594] font-medium">
+                  Drag slider horizontally to inspect occlusal alignment
+                </span>
+              </div>
+            </div>
+
+            {/* Scientific Transparency Footnote */}
+            <p className="mt-3 text-[11px] text-[#718594] leading-relaxed">
+              * Unretouched clinical photographic documentation. Treatment duration and biological
+              response vary according to individual patient malocclusion, bone density, and compliance.
+            </p>
+          </div>
+
+          {/* Right Column: Authentic Orthodontic Case Dossier Card (5 Cols) */}
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-[#D5E2EC] p-6 sm:p-7 shadow-[0_8px_30px_rgba(7,27,44,0.06)] flex flex-col justify-between">
             <div>
-              {/* Card Top Pill & Case ID */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00A6CE]/20 text-[#4DD4F0] text-xs font-bold uppercase tracking-wider border border-[#00A6CE]/30">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Verified Clinical Case</span>
-                </span>
-                <span className="text-xs text-[#8EA3B3] font-mono">
-                  #CN-4820
+              {/* Dossier Header Meta */}
+              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#EAEFF3]">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[#00A6CE]" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#071B2C]">
+                    Case Record Sheet
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-[#00A6CE] font-bold px-2 py-0.5 rounded bg-[#E7F6FA]">
+                  REF: CN-4820
                 </span>
               </div>
 
-              {/* Case Diagnosis Title */}
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
-                Midline Diastema &amp; Moderate Crowding
-              </h3>
-              <p className="text-xs sm:text-sm text-[#94A9B8] leading-relaxed mb-6">
-                Treated with sequential multi-layer clear aligners without extractions or interproximal metal hardware.
-              </p>
-
-              {/* 4 Clinical Data Metrics */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-1.5 text-[#00A6CE] mb-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#94A9B8]">
-                      Duration
-                    </span>
-                  </div>
-                  <p className="text-base sm:text-lg font-black text-white">
-                    5.5 Months
-                  </p>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-1.5 text-[#00A6CE] mb-1">
-                    <Layers className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#94A9B8]">
-                      Aligner Trays
-                    </span>
-                  </div>
-                  <p className="text-base sm:text-lg font-black text-white">
-                    18 Stages
-                  </p>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-1.5 text-[#00A6CE] mb-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#94A9B8]">
-                      Compliance
-                    </span>
-                  </div>
-                  <p className="text-base sm:text-lg font-black text-white">
-                    22 Hrs / Day
-                  </p>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-1.5 text-[#00A6CE] mb-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#94A9B8]">
-                      Supervision
-                    </span>
-                  </div>
-                  <p className="text-base sm:text-lg font-black text-white">
-                    Orthodontist-Led
-                  </p>
-                </div>
-              </div>
-
-              {/* Patient Testimonial Quote */}
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 mb-6 relative">
-                <Quote className="w-5 h-5 text-[#00A6CE]/40 mb-2" />
-                <p className="text-xs sm:text-[13px] text-white/90 italic leading-relaxed">
-                  &ldquo;I was skeptical about whether clear aligners could close my front gap in under 6 months. My digital staging simulation matched the final smile 100%.&rdquo;
+              {/* Chief Complaint / Malocclusion Diagnosis */}
+              <div className="mb-5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#718594] block mb-1">
+                  Clinical Diagnosis
+                </span>
+                <h3 className="text-xl font-bold text-[#071B2C] leading-snug">
+                  Maxillary Midline Diastema &amp; Moderate Anterior Crowding
+                </h3>
+                <p className="text-xs text-[#556977] mt-1.5 leading-relaxed">
+                  Class I malocclusion with 2.4mm central gap, minor rotational displacement of maxillary
+                  lateral incisors, and anterior mandibular crowding.
                 </p>
-                <div className="mt-3 flex items-center justify-between text-xs">
-                  <span className="font-bold text-white">Priya S.</span>
-                  <span className="text-[#8EA3B3]">London, UK</span>
+              </div>
+
+              {/* 4 Structured Diagnostic Parameters */}
+              <div className="grid grid-cols-2 gap-2.5 mb-5">
+                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2EBF0]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#718594] block mb-0.5">
+                    Treatment Duration
+                  </span>
+                  <span className="text-base font-extrabold text-[#071B2C]">
+                    22 Weeks (5.5 Mo)
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2EBF0]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#718594] block mb-0.5">
+                    Aligner Stages
+                  </span>
+                  <span className="text-base font-extrabold text-[#071B2C]">
+                    18 Sequential Trays
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2EBF0]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#718594] block mb-0.5">
+                    Wear Protocol
+                  </span>
+                  <span className="text-base font-extrabold text-[#071B2C]">
+                    22 Hours / Day
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2EBF0]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#718594] block mb-0.5">
+                    Material Polymer
+                  </span>
+                  <span className="text-base font-extrabold text-[#071B2C]">
+                    Multi-Layer Pro
+                  </span>
+                </div>
+              </div>
+
+              {/* Clinical Assessment Commentary */}
+              <div className="p-4 rounded-xl bg-[#F4F8FA] border-l-4 border-[#00A6CE] mb-6">
+                <p className="text-xs text-[#334756] leading-relaxed">
+                  <strong className="text-[#071B2C] font-semibold block mb-1">
+                    Orthodontic CAD Staging Assessment:
+                  </strong>
+                  &ldquo;Complete diastema closure achieved with controlled bodily translation of central
+                  incisors. Zero interproximal enamel reduction required. Gingival margins contoured
+                  via 5-axis laser trimming for soft-tissue health throughout the 18 stages.&rdquo;
+                </p>
+                <div className="mt-2 text-[10px] text-[#718594] font-medium">
+                  Staged &amp; Fabricated by CLEARNYX Digital Orthodontic Laboratory
                 </div>
               </div>
             </div>
 
-            {/* Direct Consultation Action */}
-            <div>
-              <button
-                type="button"
-                onClick={() => openModal("consultation")}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#00A6CE]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
-              >
-                <span>Get Your Free Smile Assessment</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <p className="text-center mt-2.5 text-[11px] text-[#647887]">
-                * Includes 3D digital simulation of your expected alignment result.
+            {/* Bottom Actions */}
+            <div className="space-y-2.5 pt-2 border-t border-[#EAEFF3]">
+              <div className="flex flex-col sm:flex-row items-stretch gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => openModal("consultation")}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs shadow-xs hover:shadow transition-all cursor-pointer"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Book Doctor Consultation</span>
+                </button>
+
+                <Link
+                  href="/for-dentists#partner-form"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-[#071B2C] hover:bg-[#00A6CE] text-white font-bold text-xs transition-colors"
+                >
+                  <Stethoscope className="w-3.5 h-3.5 text-[#12C8E8]" />
+                  <span>For Dentists</span>
+                </Link>
+              </div>
+
+              <p className="text-center text-[10px] text-[#718594]">
+                100% Doctor-directed treatment through licensed dental professionals across India.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
-
-        {/* Clinical Disclaimer Note */}
-        <p className="text-center mt-10 text-xs text-[#647887] max-w-2xl mx-auto">
-          * Actual patient clinical case. Individual orthodontic outcomes and treatment timelines depend on clinician diagnosis, complexity of malocclusion, and patient wear compliance.
-        </p>
       </div>
     </section>
   );
