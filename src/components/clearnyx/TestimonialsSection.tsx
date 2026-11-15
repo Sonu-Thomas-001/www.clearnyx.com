@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   Star,
   CheckCircle2,
   Quote,
@@ -94,7 +93,7 @@ export function TestimonialsSection() {
             transition={{ duration: 0.5, ease: luxuryEase }}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-4 shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
             <span>Real smiles</span>
           </motion.div>
 

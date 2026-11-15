@@ -12,7 +12,6 @@ import {
   ArrowRight,
   ShieldCheck,
   Stethoscope,
-  Sparkles,
   MessageCircle,
 } from "lucide-react";
 
@@ -47,7 +46,7 @@ export function SiteFooter() {
             {/* Left Copy */}
             <div className="lg:col-span-7 space-y-4 flex flex-col items-center sm:items-start text-center sm:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/15 border border-brand-cyan/30 text-electric-cyan text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-electric-cyan" />
                 <span>B2B Orthodontic Collaboration</span>
               </div>
 

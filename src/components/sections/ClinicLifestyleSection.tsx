@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge } from "@/components/ui/Badge";
-import { Coffee, Smile, Sparkles, CalendarCheck, ShieldCheck } from "lucide-react";
+import { Coffee, Smile, CalendarCheck, ShieldCheck } from "lucide-react";
 
 export function ClinicLifestyleSection() {
   const steps = [
@@ -20,7 +20,7 @@ export function ClinicLifestyleSection() {
       num: "03",
       title: "Maintain Flawless Hygiene",
       desc: "Normal tooth brushing and interproximal flossing without the plaque accumulation risks of fixed orthodontic brackets.",
-      icon: Sparkles,
+      icon: ShieldCheck,
     },
     {
       num: "04",

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
 
 const luxuryEase = [0.16, 1, 0.3, 1] as const;
@@ -172,7 +172,7 @@ export function FaqCtaSection() {
         <div className="md:col-span-7 relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F5FA] border border-[#00A6CE]/25 text-[#00A6CE] text-[11px] font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#00A6CE]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
             <span>Begin Treatment</span>
           </div>
 

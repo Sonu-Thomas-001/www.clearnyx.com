@@ -3,7 +3,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
-import { Sparkles, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export function TransformationSliderSection() {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -116,7 +116,7 @@ export function TransformationSliderSection() {
           {/* Under-Slider Metadata Bar */}
           <div className="mt-5 p-4 rounded-2xl bg-surface-soft border border-surface-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-secondary">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-cyan-brand shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-cyan-brand shrink-0" />
               <span>
                 <strong>Clinical Scope:</strong> Moderate anterior crowding and rotation corrected over planned sequential aligner wear.
               </span>

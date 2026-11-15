@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   ShieldCheck,
-  Sparkles,
   Star,
   Clock,
   ScanLine,
@@ -53,7 +52,6 @@ export function HeroSection() {
               className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/90 border border-[#00A6CE]/30 text-[#00A6CE] text-[10px] sm:text-xs font-bold tracking-normal sm:tracking-wider uppercase mb-5 shadow-xs backdrop-blur-md self-start max-w-full"
             >
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00A6CE] animate-pulse shrink-0" />
-              <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#00A6CE] shrink-0" />
               <span className="truncate sm:overflow-visible">The new normal in teeth straightening</span>
             </motion.div>
 

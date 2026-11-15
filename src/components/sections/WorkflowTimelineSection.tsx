@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ScanLine, MonitorSmartphone, CheckCircle2, Layers, PackageCheck, Sparkles } from "lucide-react";
+import { ArrowRight, ScanLine, MonitorSmartphone, CheckCircle2, Layers, PackageCheck, Smile } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { WORKFLOW_STAGES } from "@/content/workflow";
@@ -11,7 +11,7 @@ const ICONS = [
   CheckCircle2,
   Layers,
   PackageCheck,
-  Sparkles,
+  Smile,
 ];
 
 export function WorkflowTimelineSection() {
@@ -43,7 +43,7 @@ export function WorkflowTimelineSection() {
         {/* 6-Stage Grid / Horizontal on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 relative">
           {WORKFLOW_STAGES.map((stage, idx) => {
-            const Icon = ICONS[idx] || Sparkles;
+            const Icon = ICONS[idx] || Smile;
             return (
               <div
                 key={stage.step}

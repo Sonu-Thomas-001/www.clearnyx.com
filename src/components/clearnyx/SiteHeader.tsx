@@ -8,7 +8,6 @@ import { useBookModal } from "./BookModalContext";
 import {
   ChevronDown,
   Layers,
-  Sparkles,
   Stethoscope,
   Phone,
   ArrowRight,
@@ -176,7 +175,7 @@ export function SiteHeader() {
                         className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
                       >
                         <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
-                          <Sparkles className="w-4 h-4" />
+                          <Layers className="w-4 h-4" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
@@ -496,7 +495,7 @@ export function SiteHeader() {
                   className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Sparkles className="w-4 h-4 text-brand-cyan" />
+                    <span className="w-2 h-2 rounded-full bg-brand-cyan" />
                     <span>Conditions We Treat</span>
                   </div>
                   <ArrowRight className="w-4 h-4 text-slate" />

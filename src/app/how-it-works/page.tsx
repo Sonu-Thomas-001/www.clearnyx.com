@@ -12,7 +12,7 @@ import {
   CheckCircle2,
   Layers,
   PackageCheck,
-  Sparkles,
+  Smile,
   ArrowRight,
   ShieldCheck,
   Clock,
@@ -35,7 +35,7 @@ const STAGE_ICONS = [
   CheckCircle2,
   Layers,
   PackageCheck,
-  Sparkles,
+  Smile,
 ];
 
 export default function HowItWorksPage() {
@@ -97,7 +97,7 @@ export default function HowItWorksPage() {
 
           <div className="space-y-8">
             {WORKFLOW_STAGES.map((stage, idx) => {
-              const Icon = STAGE_ICONS[idx] || Sparkles;
+              const Icon = STAGE_ICONS[idx] || Smile;
               return (
                 <div
                   key={stage.step}

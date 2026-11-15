@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Clock,
-  Sparkles,
   ShieldCheck,
   Stethoscope,
   ChevronRight,
@@ -112,7 +111,7 @@ export function ConditionsSection() {
               transition={{ duration: 0.5, ease: luxuryEase }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDF7FC] text-[#00A6CE] text-xs font-bold tracking-wide uppercase border border-[#00A6CE]/20 mb-3"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
               <span>Tailored Solutions</span>
             </motion.div>
 

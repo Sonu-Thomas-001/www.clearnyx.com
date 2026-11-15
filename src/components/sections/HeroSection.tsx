@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Sparkles, Play } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -199,7 +199,7 @@ export function HeroSection() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
               className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-3 z-30 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-cyan-300/50 shadow-card flex items-center gap-2"
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-brand" />
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-brand" />
               <span className="text-[11px] font-bold text-navy-900 tracking-wide whitespace-nowrap">
                 Medical-Grade Polymers
               </span>
@@ -235,7 +235,7 @@ export function HeroSection() {
                 <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-white/95 backdrop-blur-md border border-surface-border flex items-center justify-between shadow-subtle">
                   <div>
                     <div className="text-xs font-extrabold text-navy-900 tracking-wide flex items-center gap-1.5">
-                      <Sparkles className="w-3 h-3 text-cyan-brand" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-brand" />
                       CLEARNYX ORTHODONTIC SYSTEM
                     </div>
                     <div className="text-[11px] text-slate-secondary">

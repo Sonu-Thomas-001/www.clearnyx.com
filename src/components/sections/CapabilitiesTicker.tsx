@@ -1,10 +1,10 @@
 import React from "react";
-import { Sparkles, CheckCircle2, Eye, Layers, ShieldCheck, MonitorCheck, Scan } from "lucide-react";
+import { CheckCircle2, Eye, Layers, ShieldCheck, MonitorCheck, Scan } from "lucide-react";
 
 export function CapabilitiesTicker() {
   const capabilities = [
     { label: "Virtually Invisible High-Clarity", icon: Eye },
-    { label: "Anatomically Scalloped Margins", icon: Sparkles },
+    { label: "Anatomically Scalloped Margins", icon: CheckCircle2 },
     { label: "Dual Polymer Matrix Options", icon: Layers },
     { label: "Sub-Millimeter 3D Staging", icon: CheckCircle2 },
     { label: "Open Scanner STL / OBJ Ready", icon: Scan },

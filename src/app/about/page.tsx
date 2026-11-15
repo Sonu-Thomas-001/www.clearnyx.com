@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
-import { ArrowRight, Crosshair, Sparkles, HeartHandshake } from "lucide-react";
+import { ArrowRight, Crosshair, Layers, HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Rethinking the Clear Aligner Experience",
@@ -148,7 +148,7 @@ export default function AboutPage() {
             <div className="p-8 rounded-2xl bg-surface-soft border border-surface-border flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-ice-soft text-cyan-brand flex items-center justify-center mb-6">
-                  <Sparkles className="w-6 h-6" />
+                  <Layers className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider text-cyan-brand">
                   Approach 02

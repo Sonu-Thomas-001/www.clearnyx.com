@@ -95,7 +95,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
       "Post-treatment retention planning upon successful completion of active alignment",
     ],
     deliverables: "Successful clinical alignment and patient smile satisfaction",
-    iconName: "Sparkles",
+    iconName: "Smile",
   },
 ];
 
