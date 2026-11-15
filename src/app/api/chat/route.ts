@@ -40,15 +40,16 @@ Keep answers concise, well-formatted with markdown, and directly helpful.
 // Model priority according to user request:
 // 1. Gemma 4 31B
 // 2. Gemma 4 26B
-// 3. Graceful fallback (Gemini 2.0 / 1.5) if preview model tags require alternative access
+// 3. Graceful fallback (Gemini Flash Latest) if experimental endpoints are unavailable
 const MODEL_CANDIDATES = [
   "gemma-4-31b-it",
   "gemma-4-31b",
   "gemma-4-26b-a4b-it",
   "gemma-4-26b-it",
   "gemma-4-26b",
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
+  "gemini-flash-latest",
+  "gemini-3.8-flash",
+  "gemini-pro-latest",
 ];
 
 export async function POST(req: NextRequest) {
@@ -107,6 +108,7 @@ export async function POST(req: NextRequest) {
             headers: {
               "Content-Type": "application/json",
             },
+            signal: AbortSignal.timeout(4000),
             body: JSON.stringify({
               contents,
               systemInstruction: {
