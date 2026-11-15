@@ -6,8 +6,7 @@ import { StepsSection } from "@/components/clearnyx/StepsSection";
 import { LifestyleOrbitSection } from "@/components/clearnyx/LifestyleOrbitSection";
 import { StatsSection } from "@/components/clearnyx/StatsSection";
 import { ComparisonSection } from "@/components/clearnyx/ComparisonSection";
-import { TestimonialsSection } from "@/components/clearnyx/TestimonialsSection";
-import Testimonial2 from "@/components/ui/testimonial-section-2";
+import DemoOne from "@/components/ui/demo";
 import { FaqCtaSection } from "@/components/clearnyx/FaqCtaSection";
 
 export default function HomePage() {
@@ -34,11 +33,8 @@ export default function HomePage() {
       {/* 7. Interactive Before/After Smile Transformation Slider */}
       <ComparisonSection />
 
-      {/* 8. Patient & Clinician Testimonials */}
-      <TestimonialsSection />
-
-      {/* Dynamic Interactive Testimonials Carousel */}
-      <Testimonial2 />
+      {/* 8. Patient & Clinician Testimonials Scroller */}
+      <DemoOne />
 
       {/* 9. FAQ Accordion & Branded Box Transformation CTA Card */}
       <FaqCtaSection />
