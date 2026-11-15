@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -218,15 +219,22 @@ export function ClariChatWidget() {
               <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className="flex items-center gap-3 p-2 pl-2.5 pr-4 rounded-full bg-white/95 backdrop-blur-xl border border-[#D0DFE8] shadow-[0_12px_32px_rgba(7,27,44,0.12)] hover:shadow-[0_16px_40px_rgba(0,166,206,0.22)] hover:border-[#00A6CE]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer"
+                className="flex items-center gap-3 p-2 pl-2 pr-4 rounded-full bg-white/95 backdrop-blur-xl border border-[#D0DFE8] shadow-[0_12px_32px_rgba(7,27,44,0.12)] hover:shadow-[0_16px_40px_rgba(0,166,206,0.22)] hover:border-[#00A6CE]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer"
                 aria-label="Open Clari Clinical Concierge"
               >
-                {/* Visual Avatar Monogram */}
+                {/* 3D Character Avatar */}
                 <div className="relative">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-extrabold text-sm shadow-sm group-hover:scale-105 transition-transform">
-                    <span>C</span>
+                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#00A6CE]/30 group-hover:border-[#00A6CE] shadow-sm group-hover:scale-105 transition-all bg-[#EAF5F8]">
+                    <Image
+                      src="/brand/clari-avatar.png"
+                      alt="Clari AI Concierge"
+                      width={40}
+                      height={40}
+                      priority
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white shadow-xs" />
                 </div>
 
                 <div className="flex flex-col text-left">
@@ -262,8 +270,14 @@ export function ClariChatWidget() {
             <div className="bg-gradient-to-b from-[#F9FCFD] to-white px-5 py-4 flex items-center justify-between border-b border-[#EAEFF3] shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#071B2C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-base shadow-sm">
-                    C
+                  <div className="w-10 h-10 rounded-2xl overflow-hidden border border-[#00A6CE]/30 shadow-sm bg-[#EAF5F8]">
+                    <Image
+                      src="/brand/clari-avatar.png"
+                      alt="Clari Clinical Concierge"
+                      width={40}
+                      height={40}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
                 </div>
@@ -329,8 +343,14 @@ export function ClariChatWidget() {
                       /* Assistant Clari Response View */
                       <div className="flex items-start gap-2.5 max-w-[92%] self-start">
                         <div className="relative shrink-0 mt-0.5">
-                          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                            C
+                          <div className="w-8 h-8 rounded-xl overflow-hidden border border-[#00A6CE]/30 shadow-xs bg-[#EAF5F8]">
+                            <Image
+                              src="/brand/clari-avatar.png"
+                              alt="Clari"
+                              width={32}
+                              height={32}
+                              className="w-full h-full object-cover object-top"
+                            />
                           </div>
                           <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
                         </div>
@@ -395,8 +415,14 @@ export function ClariChatWidget() {
               {/* Typing Indicator */}
               {isLoading && (
                 <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0 mt-0.5">
-                    C
+                  <div className="w-8 h-8 rounded-xl overflow-hidden border border-[#00A6CE]/30 shadow-xs shrink-0 mt-0.5 bg-[#EAF5F8]">
+                    <Image
+                      src="/brand/clari-avatar.png"
+                      alt="Clari"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <div className="bg-white border border-[#E2EBF0] rounded-2xl rounded-tl-xs p-3.5 shadow-xs flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce" />
