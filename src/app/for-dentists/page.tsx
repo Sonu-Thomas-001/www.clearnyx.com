@@ -2,13 +2,12 @@ import React from "react";
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { DoctorHero } from "@/components/dentists/DoctorHero";
-import { DoctorBentoGrid } from "@/components/dentists/DoctorBentoGrid";
-import { ClinicianWorkflowConsole } from "@/components/dentists/ClinicianWorkflowConsole";
-import { ScannerEcosystem } from "@/components/dentists/ScannerEcosystem";
-import { PracticeEconomicsCalculator } from "@/components/dentists/PracticeEconomicsCalculator";
-import { ClinicianComparisonTable } from "@/components/dentists/ClinicianComparisonTable";
-import { DoctorTestimonialsSection } from "@/components/dentists/DoctorTestimonialsSection";
-import { ClinicOnboardingSection } from "@/components/dentists/ClinicOnboardingSection";
+import { DoctorPhilosophySection } from "@/components/dentists/DoctorPhilosophySection";
+import { DoctorStagingSection } from "@/components/dentists/DoctorStagingSection";
+import { DoctorMaterialsSection } from "@/components/dentists/DoctorMaterialsSection";
+import { DoctorWorkflowSection } from "@/components/dentists/DoctorWorkflowSection";
+import { DoctorComparisonSection } from "@/components/dentists/DoctorComparisonSection";
+import { DoctorOnboardingSection } from "@/components/dentists/DoctorOnboardingSection";
 import { DoctorFaqSection } from "@/components/dentists/DoctorFaqSection";
 
 export const metadata: Metadata = {
@@ -30,31 +29,28 @@ export default function ForDentistsPage() {
         ]}
       />
 
-      {/* 1. Hero Section: Precision Positioning + Interactive Staging Simulator */}
+      {/* 1. Hero: Light clinical editorial positioning + Portrait visual + Trust metrics */}
       <DoctorHero />
 
-      {/* 2. Bento Grid: 100% Doctor Autonomy, Biomechanics Guardrails, Dual Polymers, MDS Review Desk */}
-      <DoctorBentoGrid />
+      {/* 2. Doctor Philosophy: Preserving Doctor-Patient Relationships & Scanner Freedom */}
+      <DoctorPhilosophySection />
 
-      {/* 3. Interactive Workflow Console: 4-Stage Frictionless Digital Pipeline */}
-      <ClinicianWorkflowConsole />
+      {/* 3. CAD Staging Precision: Biomechanical velocities & 3D Web Simulation */}
+      <DoctorStagingSection />
 
-      {/* 4. Scanner Ecosystem: Open-Architecture Compatibility (iTero, TRIOS, Medit, Primescan, PVS) */}
-      <ScannerEcosystem />
+      {/* 4. Polymer Architecture: Standard PETG & Multi-Layer Pro */}
+      <DoctorMaterialsSection />
 
-      {/* 5. Practice Economics Calculator: Interactive Case Profit & Chairside Margin Expansion */}
-      <PracticeEconomicsCalculator />
+      {/* 5. 4-Step Practice Routine & Custom Patient Presentation Kit */}
+      <DoctorWorkflowSection />
 
-      {/* 6. Clinical Comparison Matrix: CLEARNYX vs Legacy Giants vs Mail-Order DTC */}
-      <ClinicianComparisonTable />
+      {/* 6. Clinical Comparison: CLEARNYX vs Legacy Foreign Brands vs DTC DIY */}
+      <DoctorComparisonSection />
 
-      {/* 7. Practice Testimonials: Real Clinicians & Orthodontists Across India */}
-      <DoctorTestimonialsSection />
+      {/* 7. Doctor Registration & Starter Kit Bundle (PartnerEnquiryForm) */}
+      <DoctorOnboardingSection />
 
-      {/* 8. Clinic Onboarding & Application Form: Starter Welcome Bundle + Partner Form */}
-      <ClinicOnboardingSection />
-
-      {/* 9. Categorized Clinician FAQs: Workflow, Biomechanics, Economics */}
+      {/* 8. Clinician FAQs */}
       <DoctorFaqSection />
     </main>
   );
