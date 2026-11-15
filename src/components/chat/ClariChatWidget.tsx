@@ -9,8 +9,13 @@ import {
   RotateCcw,
   Stethoscope,
   Calendar,
-  MessageCircle,
-  ChevronDown,
+  Sparkles,
+  ArrowRight,
+  Layers,
+  Scan,
+  Clock,
+  ChevronRight,
+  ShieldCheck,
 } from "lucide-react";
 import { useBookModal } from "@/components/clearnyx/BookModalContext";
 
@@ -22,12 +27,38 @@ interface Message {
   action?: string;
 }
 
-const CONCIERGE_SUGGESTIONS = [
-  "How can my clinic partner with CLEARNYX?",
-  "Standard PETG vs Multi-Layer Pro difference",
-  "Which intraoral scanners are supported?",
-  "What is the recommended daily wear schedule?",
-  "How does 3D CAD staging turnaround work?",
+interface QuickTopic {
+  title: string;
+  desc: string;
+  query: string;
+  icon: React.ElementType;
+}
+
+const QUICK_TOPICS: QuickTopic[] = [
+  {
+    title: "Doctor Partnership",
+    desc: "B2B onboarding & 3D setup",
+    query: "How can my dental clinic partner with CLEARNYX?",
+    icon: Stethoscope,
+  },
+  {
+    title: "Dual Polymers",
+    desc: "Standard PETG vs Multi-Layer",
+    query: "What is the difference between Standard PETG and Multi-Layer aligners?",
+    icon: Layers,
+  },
+  {
+    title: "Supported Scanners",
+    desc: "iTero, TRIOS, Medit, PVS",
+    query: "Which intraoral scanners and impression formats are supported?",
+    icon: Scan,
+  },
+  {
+    title: "Staging SLA & Wear",
+    desc: "48h turnaround & protocols",
+    query: "What is the 3D CAD staging turnaround time and daily wear protocol?",
+    icon: Clock,
+  },
 ];
 
 export function ClariChatWidget() {
@@ -39,7 +70,7 @@ export function ClariChatWidget() {
       id: "welcome-1",
       role: "assistant",
       content:
-        "Welcome to CLEARNYX. I am **Clari**, your clinical concierge. Whether you are a practicing dentist inquiring about our B2B manufacturing lab or exploring clear aligner treatment, how may I assist you today?",
+        "Welcome to **CLEARNYX**. I am **Clari**, your dedicated clinical concierge.\n\nWhether you are a practicing dentist exploring our B2B orthodontic manufacturing lab or a patient seeking a clear smile journey, how may I help you today?",
       timestamp: "Just now",
     },
   ]);
@@ -96,7 +127,7 @@ export function ClariChatWidget() {
         role: "assistant",
         content:
           data?.reply ||
-          "I apologize, I didn't receive a complete response. Please try again or connect with our team at info@clearnyx.com.",
+          "I apologize, I didn't receive a complete response. Please try again or reach our team at info@clearnyx.com.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         action: data?.action,
       };
@@ -123,27 +154,27 @@ export function ClariChatWidget() {
         id: "welcome-reset",
         role: "assistant",
         content:
-          "Conversation cleared. I am **Clari**. How can I help you regarding CLEARNYX orthodontic systems?",
+          "Conversation refreshed. I am **Clari**. How can I help you regarding CLEARNYX clear aligner systems?",
         timestamp: "Just now",
       },
     ]);
   };
 
-  // Helper to parse simple markdown formatting
+  // Helper to parse markdown
   const renderFormattedText = (content: string) => {
     const lines = content.split("\n");
     return lines.map((line, idx) => {
-      let parsed = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      let parsed = line.replace(/\*\*(.*?)\*\*/g, "<strong class='font-bold text-[#071B2C]'>$1</strong>");
       parsed = parsed.replace(
         /\[(.*?)\]\((.*?)\)/g,
-        '<a href="$2" class="text-[#00A6CE] font-bold underline hover:text-[#0087AB]">$1</a>'
+        '<a href="$2" class="text-[#00A6CE] font-bold underline decoration-[#00A6CE]/30 hover:decoration-[#00A6CE] transition-colors">$1</a>'
       );
 
       if (line.startsWith("### ")) {
         return (
           <h4
             key={idx}
-            className="text-xs font-bold uppercase tracking-wider text-[#071B2C] mt-2 mb-1"
+            className="text-[11px] font-bold uppercase tracking-wider text-[#071B2C] mt-2 mb-1"
             dangerouslySetInnerHTML={{ __html: parsed.replace("### ", "") }}
           />
         );
@@ -153,16 +184,20 @@ export function ClariChatWidget() {
         return (
           <li
             key={idx}
-            className="ml-3 list-disc text-xs text-[#556977] my-0.5"
+            className="ml-3 list-disc text-xs text-[#556977] my-0.5 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: parsed.replace("- ", "") }}
           />
         );
       }
 
+      if (!line.trim()) {
+        return <div key={idx} className="h-1.5" />;
+      }
+
       return (
         <p
           key={idx}
-          className="text-xs leading-relaxed text-[#071B2C] my-1"
+          className="text-xs leading-relaxed text-[#415360] my-0.5"
           dangerouslySetInnerHTML={{ __html: parsed }}
         />
       );
@@ -171,66 +206,76 @@ export function ClariChatWidget() {
 
   return (
     <>
-      {/* Concierge Trigger - Positioned on the LEFT SIDE */}
+      {/* 1. Floating Pill Trigger - Positioned on the LEFT SIDE */}
       <div className="fixed bottom-20 sm:bottom-6 left-5 sm:left-6 z-40">
         <AnimatePresence>
           {!isOpen && (
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial={{ scale: 0.9, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 10 }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
               <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white hover:bg-[#F8FBFD] text-[#071B2C] shadow-lg border border-[#D0DFE8] hover:border-[#00A6CE]/60 transition-all duration-200 group cursor-pointer"
+                className="flex items-center gap-3 p-2 pl-2.5 pr-4 rounded-full bg-white/95 backdrop-blur-xl border border-[#D0DFE8] shadow-[0_12px_32px_rgba(7,27,44,0.12)] hover:shadow-[0_16px_40px_rgba(0,166,206,0.22)] hover:border-[#00A6CE]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer"
                 aria-label="Open Clari Clinical Concierge"
               >
-                {/* Monogram Badge */}
-                <span className="w-7 h-7 rounded-full bg-[#071B2C] text-[#12C8E8] flex items-center justify-center font-bold text-xs tracking-tight shadow-xs">
-                  C
-                </span>
+                {/* Visual Avatar Monogram with subtle glowing ring */}
+                <div className="relative">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#071B2C] via-[#0A2E4C] to-[#00A6CE] text-white flex items-center justify-center font-extrabold text-sm shadow-sm group-hover:scale-105 transition-transform">
+                    <span>C</span>
+                  </div>
+                  <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
+                </div>
+
                 <div className="flex flex-col text-left">
-                  <span className="text-xs font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors leading-tight">
-                    Clari
-                  </span>
-                  <span className="text-[10px] text-[#556977] leading-none">
-                    Clinical Concierge
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[13px] font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors leading-tight">
+                      Clari
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#00A6CE] px-1.5 py-0.2 rounded-full bg-[#E7F6FA]">
+                      Clinical
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-[#556977] leading-tight font-medium">
+                    CLEARNYX Concierge
                   </span>
                 </div>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 ml-0.5 animate-pulse" />
               </button>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Concierge Window - Positioned on the LEFT SIDE */}
+      {/* 2. Bespoke Concierge Window - Positioned on the LEFT SIDE */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.97 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-x-3 bottom-3 sm:inset-x-auto sm:bottom-6 sm:left-6 sm:w-[390px] h-[550px] max-h-[82vh] z-50 rounded-2xl bg-white shadow-2xl border border-[#D0DFE8] flex flex-col overflow-hidden"
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
+            transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-x-3 bottom-3 sm:inset-x-auto sm:bottom-6 sm:left-6 sm:w-[410px] h-[600px] max-h-[85vh] z-50 rounded-[28px] bg-white shadow-[0_24px_70px_rgba(7,27,44,0.2),0_0_0_1px_rgba(7,27,44,0.06)] border border-[#E2EBF0] flex flex-col overflow-hidden"
           >
-            {/* Header: Pure Clinical Simplicity */}
-            <div className="bg-[#071B2C] text-white px-5 py-4 flex items-center justify-between border-b border-navy-800">
+            {/* Elegant Header */}
+            <div className="bg-gradient-to-b from-[#F9FCFD] to-white px-5 py-4 flex items-center justify-between border-b border-[#EAEFF3]">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/10 text-[#12C8E8] border border-white/15 flex items-center justify-center font-bold text-sm">
-                  C
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#071B2C] to-[#00A6CE] text-white flex items-center justify-center font-bold text-base shadow-sm">
+                    C
+                  </div>
+                  <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-white leading-tight">
+                  <h3 className="font-extrabold text-[15px] text-[#071B2C] leading-tight">
                     Clari
                   </h3>
                   <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <p className="text-[11px] text-slate-300">
+                    <span className="text-[11px] font-medium text-[#556977]">
                       CLEARNYX Clinical Concierge
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -239,88 +284,71 @@ export function ClariChatWidget() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-                  title="Reset Conversation"
+                  className="p-2 text-slate-400 hover:text-[#071B2C] rounded-full hover:bg-slate-100 transition-colors"
+                  title="Clear conversation"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
+                  <RotateCcw className="w-4 h-4" />
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-                  title="Close Concierge"
+                  className="p-2 text-slate-400 hover:text-[#071B2C] rounded-full hover:bg-slate-100 transition-colors"
+                  title="Close concierge"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            {/* Quick Suggestion Strip */}
-            <div className="bg-[#F8FBFD] border-b border-[#E2EBF0] p-2.5 overflow-x-auto flex items-center gap-1.5 scrollbar-none">
-              {CONCIERGE_SUGGESTIONS.map((suggestion, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => handleSend(suggestion)}
-                  className="shrink-0 text-[11px] font-medium text-[#071B2C] bg-white border border-[#E2EBF0] hover:border-[#00A6CE] hover:text-[#00A6CE] px-3 py-1 rounded-full transition-all whitespace-nowrap shadow-xs"
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-
             {/* Conversation Stream */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-gradient-to-b from-white to-[#F8FBFD]">
+            <div className="flex-1 p-5 overflow-y-auto space-y-4 bg-[#FCFDFE]">
+              {/* Message History */}
               {messages.map((msg) => {
                 const isAssistant = msg.role === "assistant";
                 return (
                   <div
                     key={msg.id}
-                    className={`flex items-start gap-2.5 ${
-                      isAssistant ? "justify-start" : "justify-end"
+                    className={`flex flex-col ${
+                      isAssistant ? "items-start" : "items-end"
                     }`}
                   >
-                    {isAssistant && (
-                      <div className="w-6 h-6 rounded-full bg-[#E7F6FA] text-[#00A6CE] border border-[#B6F0F9] flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
-                        C
-                      </div>
-                    )}
-
                     <div
-                      className={`max-w-[85%] rounded-2xl p-3.5 text-xs ${
+                      className={`max-w-[88%] p-4 text-xs leading-relaxed shadow-xs ${
                         isAssistant
-                          ? "bg-[#F4F8FA] border border-[#E2EBF0] text-[#071B2C]"
-                          : "bg-[#071B2C] text-white font-medium"
+                          ? "bg-white border border-[#E2EBF0] text-[#071B2C] rounded-[22px] rounded-tl-[4px]"
+                          : "bg-gradient-to-r from-[#071B2C] to-[#0B2A44] text-white rounded-[22px] rounded-tr-[4px] font-medium"
                       }`}
                     >
                       <div>{renderFormattedText(msg.content)}</div>
 
-                      {/* Contextual Clinical Buttons */}
+                      {/* Interactive Action Buttons */}
                       {isAssistant && msg.action === "consultation" && (
-                        <div className="mt-3 pt-2.5 border-t border-[#E2EBF0]">
+                        <div className="mt-3 pt-3 border-t border-[#EAEFF3]">
                           <button
                             type="button"
                             onClick={() => {
                               openModal("consultation");
                               setIsOpen(false);
                             }}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00A6CE] text-white font-bold text-[11px] hover:bg-[#0087AB] transition-colors shadow-xs cursor-pointer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00A6CE] to-[#0094BA] text-white font-bold text-xs hover:shadow-md hover:brightness-105 transition-all cursor-pointer"
                           >
                             <Calendar className="w-3.5 h-3.5" />
-                            <span>Schedule Consultation</span>
+                            <span>Book Doctor Consultation</span>
+                            <ArrowRight className="w-3 h-3" />
                           </button>
                         </div>
                       )}
 
                       {isAssistant && msg.action === "partner" && (
-                        <div className="mt-3 pt-2.5 border-t border-[#E2EBF0]">
+                        <div className="mt-3 pt-3 border-t border-[#EAEFF3]">
                           <Link
                             href="/for-dentists#partner-form"
                             onClick={() => setIsOpen(false)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#071B2C] text-white font-bold text-[11px] hover:bg-[#00A6CE] transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#071B2C] text-white font-bold text-xs hover:bg-[#00A6CE] transition-colors"
                           >
                             <Stethoscope className="w-3.5 h-3.5 text-[#12C8E8]" />
-                            <span>Doctor Onboarding Form</span>
+                            <span>Open Partner Application</span>
+                            <ArrowRight className="w-3 h-3" />
                           </Link>
                         </div>
                       )}
@@ -333,53 +361,82 @@ export function ClariChatWidget() {
                 );
               })}
 
-              {/* Typing indicator */}
+              {/* Suggested Topic Cards (Shown when conversation is fresh) */}
+              {messages.length === 1 && (
+                <div className="pt-2 space-y-2">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
+                    Suggested Inquiries
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {QUICK_TOPICS.map((topic, idx) => {
+                      const Icon = topic.icon;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleSend(topic.query)}
+                          className="p-3 rounded-2xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE] hover:bg-[#F0FAFD] text-left transition-all group cursor-pointer shadow-xs"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-[#E7F6FA] text-[#00A6CE] group-hover:bg-[#00A6CE] group-hover:text-white flex items-center justify-center transition-colors mb-2">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                          <p className="font-bold text-[11px] text-[#071B2C] leading-tight">
+                            {topic.title}
+                          </p>
+                          <p className="text-[10px] text-[#556977] mt-0.5 leading-tight">
+                            {topic.desc}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Typing Indicator */}
               {isLoading && (
-                <div className="flex items-center gap-2 text-xs text-slate-400 p-1">
-                  <div className="w-6 h-6 rounded-full bg-[#E7F6FA] text-[#00A6CE] border border-[#B6F0F9] flex items-center justify-center font-bold text-[10px]">
-                    C
-                  </div>
-                  <div className="flex items-center gap-1 bg-[#F4F8FA] border border-[#E2EBF0] rounded-xl px-3 py-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.4s]" />
-                  </div>
+                <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-white border border-[#E2EBF0] w-20 shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.18s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE] animate-bounce [animation-delay:0.36s]" />
                 </div>
               )}
 
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Form */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSend();
-              }}
-              className="p-3 bg-white border-t border-[#E2EBF0] space-y-1.5"
-            >
-              <div className="flex items-center gap-2">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask a question about CLEARNYX..."
-                  className="flex-1 py-2 px-3 text-xs rounded-xl bg-[#F8FBFD] border border-[#E2EBF0] focus:border-[#00A6CE] focus:bg-white focus:outline-none text-[#071B2C] placeholder:text-slate-400"
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim() || isLoading}
-                  className="w-8 h-8 rounded-xl bg-[#071B2C] hover:bg-[#00A6CE] disabled:opacity-30 text-white flex items-center justify-center transition-all cursor-pointer shrink-0"
-                  aria-label="Send message"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </div>
-              <p className="text-[10px] text-slate-400 text-center">
-                For clinical diagnosis, please consult a licensed dental professional.
-              </p>
-            </form>
+            {/* Luxurious Input Area */}
+            <div className="p-3.5 bg-white border-t border-[#EAEFF3]">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSend();
+                }}
+                className="space-y-1.5"
+              >
+                <div className="flex items-center bg-[#F4F8FA] rounded-2xl p-1.5 pr-2 border border-[#E2EBF0] focus-within:border-[#00A6CE] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,166,206,0.12)] transition-all">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Ask Clari about aligners, scans, or practice onboarding..."
+                    className="flex-1 py-1.5 px-3 text-xs bg-transparent focus:outline-none text-[#071B2C] placeholder:text-slate-400"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!input.trim() || isLoading}
+                    className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#00A6CE] to-[#12C8E8] hover:brightness-105 active:scale-95 disabled:opacity-30 disabled:scale-100 text-white flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-xs"
+                    aria-label="Send query"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <p className="text-[10px] text-slate-400 text-center tracking-tight">
+                  CLEARNYX operates strictly through certified dental clinicians.
+                </p>
+              </form>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
