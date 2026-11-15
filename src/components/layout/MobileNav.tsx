@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedDropdowns, setExpandedDropdowns] = useState<string[]>(["Solutions"]);
+  const [expandedDropdowns, setExpandedDropdowns] = useState<string[]>([]);
   const pathname = usePathname();
 
   const [prevPathname, setPrevPathname] = useState(pathname);

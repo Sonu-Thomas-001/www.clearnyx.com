@@ -61,34 +61,26 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Solutions Column */}
+          {/* Treatment Column */}
           <div className="space-y-4">
             <div className="text-xs font-bold tracking-wider uppercase text-cyan-brand">
-              Orthodontic Solutions
+              Clear Aligners
             </div>
             <ul className="space-y-2.5 text-sm text-slate-muted">
               <li>
                 <Link
-                  href="/solutions"
+                  href="/#conditions"
                   className="hover:text-white transition-colors"
                 >
-                  Solutions Overview
+                  Conditions We Treat
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/solutions/standard-aligners"
+                  href="/how-it-works"
                   className="hover:text-white transition-colors"
                 >
-                  Standard Aligners (PETG)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/solutions/multi-layer-aligners"
-                  className="hover:text-white transition-colors"
-                >
-                  Multi-Layer Aligners
+                  How It Works
                 </Link>
               </li>
               <li>
@@ -101,10 +93,18 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/how-it-works"
+                  href="/for-dentists"
                   className="hover:text-white transition-colors"
                 >
-                  6-Stage Clinical Workflow
+                  For Dentists & Clinics
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/become-a-partner"
+                  className="hover:text-white transition-colors"
+                >
+                  Become a Partner
                 </Link>
               </li>
             </ul>

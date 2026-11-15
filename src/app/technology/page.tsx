@@ -190,10 +190,10 @@ export default function TechnologyPage() {
               </p>
               <div className="pt-2">
                 <Link
-                  href="/solutions/standard-aligners"
+                  href="/how-it-works"
                   className="text-xs font-bold text-cyan-brand hover:text-cyan-electric flex items-center gap-1"
                 >
-                  Explore Standard PETG Aligners <ArrowRight className="w-3.5 h-3.5" />
+                  Explore Clinical Journey <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -210,10 +210,10 @@ export default function TechnologyPage() {
               </p>
               <div className="pt-2">
                 <Link
-                  href="/solutions/multi-layer-aligners"
+                  href="/for-dentists"
                   className="text-xs font-bold text-cyan-brand hover:text-cyan-electric flex items-center gap-1"
                 >
-                  Explore Multi-Layer Aligners <ArrowRight className="w-3.5 h-3.5" />
+                  Partner With CLEARNYX <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -225,19 +225,19 @@ export default function TechnologyPage() {
       <section className="py-20 bg-white text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
-            Explore CLEARNYX Solutions
+            Partner With CLEARNYX
           </h2>
           <p className="text-base text-slate-secondary leading-relaxed">
             See how our digital planning workflows and polymer options can support your dental practice&apos;s clear aligner cases.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
-              href="/solutions"
+              href="/become-a-partner"
               variant="cyan"
               size="lg"
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              Explore CLEARNYX Solutions
+              Become a Partner
             </Button>
             <Button
               href="/how-it-works"

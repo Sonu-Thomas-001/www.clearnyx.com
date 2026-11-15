@@ -155,10 +155,10 @@ export function ConditionsGridSection() {
                 </div>
 
                 <Link
-                  href="/solutions"
+                  href="/technology"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 group-hover:text-cyan-brand transition-colors pt-1"
                 >
-                  Explore Appliance Systems <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  Explore Appliance Technology <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>
             </div>

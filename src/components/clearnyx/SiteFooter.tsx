@@ -188,34 +188,18 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* Column 2: Solutions (2.5 Cols) */}
+          {/* Column 2: Navigation (2.5 Cols) */}
           <div className="lg:col-span-2 space-y-4 text-center sm:text-left flex flex-col items-center sm:items-start">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-              Solutions
+              Treatment
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-muted flex flex-col items-center sm:items-start">
               <li>
                 <Link
-                  href="/solutions/standard-aligners"
+                  href="/#conditions"
                   className="hover:text-brand-cyan transition-colors"
                 >
-                  Standard Aligners
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/solutions/multi-layer-aligners"
-                  className="hover:text-brand-cyan transition-colors"
-                >
-                  Multi-Layer Composite
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/technology"
-                  className="hover:text-brand-cyan transition-colors"
-                >
-                  Digital Planning (3D)
+                  Conditions We Treat
                 </Link>
               </li>
               <li>
@@ -228,10 +212,26 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/solutions"
+                  href="/technology"
                   className="hover:text-brand-cyan transition-colors"
                 >
-                  Compare Systems
+                  Digital Planning (3D)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/for-dentists"
+                  className="hover:text-brand-cyan transition-colors"
+                >
+                  For Dentists
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-brand-cyan transition-colors"
+                >
+                  About CLEARNYX
                 </Link>
               </li>
             </ul>

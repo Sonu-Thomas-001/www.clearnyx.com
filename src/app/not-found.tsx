@@ -30,12 +30,12 @@ export default function NotFound() {
             Return to Homepage
           </Button>
           <Button
-            href="/solutions"
+            href="/how-it-works"
             variant="outline"
             size="md"
             rightIcon={<Compass className="w-4 h-4" />}
           >
-            Explore Solutions
+            How It Works
           </Button>
         </div>
 

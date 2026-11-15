@@ -21,7 +21,7 @@ import {
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<"solutions" | "conditions" | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<"conditions" | null>(null);
   const pathname = usePathname();
   const { openModal } = useBookModal();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -47,7 +47,7 @@ export function SiteHeader() {
     };
   }, [isMobileMenuOpen]);
 
-  const handleMouseEnter = (menu: "solutions" | "conditions") => {
+  const handleMouseEnter = (menu: "conditions") => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
@@ -114,131 +114,6 @@ export function SiteHeader() {
               Home
             </Link>
 
-            {/* Aligners / Solutions Mega Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("solutions")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                type="button"
-                className={`flex items-center gap-1 px-2 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
-                  activeDropdown === "solutions" || pathname.startsWith("/solutions")
-                    ? "bg-[#DDF7FC] text-[#00A6CE] font-bold"
-                    : "text-[#071B2C]/80 hover:text-[#071B2C] hover:bg-[#F8FBFD]"
-                }`}
-                aria-expanded={activeDropdown === "solutions"}
-              >
-                <span>Aligners</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === "solutions" ? "rotate-180 text-[#00A6CE]" : ""
-                  }`}
-                />
-              </button>
-
-              {/* Flyout Panel for Aligners */}
-              {activeDropdown === "solutions" && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[560px] animate-fadeIn">
-                  <div className="bg-white/95 backdrop-blur-xl border border-light-grey/80 rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)] grid grid-cols-12 gap-4">
-                    <div className="col-span-7 space-y-2">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate px-2">
-                        Orthodontic Systems
-                      </p>
-
-                      <Link
-                        href="/solutions/standard-aligners"
-                        onClick={closeMenu}
-                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
-                      >
-                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
-                          <Layers className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
-                              Standard Aligners
-                            </span>
-                            <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-soft-white text-slate border border-light-grey">
-                              Single-Layer
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
-                            High-clarity medical PETG for mild-to-moderate tooth alignment.
-                          </p>
-                        </div>
-                      </Link>
-
-                      <Link
-                        href="/solutions/multi-layer-aligners"
-                        onClick={closeMenu}
-                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
-                      >
-                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
-                          <Layers className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
-                              Multi-Layer Composite
-                            </span>
-                            <span className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                              Pro
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
-                            Elastomeric core for continuous orthodontic biomechanical force.
-                          </p>
-                        </div>
-                      </Link>
-
-                      <Link
-                        href="/technology"
-                        onClick={closeMenu}
-                        className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-soft-white transition-colors"
-                      >
-                        <div className="w-9 h-9 rounded-xl bg-ice-blue/70 text-brand-cyan flex items-center justify-center shrink-0 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
-                          <Activity className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors">
-                            Digital Treatment Planning
-                          </span>
-                          <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
-                            High-precision 3D digital staging and doctor approval software.
-                          </p>
-                        </div>
-                      </Link>
-                    </div>
-
-                    {/* Right Featured Card */}
-                    <div className="col-span-5 bg-gradient-to-br from-soft-white to-ice-blue/40 rounded-2xl p-4 border border-brand-cyan/15 flex flex-col justify-between">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-brand-cyan">
-                          Precision Material
-                        </span>
-                        <h4 className="text-xs font-bold text-navy-deep mt-1 leading-snug">
-                          Sub-Millimeter 0.01mm Accuracy
-                        </h4>
-                        <p className="text-[11px] text-slate mt-1.5 leading-relaxed">
-                          Certified biocompatible polymers engineered for sustained tooth movement and maximum transparency.
-                        </p>
-                      </div>
-
-                      <Link
-                        href="/solutions"
-                        onClick={closeMenu}
-                        className="mt-3 text-[11px] font-bold text-brand-cyan hover:text-electric-cyan flex items-center gap-1 group/btn"
-                      >
-                        <span>Explore All Solutions</span>
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* Conditions Dropdown */}
             <div
               className="relative"
@@ -271,7 +146,7 @@ export function SiteHeader() {
                         Malocclusions We Treat
                       </p>
                       <Link
-                        href="/solutions#conditions"
+                        href="/#conditions"
                         onClick={closeMenu}
                         className="text-[11px] font-semibold text-brand-cyan hover:underline"
                       >
@@ -452,42 +327,6 @@ export function SiteHeader() {
                   <span>Home</span>
                   <ArrowRight className="w-4 h-4 text-slate" />
                 </Link>
-
-                <Link
-                  href="/solutions"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Layers className="w-4 h-4 text-brand-cyan" />
-                    <span>Clear Aligner Solutions</span>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
-                <div className="pl-6 space-y-1 py-1">
-                  <Link
-                    href="/solutions/standard-aligners"
-                    onClick={closeMenu}
-                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
-                  >
-                    • Standard Aligners (Single-Layer)
-                  </Link>
-                  <Link
-                    href="/solutions/multi-layer-aligners"
-                    onClick={closeMenu}
-                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
-                  >
-                    • Multi-Layer Composite Aligners (Pro)
-                  </Link>
-                  <Link
-                    href="/technology"
-                    onClick={closeMenu}
-                    className="block p-2 text-xs font-semibold text-slate hover:text-brand-cyan"
-                  >
-                    • Digital Treatment Planning
-                  </Link>
-                </div>
 
                 <Link
                   href="/#conditions"

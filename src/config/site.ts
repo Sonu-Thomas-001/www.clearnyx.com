@@ -96,27 +96,6 @@ export const SITE_CONFIG: SiteConfig = {
     main: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      {
-        label: "Solutions",
-        href: "/solutions",
-        children: [
-          {
-            label: "All Solutions Overview",
-            href: "/solutions",
-            description: "Complete clear aligner product portfolio designed for dental practices.",
-          },
-          {
-            label: "Standard Clear Aligners",
-            href: "/solutions/standard-aligners",
-            description: "PETG material engineered for mild to moderate alignment requirements.",
-          },
-          {
-            label: "Multi-Layer Clear Aligners",
-            href: "/solutions/multi-layer-aligners",
-            description: "Engineered multi-layer construction offering strength, flexibility, and control.",
-          },
-        ],
-      },
       { label: "Technology", href: "/technology" },
       { label: "How It Works", href: "/how-it-works" },
       { label: "For Dentists", href: "/for-dentists" },
