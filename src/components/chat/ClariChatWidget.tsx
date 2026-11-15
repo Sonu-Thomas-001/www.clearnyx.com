@@ -11,10 +11,6 @@ import {
   Calendar,
   Sparkles,
   ArrowRight,
-  Layers,
-  Scan,
-  Clock,
-  ChevronRight,
   ShieldCheck,
 } from "lucide-react";
 import { useBookModal } from "@/components/clearnyx/BookModalContext";
@@ -26,40 +22,6 @@ interface Message {
   timestamp: string;
   action?: string;
 }
-
-interface QuickTopic {
-  title: string;
-  desc: string;
-  query: string;
-  icon: React.ElementType;
-}
-
-const QUICK_TOPICS: QuickTopic[] = [
-  {
-    title: "Doctor Partnership",
-    desc: "B2B onboarding & 3D setup",
-    query: "How can my dental clinic partner with CLEARNYX?",
-    icon: Stethoscope,
-  },
-  {
-    title: "Dual Polymers",
-    desc: "Standard PETG vs Multi-Layer",
-    query: "What is the difference between Standard PETG and Multi-Layer aligners?",
-    icon: Layers,
-  },
-  {
-    title: "Supported Scanners",
-    desc: "iTero, TRIOS, Medit, PVS",
-    query: "Which intraoral scanners and impression formats are supported?",
-    icon: Scan,
-  },
-  {
-    title: "Staging SLA & Wear",
-    desc: "48h turnaround & protocols",
-    query: "What is the 3D CAD staging turnaround time and daily wear protocol?",
-    icon: Clock,
-  },
-];
 
 export function ClariChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -360,38 +322,6 @@ export function ClariChatWidget() {
                   </div>
                 );
               })}
-
-              {/* Suggested Topic Cards (Shown when conversation is fresh) */}
-              {messages.length === 1 && (
-                <div className="pt-2 space-y-2">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
-                    Suggested Inquiries
-                  </p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {QUICK_TOPICS.map((topic, idx) => {
-                      const Icon = topic.icon;
-                      return (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => handleSend(topic.query)}
-                          className="p-3 rounded-2xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE] hover:bg-[#F0FAFD] text-left transition-all group cursor-pointer shadow-xs"
-                        >
-                          <div className="w-7 h-7 rounded-lg bg-[#E7F6FA] text-[#00A6CE] group-hover:bg-[#00A6CE] group-hover:text-white flex items-center justify-center transition-colors mb-2">
-                            <Icon className="w-3.5 h-3.5" />
-                          </div>
-                          <p className="font-bold text-[11px] text-[#071B2C] leading-tight">
-                            {topic.title}
-                          </p>
-                          <p className="text-[10px] text-[#556977] mt-0.5 leading-tight">
-                            {topic.desc}
-                          </p>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
 
               {/* Typing Indicator */}
               {isLoading && (
