@@ -3,6 +3,8 @@ import { HeroSection } from "@/components/clearnyx/HeroSection";
 import { BenefitsStrip } from "@/components/clearnyx/BenefitsStrip";
 import { ConditionsSection } from "@/components/clearnyx/ConditionsSection";
 import { StepsSection } from "@/components/clearnyx/StepsSection";
+import { DualPolymerSection } from "@/components/clearnyx/DualPolymerSection";
+import { AlignerVsBracesSection } from "@/components/clearnyx/AlignerVsBracesSection";
 import { LifestyleOrbitSection } from "@/components/clearnyx/LifestyleOrbitSection";
 import { StatsSection } from "@/components/clearnyx/StatsSection";
 import { ComparisonSection } from "@/components/clearnyx/ComparisonSection";
@@ -24,19 +26,25 @@ export default function HomePage() {
       {/* 4. 4-Step Smile Journey with Connector Progress Bar */}
       <StepsSection />
 
-      {/* 5. Lifestyle Orbit Section: Central Floating Aligner + 5 Interactive Moments */}
+      {/* 5. Dual Polymer Engineering (Standard PETG vs Multi-Layer Pro) */}
+      <DualPolymerSection />
+
+      {/* 6. Clinical Comparison: CLEARNYX vs Traditional Fixed Braces */}
+      <AlignerVsBracesSection />
+
+      {/* 7. Lifestyle Integration (4 Interactive Everyday Moments) */}
       <LifestyleOrbitSection />
 
-      {/* 6. Practice Highlights & Metric Stats Strip */}
+      {/* 8. Practice Highlights & Metric Stats Strip */}
       <StatsSection />
 
-      {/* 7. Interactive Before/After Smile Transformation Slider */}
+      {/* 9. Interactive Before/After Smile Transformation Slider */}
       <ComparisonSection />
 
-      {/* 8. Patient & Clinician Testimonials Scroller */}
+      {/* 10. Patient & Clinician Testimonials Scroller */}
       <DemoOne />
 
-      {/* 9. FAQ Accordion & Branded Box Transformation CTA Card */}
+      {/* 11. FAQ Accordion & Branded Box Transformation CTA Card */}
       <FaqCtaSection />
     </>
   );
