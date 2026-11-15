@@ -7,6 +7,7 @@ import { LifestyleOrbitSection } from "@/components/clearnyx/LifestyleOrbitSecti
 import { StatsSection } from "@/components/clearnyx/StatsSection";
 import { ComparisonSection } from "@/components/clearnyx/ComparisonSection";
 import { TestimonialsSection } from "@/components/clearnyx/TestimonialsSection";
+import Testimonial2 from "@/components/ui/testimonial-section-2";
 import { FaqCtaSection } from "@/components/clearnyx/FaqCtaSection";
 
 export default function HomePage() {
@@ -35,6 +36,9 @@ export default function HomePage() {
 
       {/* 8. Patient & Clinician Testimonials */}
       <TestimonialsSection />
+
+      {/* Dynamic Interactive Testimonials Carousel */}
+      <Testimonial2 />
 
       {/* 9. FAQ Accordion & Branded Box Transformation CTA Card */}
       <FaqCtaSection />
