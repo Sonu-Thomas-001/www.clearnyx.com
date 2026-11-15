@@ -1,52 +1,138 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Home, Compass } from "lucide-react";
+import {
+  Home,
+  ArrowLeft,
+  Compass,
+  Stethoscope,
+  Cpu,
+  Mail,
+  Sparkles,
+  Search,
+} from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-surface-soft">
-      <div className="max-w-md w-full text-center space-y-6 bg-white p-8 sm:p-12 rounded-3xl border border-surface-border shadow-card">
-        <Badge variant="cyan" size="md">
-          404 ERROR
-        </Badge>
+    <div className="min-h-[80vh] flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC]">
+      <div className="max-w-2xl w-full text-center">
+        {/* Subtle 404 Watermark */}
+        <div className="relative inline-block mb-4">
+          <span className="text-8xl sm:text-9xl font-black text-[#E2EBF0] tracking-tighter select-none font-heading block">
+            404
+          </span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-[#00A6CE] text-xs font-bold uppercase tracking-wider border border-[#D5E2EC] shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
+              <span>Page Out Of Alignment</span>
+            </span>
+          </div>
+        </div>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight">
-          Page Not Located
+        {/* Main Editorial Heading */}
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight leading-tight">
+          This page could not be located.
         </h1>
 
-        <p className="text-sm text-slate-secondary leading-relaxed">
-          The clear aligner page or clinical resource you requested could not be located. It may have moved or the URL may be incorrect.
+        <p className="mt-3.5 text-base text-[#556977] leading-relaxed max-w-lg mx-auto">
+          The clear aligner resource or clinical page you are looking for has been moved or does
+          not exist. Explore our key pathways below.
         </p>
 
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Button
+        {/* 4 Clinical Quick Pathways */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto my-8 text-left">
+          <Link
             href="/"
-            variant="cyan"
-            size="md"
-            leftIcon={<Home className="w-4 h-4" />}
+            className="p-4 rounded-xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE]/50 hover:shadow-sm transition-all group flex items-start gap-3"
           >
-            Return to Homepage
-          </Button>
-          <Button
-            href="/how-it-works"
-            variant="outline"
-            size="md"
-            rightIcon={<Compass className="w-4 h-4" />}
-          >
-            How It Works
-          </Button>
-        </div>
+            <div className="w-9 h-9 rounded-lg bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 group-hover:bg-[#00A6CE] group-hover:text-white transition-colors">
+              <Home className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors block">
+                CLEARNYX Homepage
+              </span>
+              <span className="text-[11px] text-[#718594] mt-0.5 block">
+                Explore our clear aligner solutions
+              </span>
+            </div>
+          </Link>
 
-        <div className="pt-4 border-t border-surface-subtle text-xs text-slate-muted">
-          Need clinical assistance?{" "}
-          <Link href="/contact" className="text-cyan-brand hover:underline font-medium">
-            Contact CLEARNYX Support
+          <Link
+            href="/how-it-works"
+            className="p-4 rounded-xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE]/50 hover:shadow-sm transition-all group flex items-start gap-3"
+          >
+            <div className="w-9 h-9 rounded-lg bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 group-hover:bg-[#00A6CE] group-hover:text-white transition-colors">
+              <Compass className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors block">
+                How It Works
+              </span>
+              <span className="text-[11px] text-[#718594] mt-0.5 block">
+                Our 4-step treatment workflow
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            href="/for-dentists"
+            className="p-4 rounded-xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE]/50 hover:shadow-sm transition-all group flex items-start gap-3"
+          >
+            <div className="w-9 h-9 rounded-lg bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 group-hover:bg-[#00A6CE] group-hover:text-white transition-colors">
+              <Stethoscope className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors block">
+                For Dentists &amp; Clinics
+              </span>
+              <span className="text-[11px] text-[#718594] mt-0.5 block">
+                B2B onboarding &amp; 3D lab staging
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            href="/technology"
+            className="p-4 rounded-xl bg-white border border-[#E2EBF0] hover:border-[#00A6CE]/50 hover:shadow-sm transition-all group flex items-start gap-3"
+          >
+            <div className="w-9 h-9 rounded-lg bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 group-hover:bg-[#00A6CE] group-hover:text-white transition-colors">
+              <Cpu className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors block">
+                Polymer Technology
+              </span>
+              <span className="text-[11px] text-[#718594] mt-0.5 block">
+                Dual polymers &amp; laser scalloping
+              </span>
+            </div>
           </Link>
         </div>
+
+        {/* Primary Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href="/"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs shadow-xs hover:shadow transition-all"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Homepage</span>
+          </Link>
+
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#071B2C] hover:bg-[#0A2640] text-white font-bold text-xs transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5 text-[#00A6CE]" />
+            <span>Contact Support Desk</span>
+          </Link>
+        </div>
+
+        {/* Assistant Note */}
+        <p className="mt-8 text-xs text-[#718594]">
+          Looking for assistance? Click <strong className="text-[#071B2C]">Clari</strong> on the bottom-left to connect with our AI clinical concierge.
+        </p>
       </div>
     </div>
   );
 }
-
