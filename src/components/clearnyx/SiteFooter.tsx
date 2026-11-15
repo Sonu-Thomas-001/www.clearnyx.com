@@ -318,8 +318,8 @@ export function SiteFooter() {
         </div>
 
         {/* 3. Regulatory Disclaimer */}
-        <div className="py-6 border-b border-white/10 text-center sm:text-left">
-          <p className="max-w-4xl mx-auto sm:mx-0 text-xs sm:text-[13px] text-white/75 leading-relaxed">
+        <div className="py-6 border-b border-white/10">
+          <p className="w-full text-xs sm:text-[13px] text-white/75 leading-relaxed text-center sm:text-left">
             <strong className="text-white font-semibold">Clinical Compliance &amp; B2B Notice:</strong>{" "}
             CLEARNYX is a B2B orthodontic technology brand and clear aligner manufacturer. Orthodontic treatments are strictly evaluated, planned, and prescribed by certified licensed orthodontists and practicing dentists. Results depend on individual malocclusion complexity and patient wear compliance (recommended 22–24 hours daily).
           </p>
