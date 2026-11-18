@@ -85,6 +85,166 @@ const conditions: ConditionItem[] = [
   },
 ];
 
+function ConditionModelPedestal({
+  image,
+  title,
+  idx,
+}: {
+  image: string;
+  title: string;
+  idx: number;
+}) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: x * 16, y: y * -16 });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+    setIsHovered(false);
+  };
+
+  const cycleDuration = 4.2 + (idx % 3) * 0.4;
+  const cycleDelay = (idx * 0.45) % 1.5;
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 900 }}
+      className="relative w-full h-48 sm:h-52 mb-5 rounded-2xl bg-gradient-to-b from-[#F7FCFD] via-[#F0F9FB] to-[#E5F5F9] border border-[#D5EEF4] flex items-center justify-center overflow-hidden transition-all duration-300 shadow-xs group-hover:border-[#00A6CE]/40 group-hover:shadow-[0_12px_28px_rgba(0,166,206,0.12)] cursor-pointer select-none"
+    >
+      {/* High-Tech CAD Grid Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#00A6CE_1px,transparent_1px)] [background-size:14px_14px] opacity-25 group-hover:opacity-40 transition-opacity duration-300" />
+
+      {/* Ambient Pulsing Radial Glow Behind Model */}
+      <motion.div
+        animate={{
+          scale: [0.9, 1.15, 0.9],
+          opacity: [0.35, 0.65, 0.35],
+        }}
+        transition={{
+          duration: 3.8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: cycleDelay,
+        }}
+        className="absolute w-36 h-36 rounded-full bg-gradient-to-br from-[#12C8E8]/30 to-[#00A6CE]/20 blur-2xl pointer-events-none"
+      />
+
+      {/* Looping CAD Laser Scan Sweep */}
+      <motion.div
+        className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6CE] to-transparent pointer-events-none z-20 shadow-[0_0_12px_#00A6CE,0_0_24px_#12C8E8]"
+        animate={{
+          top: ["-10%", "110%"],
+          opacity: [0, 0.95, 0.95, 0],
+        }}
+        transition={{
+          duration: 2.6,
+          repeat: Infinity,
+          repeatDelay: 2.4 + (idx % 2) * 1.0,
+          ease: "easeInOut",
+          delay: 0.6 + idx * 0.4,
+        }}
+      />
+      {/* Soft Laser Scan Curtain */}
+      <motion.div
+        className="absolute inset-x-0 h-16 bg-gradient-to-b from-[#00A6CE]/12 to-transparent pointer-events-none z-15"
+        animate={{
+          top: ["-20%", "100%"],
+          opacity: [0, 0.7, 0],
+        }}
+        transition={{
+          duration: 2.6,
+          repeat: Infinity,
+          repeatDelay: 2.4 + (idx % 2) * 1.0,
+          ease: "easeInOut",
+          delay: 0.6 + idx * 0.4,
+        }}
+      />
+
+      {/* CAD Corner Reticle Crosshairs */}
+      <div className="absolute top-2.5 left-2.5 text-[10px] font-mono text-[#00A6CE]/50 pointer-events-none leading-none select-none">
+        ┌ 3D-CAD
+      </div>
+      <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/80 backdrop-blur-xs border border-[#00A6CE]/20 text-[9px] font-bold text-[#00A6CE] pointer-events-none z-20 shadow-xs">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6CE] opacity-75" />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00A6CE]" />
+        </span>
+        <span className="tracking-wider uppercase">0.01mm Fit</span>
+      </div>
+      <div className="absolute bottom-2.5 left-2.5 text-[9px] font-mono text-[#647887]/60 pointer-events-none">
+        X: 0.00 Y: 0.00 Z: +1
+      </div>
+      <div className="absolute bottom-2.5 right-2.5 text-[10px] font-mono text-[#00A6CE]/50 pointer-events-none leading-none select-none">
+        ┘
+      </div>
+
+      {/* Synchronized 3D Pedestal Shadow Disk */}
+      <motion.div
+        animate={{
+          scaleX: isHovered ? 1.05 : [1, 0.86, 1],
+          scaleY: isHovered ? 1.05 : [1, 0.82, 1],
+          opacity: isHovered ? 0.35 : [0.28, 0.14, 0.28],
+        }}
+        transition={{
+          duration: cycleDuration,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: cycleDelay,
+        }}
+        className="absolute bottom-3.5 w-3/5 h-6 bg-gradient-to-r from-transparent via-[#071B2C]/25 to-transparent rounded-full blur-md pointer-events-none z-0"
+      />
+
+      {/* Floating Levitating Dental Model with 3D Tilt */}
+      <motion.div
+        animate={
+          isHovered
+            ? {
+                x: tilt.x * 0.4,
+                y: -10 + tilt.y * 0.4,
+                rotateX: tilt.y,
+                rotateY: tilt.x,
+                scale: 1.08,
+              }
+            : {
+                y: [0, -8, 0],
+                rotateZ: [0, 0.9 * (idx % 2 === 0 ? 1 : -1), 0],
+                scale: [1, 1.02, 1],
+              }
+        }
+        transition={
+          isHovered
+            ? { type: "spring", stiffness: 300, damping: 20 }
+            : {
+                duration: cycleDuration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: cycleDelay,
+              }
+        }
+        style={{ transformStyle: "preserve-3d" }}
+        className="relative z-10 flex items-center justify-center"
+      >
+        <Image
+          src={image}
+          alt={`${title} clear aligner 3D model`}
+          width={220}
+          height={160}
+          className="max-h-36 sm:max-h-40 w-auto object-contain drop-shadow-[0_8px_16px_rgba(7,27,44,0.18)] pointer-events-none"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
 export function ConditionsSection() {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
   const { openModal } = useBookModal();
@@ -213,21 +373,12 @@ export function ConditionsSection() {
                   </span>
                 </div>
 
-                {/* 3D Model Stage Pedestal */}
-                <div className="relative w-full h-44 sm:h-48 mb-5 rounded-2xl bg-gradient-to-b from-[#F7FCFD] to-[#EDF8FA] border border-[#E0F2F6] flex items-center justify-center overflow-hidden group-hover:shadow-inner transition-colors duration-300">
-                  <div className="absolute inset-0 bg-[radial-gradient(#00A6CE_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
-                  
-                  {/* Subtle Pedestal Disk */}
-                  <div className="absolute bottom-4 w-3/4 h-8 bg-[#00A6CE]/10 rounded-full blur-md group-hover:bg-[#00A6CE]/20 transition-all duration-300" />
-
-                  <Image
-                    src={item.image}
-                    alt={`${item.title} clear aligner treatment model`}
-                    width={220}
-                    height={160}
-                    className="relative z-10 max-h-36 sm:max-h-40 w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-108 group-hover:-translate-y-1 drop-shadow-md"
-                  />
-                </div>
+                {/* 3D Model Stage Pedestal with Looping Levitation & CAD Laser Scan */}
+                <ConditionModelPedestal
+                  image={item.image}
+                  title={item.title}
+                  idx={idx}
+                />
 
                 {/* Title & Clinical Explanation */}
                 <h3 className="text-xl sm:text-2xl font-bold text-[#071B2C] group-hover:text-[#00A6CE] transition-colors duration-200">
