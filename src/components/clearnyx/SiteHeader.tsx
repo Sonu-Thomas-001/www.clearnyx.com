@@ -213,61 +213,69 @@ export function SiteHeader() {
                 />
               </button>
 
-              {/* Flyout Panel for Conditions */}
-              {activeDropdown === "conditions" && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] animate-fadeIn">
-                  <div className="bg-white/95 backdrop-blur-xl border border-[#E2EBF0] rounded-3xl p-5 shadow-[0_20px_50px_rgba(7,27,44,0.14)]">
-                    <div className="flex items-center justify-between mb-3 px-1">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate">
-                        Malocclusions We Treat
-                      </p>
-                      <Link
-                        href="/#conditions"
-                        onClick={closeMenu}
-                        className="text-[11px] font-semibold text-brand-cyan hover:underline"
-                      >
-                        Clinical Overview
-                      </Link>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { title: "Crowding", desc: "Overlapping or shifted teeth", img: "/images/conditions/crowding.png" },
-                        { title: "Spacing", desc: "Excessive gaps between teeth", img: "/images/conditions/spacing.png" },
-                        { title: "Open Bite", desc: "Upper and lower teeth do not meet", img: "/images/conditions/open-bite.png" },
-                        { title: "Deep Bite", desc: "Excessive overlap of front teeth", img: "/images/conditions/deep-bite.png" },
-                        { title: "Cross Bite", desc: "Upper teeth fit inside lower teeth", img: "/images/conditions/cross-bite.png" },
-                        { title: "Under Bite", desc: "Lower teeth extend past upper teeth", img: "/images/conditions/under-bite.png" },
-                      ].map((item) => (
+              {/* Modern Animated Flyout Panel for Conditions */}
+              <AnimatePresence>
+                {activeDropdown === "conditions" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97, transition: { duration: 0.16 } }}
+                    transition={{ duration: 0.22, ease: luxuryEase }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] z-50 origin-top"
+                  >
+                    <div className="bg-white/98 backdrop-blur-2xl border border-[#E2EBF0] rounded-3xl p-5 shadow-[0_24px_50px_rgba(7,27,44,0.14)]">
+                      <div className="flex items-center justify-between mb-3 px-1">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate">
+                          Malocclusions We Treat
+                        </p>
                         <Link
-                          key={item.title}
                           href="/#conditions"
                           onClick={closeMenu}
-                          className="flex items-center gap-3 p-2 rounded-xl hover:bg-soft-white transition-colors group"
+                          className="text-[11px] font-semibold text-brand-cyan hover:underline"
                         >
-                          <div className="w-10 h-8 rounded-lg bg-soft-white flex items-center justify-center shrink-0 border border-[#E2EBF0] group-hover:border-[#00A6CE]/30">
-                            <Image
-                              src={item.img}
-                              alt={item.title}
-                              width={36}
-                              height={28}
-                              className="object-contain max-h-6"
-                            />
-                          </div>
-                          <div>
-                            <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors block leading-tight">
-                              {item.title}
-                            </span>
-                            <span className="text-[10px] text-slate line-clamp-1">
-                              {item.desc}
-                            </span>
-                          </div>
+                          Clinical Overview
                         </Link>
-                      ))}
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { title: "Crowding", desc: "Overlapping or shifted teeth", img: "/images/conditions/crowding.png" },
+                          { title: "Spacing", desc: "Excessive gaps between teeth", img: "/images/conditions/spacing.png" },
+                          { title: "Open Bite", desc: "Upper and lower teeth do not meet", img: "/images/conditions/open-bite.png" },
+                          { title: "Deep Bite", desc: "Excessive overlap of front teeth", img: "/images/conditions/deep-bite.png" },
+                          { title: "Cross Bite", desc: "Upper teeth fit inside lower teeth", img: "/images/conditions/cross-bite.png" },
+                          { title: "Under Bite", desc: "Lower teeth extend past upper teeth", img: "/images/conditions/under-bite.png" },
+                        ].map((item) => (
+                          <Link
+                            key={item.title}
+                            href="/#conditions"
+                            onClick={closeMenu}
+                            className="flex items-center gap-3 p-2 rounded-xl hover:bg-soft-white transition-colors group"
+                          >
+                            <div className="w-10 h-8 rounded-lg bg-soft-white flex items-center justify-center shrink-0 border border-[#E2EBF0] group-hover:border-[#00A6CE]/30">
+                              <Image
+                                src={item.img}
+                                alt={item.title}
+                                width={36}
+                                height={28}
+                                className="object-contain max-h-6"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-xs font-bold text-navy-deep group-hover:text-brand-cyan transition-colors block leading-tight">
+                                {item.title}
+                              </span>
+                              <span className="text-[10px] text-slate line-clamp-1">
+                                {item.desc}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* For Dentists (B2B Hero Link) */}

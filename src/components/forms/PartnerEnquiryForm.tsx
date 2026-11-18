@@ -6,13 +6,39 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { partnerFormSchema, PartnerFormValues } from "@/lib/validations";
 import { Button } from "@/components/ui/Button";
 import { CheckCircle2, AlertCircle, Send, ShieldCheck, Stethoscope } from "lucide-react";
+import { ModernSelect } from "@/components/ui/ModernSelect";
 
-const PRACTICE_TYPES = [
-  "General Dental Practice",
-  "Specialist Orthodontic Clinic",
-  "Multi-Location Practice Group",
-  "Institutional / Hospital Dental Wing",
-  "Dental Academy / Research Clinic",
+const PRACTICE_TYPE_OPTIONS = [
+  {
+    value: "General Dental Practice",
+    label: "General Dental Practice",
+    description: "Private clinic expanding orthodontic solutions",
+    badge: "Clinic",
+  },
+  {
+    value: "Specialist Orthodontic Clinic",
+    label: "Specialist Orthodontic Clinic",
+    description: "Exclusive malocclusion and aligner center",
+    badge: "Specialty",
+  },
+  {
+    value: "Multi-Location Practice Group",
+    label: "Multi-Location Practice Group",
+    description: "Regional clinic network or dental hospital",
+    badge: "DSO / Chain",
+  },
+  {
+    value: "Institutional / Hospital Dental Wing",
+    label: "Institutional / Hospital Dental Wing",
+    description: "Multi-disciplinary healthcare facility",
+    badge: "Hospital",
+  },
+  {
+    value: "Dental Academy / Research Clinic",
+    label: "Dental Academy / Research Clinic",
+    description: "Clinical teaching and training institution",
+    badge: "Academic",
+  },
 ];
 
 const INTEREST_AREAS = [
@@ -36,6 +62,8 @@ export function PartnerEnquiryForm() {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<PartnerFormValues>({
     resolver: zodResolver(partnerFormSchema),
@@ -229,27 +257,17 @@ export function PartnerEnquiryForm() {
         </div>
 
         <div>
-          <label
-            htmlFor="p_practiceType"
-            className="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1.5"
-          >
-            Type of Practice <span className="text-cyan-brand">*</span>
-          </label>
-          <select
+          <ModernSelect
             id="p_practiceType"
-            {...register("practiceType")}
-            className="w-full px-4 py-2.5 rounded-lg border border-surface-border text-navy-900 text-sm bg-white focus:border-cyan-brand focus:ring-1 focus:ring-cyan-brand outline-none transition-colors"
-          >
-            <option value="">Select practice type...</option>
-            {PRACTICE_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-          {errors.practiceType && (
-            <p className="text-xs text-red-600 mt-1">{errors.practiceType.message}</p>
-          )}
+            label="Type of Practice"
+            required
+            placeholder="Select practice type..."
+            value={watch("practiceType")}
+            onChange={(val) => setValue("practiceType", val, { shouldValidate: true })}
+            options={PRACTICE_TYPE_OPTIONS}
+            error={errors.practiceType?.message}
+            icon={<Stethoscope className="w-4 h-4" />}
+          />
         </div>
 
         <div>

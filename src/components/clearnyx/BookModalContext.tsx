@@ -2,7 +2,41 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import Image from "next/image";
-import { X, CheckCircle, ArrowRight } from "lucide-react";
+import { X, CheckCircle, ArrowRight, Stethoscope } from "lucide-react";
+import { ModernSelect } from "@/components/ui/ModernSelect";
+
+const PRACTICE_ROLE_OPTIONS = [
+  {
+    value: "Orthodontist / Specialist",
+    label: "Orthodontist / Specialist",
+    description: "Orthodontic clinic or specialist consultant",
+    badge: "Specialist",
+  },
+  {
+    value: "Dental Clinic Owner",
+    label: "Dental Clinic Owner / Principal",
+    description: "Multi-chair or private dental practice",
+    badge: "Clinic Owner",
+  },
+  {
+    value: "General Dental Surgeon",
+    label: "General Dental Surgeon",
+    description: "Expanding aligner cases chairside",
+    badge: "Dentist",
+  },
+  {
+    value: "Multi-location DSO / Network",
+    label: "Multi-location DSO / Network",
+    description: "Multi-branch dental hospital or clinic chain",
+    badge: "DSO",
+  },
+  {
+    value: "Distribution Partner",
+    label: "Distribution Partner",
+    description: "Dental product supplier or distributor",
+    badge: "Partner",
+  },
+];
 
 interface BookModalContextType {
   isOpen: boolean;
@@ -23,7 +57,7 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
     phone: "",
     email: "",
     city: "",
-    role: "Orthodontist / Dental Clinician",
+    role: "Orthodontist / Specialist",
     message: "",
   });
 
@@ -174,20 +208,13 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-navy-deep mb-1">
-                      Professional Practice Type
-                    </label>
-                    <select
+                    <ModernSelect
+                      label="Professional Practice Type"
                       value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-light-grey bg-soft-white text-dark-text text-sm focus:border-brand-cyan focus:bg-white outline-none transition-all"
-                    >
-                      <option value="Orthodontist / Specialist">Orthodontist / Specialist</option>
-                      <option value="Dental Clinic Owner">Dental Clinic Owner / Principal</option>
-                      <option value="General Dental Surgeon">General Dental Surgeon</option>
-                      <option value="Multi-location DSO / Network">Multi-location DSO / Network</option>
-                      <option value="Distribution Partner">Distribution Partner</option>
-                    </select>
+                      onChange={(val) => setFormData({ ...formData, role: val })}
+                      options={PRACTICE_ROLE_OPTIONS}
+                      icon={<Stethoscope className="w-4 h-4" />}
+                    />
                   </div>
 
                   <button
