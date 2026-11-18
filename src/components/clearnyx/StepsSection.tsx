@@ -57,10 +57,10 @@ const steps: StepItem[] = [
   {
     number: "04",
     badge: "Step 04",
-    title: "Receive Aligners",
+    title: "Clinic Delivery & Fitting",
     description:
-      "Your aligner package arrives at your clinic or doorstep, ready to start day one.",
-    highlight: "Direct Delivery Ready",
+      "Your custom aligners are delivered directly to your partner dental clinic for professional verification and initial fitting.",
+    highlight: "Doctor-Delivered Care",
     icon: PackageCheck,
   },
 ];
@@ -106,8 +106,8 @@ export function StepsSection() {
             transition={{ duration: 0.6, delay: 0.2, ease: luxuryEase }}
             className="mt-4 text-base sm:text-lg text-[#647887] leading-relaxed"
           >
-            From initial clinical assessment to your custom aligners arriving at your clinic or doorstep,
-            CLEARNYX makes achieving your dream smile predictable and effortless.
+            From initial clinical assessment to custom aligners arriving at your partner clinic,
+            CLEARNYX ensures predictable, doctor-supervised orthodontic treatment.
           </motion.p>
         </div>
 

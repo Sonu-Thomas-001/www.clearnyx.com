@@ -57,7 +57,7 @@ export function DoctorWorkflowSection() {
             PRACTICE ROUTINE
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#071B2C] tracking-tight leading-tight">
-            How Cases Move from First Scan to Patient Delivery.
+            How Cases Move from First Scan to Clinic Delivery.
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#556977]">
             A predictable, transparent digital workflow designed to integrate smoothly into your clinic schedule.

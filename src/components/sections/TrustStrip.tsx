@@ -21,7 +21,7 @@ export function TrustStrip() {
     {
       icon: Truck,
       title: "Rapid Practice Delivery",
-      subtitle: "Direct Doorstep Logistics Across India",
+      subtitle: "Direct Practice Dispatch Across India",
     },
   ];
 
