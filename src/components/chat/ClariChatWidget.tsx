@@ -370,13 +370,13 @@ export function ClariChatWidget() {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  openModal("consultation");
+                                  openModal("partner");
                                   setIsOpen(false);
                                 }}
                                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00A6CE] to-[#0094BA] hover:from-[#0094BA] hover:to-[#0082A4] text-white font-bold text-xs shadow-xs hover:shadow transition-all cursor-pointer"
                               >
-                                <Calendar className="w-3.5 h-3.5" />
-                                <span>Book Doctor Consultation</span>
+                                <Stethoscope className="w-3.5 h-3.5" />
+                                <span>Request Practice Demo</span>
                                 <ArrowRight className="w-3 h-3" />
                               </button>
                             </div>

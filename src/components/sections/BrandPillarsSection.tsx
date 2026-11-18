@@ -96,7 +96,7 @@ export function BrandPillarsSection() {
                 Professional Partnership
               </h3>
               <p className="text-base text-slate-muted leading-relaxed max-w-xl">
-                We believe in true clinical collaboration. Our dedicated support team in India assists dental practices with digital onboarding, 3D setup consultations, and reliable case delivery.
+                We believe in true clinical collaboration. Our dedicated support team in India assists dental practices with digital onboarding, 3D setup reviews, and reliable case delivery.
               </p>
             </div>
             <div className="relative z-10 mt-8 pt-6 border-t border-navy-800 flex items-center justify-between text-xs text-slate-muted">

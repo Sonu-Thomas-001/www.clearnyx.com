@@ -164,7 +164,7 @@ export default function BecomeAPartnerPage() {
                       Dedicated Clinical Onboarding
                     </h4>
                     <p className="text-xs text-slate-secondary mt-0.5">
-                      Practice starter kits, clinical record checklists, and direct technical case review consultations.
+                      Practice starter kits, clinical record checklists, and direct technical case review sessions.
                     </p>
                   </div>
                 </div>

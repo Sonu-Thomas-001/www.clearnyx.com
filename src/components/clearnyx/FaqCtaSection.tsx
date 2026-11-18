@@ -173,29 +173,29 @@ export function FaqCtaSection() {
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F5FA] border border-[#00A6CE]/25 text-[#00A6CE] text-[11px] font-bold uppercase tracking-wider mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
-            <span>Begin Treatment</span>
+            <span>Practice Collaboration</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#071B2C] tracking-tight leading-[1.15] mb-3">
-            Ready to transform your{" "}
+            Ready to elevate your{" "}
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#00A6CE] via-[#00BCE6] to-[#0092B5] italic">
-              smile?
+              aligner practice?
             </span>
           </h2>
 
           <p className="text-sm text-[#556977] leading-relaxed mb-5 max-w-sm">
-            Book a consultation and take the first step toward lasting orthodontic confidence.
+            Partner with CLEARNYX for doctor-directed clear aligners, open scanner compatibility, and 48–72h 3D CAD staging turnaround.
           </p>
 
           {/* Trust Highlights */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-6 text-xs text-[#556977]">
             <span className="inline-flex items-center gap-1.5 font-semibold">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00A6CE]" />
-              <span>Doctor-Led Plan</span>
+              <span>100% Doctor-Directed</span>
             </span>
             <span className="inline-flex items-center gap-1.5 font-semibold">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00A6CE]" />
-              <span>0.01mm 3D Staging</span>
+              <span>48–72h CAD Staging</span>
             </span>
           </div>
 
@@ -203,9 +203,9 @@ export function FaqCtaSection() {
           <button
             type="button"
             className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#00A6CE] to-[#0094BA] hover:from-[#0094BA] hover:to-[#007F9F] text-white font-bold text-sm tracking-wide shadow-md shadow-[#00A6CE]/30 hover:shadow-lg hover:shadow-[#00A6CE]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
-            onClick={() => openModal("consultation")}
+            onClick={() => openModal("partner")}
           >
-            <span>Book Consultation</span>
+            <span>Request Practice Demo</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

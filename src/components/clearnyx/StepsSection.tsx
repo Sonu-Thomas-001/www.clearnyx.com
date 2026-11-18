@@ -30,10 +30,10 @@ const steps: StepItem[] = [
   {
     number: "01",
     badge: "Step 01",
-    title: "Consultation",
+    title: "Clinical Diagnosis",
     description:
-      "A certified doctor evaluates your smile and recommends the right CLEARNYX plan.",
-    highlight: "Doctor-Led Evaluation",
+      "Licensed dental clinician examines dental arches, evaluates radiographs, and captures 3D intraoral scans.",
+    highlight: "In-Person Clinical Exam",
     icon: Stethoscope,
   },
   {
@@ -208,10 +208,10 @@ export function StepsSection() {
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <button
               type="button"
-              onClick={() => openModal("consultation")}
+              onClick={() => openModal("partner")}
               className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-[#00A6CE]/25 cursor-pointer flex items-center justify-center gap-2"
             >
-              <span>Start Your Journey</span>
+              <span>Onboard Your Practice</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <Link

@@ -251,10 +251,10 @@ export function LifestyleOrbitSection() {
 
                 <button
                   type="button"
-                  onClick={() => openModal("consultation")}
+                  onClick={() => openModal("partner")}
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs shadow-xs hover:shadow transition-all cursor-pointer"
                 >
-                  <span>Book Consultation</span>
+                  <span>Request Clinical Demo</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

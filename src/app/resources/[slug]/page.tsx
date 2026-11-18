@@ -173,7 +173,7 @@ export default async function ResourceArticlePage({
           <div className="mt-12 p-5 rounded-xl bg-ice-soft/40 border border-cyan-200 text-xs text-slate-secondary flex items-start gap-3">
             <ShieldCheck className="w-4 h-4 text-cyan-brand shrink-0 mt-0.5" />
             <span>
-              <strong>Professional Editorial Notice:</strong> The information presented in this article is provided solely for educational and clinical reference by licensed dental practitioners. It does not replace individualized diagnosis, patient consultation, or medical decision-making by the treating clinician.
+              <strong>Professional Editorial Notice:</strong> The information presented in this article is provided solely for educational and clinical reference by licensed dental practitioners. It does not replace individualized diagnosis, in-person clinical examination, or medical decision-making by the treating clinician.
             </span>
           </div>
 

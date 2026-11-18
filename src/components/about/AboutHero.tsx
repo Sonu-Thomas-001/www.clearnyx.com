@@ -110,7 +110,7 @@ export function AboutHero() {
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
                 <Image
                   src="/images/editorial/clearnyx-clinical-consultation.jpg"
-                  alt="CLEARNYX Clinical Consultation and Orthodontic Treatment Planning"
+                  alt="CLEARNYX Clinical Digital Staging and Orthodontic Treatment Planning"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 520px"

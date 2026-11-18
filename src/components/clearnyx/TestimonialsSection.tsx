@@ -255,10 +255,10 @@ export function TestimonialsSection() {
 
           <button
             type="button"
-            onClick={() => openModal("consultation")}
+            onClick={() => openModal("partner")}
             className="w-full md:w-auto px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs sm:text-sm transition-all duration-200 shadow-md shadow-[#00A6CE]/30 hover:scale-[1.02] shrink-0 cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>Book Your Smile Assessment</span>
+            <span>Join Our Doctor Network</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>

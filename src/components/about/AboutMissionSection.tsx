@@ -15,7 +15,7 @@ export function AboutMissionSection() {
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-[#E2EBF0] bg-slate-100">
               <Image
                 src="/images/editorial/clearnyx-dental-clinic.jpg"
-                alt="Modern clear aligner dental facility and consultation operatory"
+                alt="Modern clear aligner dental facility and doctor operatory"
                 fill
                 sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover object-center"

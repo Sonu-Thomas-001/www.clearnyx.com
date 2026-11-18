@@ -242,7 +242,7 @@ export function ConditionsSection() {
               <div className="pt-5 mt-4 border-t border-[#F0F5F8] flex items-center justify-between">
                 <button
                   type="button"
-                  onClick={() => openModal("consultation")}
+                  onClick={() => openModal("partner")}
                   className="text-xs sm:text-sm font-bold text-[#00A6CE] group-hover:text-[#071B2C] inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <span>Evaluate this case</span>
@@ -271,20 +271,20 @@ export function ConditionsSection() {
             </div>
             <div>
               <h4 className="text-lg sm:text-xl font-bold text-white">
-                Not sure if your condition qualifies for CLEARNYX?
+                Have a challenging clinical case to evaluate?
               </h4>
               <p className="text-xs sm:text-sm text-[#A0B7C6] mt-0.5">
-                Our orthodontic experts review 3D scans and clinical records to create a customized prognosis.
+                Our orthodontic CAD specialists review 3D intraoral scans to deliver complimentary biomechanical staging previews.
               </p>
             </div>
           </div>
 
           <button
             type="button"
-            onClick={() => openModal("consultation")}
+            onClick={() => openModal("partner")}
             className="w-full md:w-auto px-6 py-3.5 rounded-full bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-sm transition-all duration-200 shadow-md shadow-[#00A6CE]/30 hover:scale-[1.02] shrink-0 cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>Get Free Assessment</span>
+            <span>Submit Case for Review</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>

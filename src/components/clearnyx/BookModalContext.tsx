@@ -6,7 +6,7 @@ import { X, CheckCircle, ArrowRight } from "lucide-react";
 
 interface BookModalContextType {
   isOpen: boolean;
-  openModal: (type?: "consultation" | "partner") => void;
+  openModal: (type?: "consultation" | "partner" | "demo") => void;
   closeModal: () => void;
 }
 
@@ -14,7 +14,7 @@ const BookModalContext = createContext<BookModalContextType | undefined>(undefin
 
 export function BookModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalType, setModalType] = useState<"consultation" | "partner">("consultation");
+  const [modalType, setModalType] = useState<"consultation" | "partner" | "demo">("partner");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -23,11 +23,11 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
     phone: "",
     email: "",
     city: "",
-    role: "Doctor / Clinic",
+    role: "Orthodontist / Dental Clinician",
     message: "",
   });
 
-  const openModal = (type: "consultation" | "partner" = "consultation") => {
+  const openModal = (type: "consultation" | "partner" | "demo" = "partner") => {
     setModalType(type);
     setSubmitted(false);
     setIsOpen(true);
@@ -89,7 +89,7 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                 </div>
                 <h3 className="text-2xl font-bold text-navy-deep">Request Received</h3>
                 <p className="text-sm text-slate max-w-sm mx-auto">
-                  Thank you! Our clinical specialist will contact you within 2 hours to confirm your consultation schedule.
+                  Thank you, Doctor! Our clinical onboarding specialist will contact you within 2 business hours to schedule your practice demonstration and arrange your doctor starter kit.
                 </p>
                 <button
                   onClick={closeModal}
@@ -109,22 +109,22 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                       height={33}
                       className="h-7 sm:h-8 w-auto object-contain"
                     />
-                    <p className="text-[11px] text-slate mt-1 font-medium">Precision. Comfort. Confidence.</p>
+                    <p className="text-[11px] text-slate mt-1 font-medium">B2B Orthodontic Laboratory & Digital Solutions</p>
                   </div>
                   <span className="text-[11px] font-bold tracking-wider uppercase text-brand-cyan bg-ice-blue px-3 py-1 rounded-full border border-brand-cyan/20">
-                    {modalType === "partner" ? "Partner" : "Consultation"}
+                    {modalType === "partner" ? "Practice Onboarding" : "Practice Demo & Kit"}
                   </span>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-navy-deep mb-1">
-                      Full Name *
+                      Doctor / Clinic Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Dr. Rajesh Sharma"
+                      placeholder="Dr. Rajesh Sharma (Smile Dental Clinic)"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl border border-light-grey bg-soft-white text-dark-text text-sm focus:border-brand-cyan focus:bg-white outline-none transition-all"
@@ -134,7 +134,7 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-semibold text-navy-deep mb-1">
-                        Phone Number *
+                        Doctor Mobile / WhatsApp *
                       </label>
                       <input
                         type="tel"
@@ -147,12 +147,12 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-navy-deep mb-1">
-                        City *
+                        Clinic City *
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Mumbai / Delhi"
+                        placeholder="Bengaluru / Mumbai"
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                         className="w-full px-4 py-2.5 rounded-xl border border-light-grey bg-soft-white text-dark-text text-sm focus:border-brand-cyan focus:bg-white outline-none transition-all"
@@ -162,7 +162,7 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
 
                   <div>
                     <label className="block text-xs font-semibold text-navy-deep mb-1">
-                      Email Address
+                      Clinic Email Address
                     </label>
                     <input
                       type="email"
@@ -175,16 +175,17 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
 
                   <div>
                     <label className="block text-xs font-semibold text-navy-deep mb-1">
-                      I am a
+                      Professional Practice Type
                     </label>
                     <select
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl border border-light-grey bg-soft-white text-dark-text text-sm focus:border-brand-cyan focus:bg-white outline-none transition-all"
                     >
-                      <option value="Doctor / Clinic">Orthodontist / Dental Clinician</option>
-                      <option value="Multi-location Clinic Owner">Multi-location Practice</option>
-                      <option value="Patient seeking certified doctor">Patient Seeking Certified Doctor</option>
+                      <option value="Orthodontist / Specialist">Orthodontist / Specialist</option>
+                      <option value="Dental Clinic Owner">Dental Clinic Owner / Principal</option>
+                      <option value="General Dental Surgeon">General Dental Surgeon</option>
+                      <option value="Multi-location DSO / Network">Multi-location DSO / Network</option>
                       <option value="Distribution Partner">Distribution Partner</option>
                     </select>
                   </div>
@@ -192,14 +193,14 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-2 py-3 px-6 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-cyan flex items-center justify-center gap-2 group disabled:opacity-70"
+                    className="w-full mt-2 py-3 px-6 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-cyan flex items-center justify-center gap-2 group disabled:opacity-70 cursor-pointer"
                   >
-                    <span>{loading ? "Submitting..." : "Confirm & Schedule"}</span>
+                    <span>{loading ? "Submitting..." : "Request Practice Demo & Starter Kit"}</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </button>
 
                   <p className="text-[11px] text-center text-slate">
-                    🔒 Strictly 100% Doctor-Directed Orthodontic Solutions.
+                    🔒 Strictly 100% Doctor-Directed. Exclusively for licensed dental practices across India.
                   </p>
                 </form>
               </div>

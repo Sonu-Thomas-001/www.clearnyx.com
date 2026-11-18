@@ -275,10 +275,10 @@ export function SiteHeader() {
             {/* High-Impact Modern Solid Brand Cyan CTA (Hidden on mobile phones where MobileStickyBar provides thumb access) */}
             <button
               type="button"
-              onClick={() => openModal("consultation")}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 lg:px-4 xl:px-5 py-2 sm:py-2.5 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] text-white text-xs xl:text-[13px] font-bold shadow-[0_4px_14px_rgba(0,166,206,0.35)] hover:shadow-[0_6px_20px_rgba(0,166,206,0.5)] transition-all duration-200 active:scale-95 shrink-0 whitespace-nowrap"
+              onClick={() => openModal("partner")}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 lg:px-4 xl:px-5 py-2 sm:py-2.5 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] text-white text-xs xl:text-[13px] font-bold shadow-[0_4px_14px_rgba(0,166,206,0.35)] hover:shadow-[0_6px_20px_rgba(0,166,206,0.5)] transition-all duration-200 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer"
             >
-              <span>Book Consultation</span>
+              <span>Partner With Us</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
 
@@ -402,11 +402,11 @@ export function SiteHeader() {
                 type="button"
                 onClick={() => {
                   closeMenu();
-                  openModal("consultation");
+                  openModal("partner");
                 }}
-                className="w-full py-3 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide shadow-md flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Book Doctor Consultation</span>
+                <span>Partner Onboarding</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 

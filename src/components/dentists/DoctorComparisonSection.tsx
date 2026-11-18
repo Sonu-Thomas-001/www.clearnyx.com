@@ -37,7 +37,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
     dtc: "Zero Doctor Input",
   },
   {
-    parameter: "Direct Planner Consultation",
+    parameter: "Direct CAD Planner Access",
     clearnyx: "Direct Phone & Screen-Share with Orthodontists",
     legacy: "Ticketing System & Overseas Call Centers",
     dtc: "Non-Existent",

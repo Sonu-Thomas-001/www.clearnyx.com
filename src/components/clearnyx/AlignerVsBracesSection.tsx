@@ -124,10 +124,10 @@ export function AlignerVsBracesSection() {
             </span>
             <button
               type="button"
-              onClick={() => openModal("consultation")}
+              onClick={() => openModal("partner")}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#00A6CE] hover:bg-[#0094BA] text-white font-bold text-xs shadow-xs hover:shadow transition-all cursor-pointer whitespace-nowrap"
             >
-              <span>Book Doctor Consultation</span>
+              <span>Request Practice Starter Kit</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

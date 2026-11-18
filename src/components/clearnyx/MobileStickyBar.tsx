@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useBookModal } from "./BookModalContext";
-import { Phone, Calendar } from "lucide-react";
+import { Phone, Stethoscope } from "lucide-react";
 
 export function MobileStickyBar() {
   const { openModal } = useBookModal();
@@ -14,16 +14,16 @@ export function MobileStickyBar() {
         className="flex-1 py-2.5 px-3 rounded-full bg-soft-white border border-light-grey text-navy-deep text-xs font-semibold flex items-center justify-center gap-1.5 active:bg-light-grey transition-colors"
       >
         <Phone className="w-3.5 h-3.5 text-brand-cyan" />
-        <span>+91 9072334032</span>
+        <span>Doctor Hotline</span>
       </a>
 
       <button
         type="button"
-        onClick={() => openModal("consultation")}
-        className="flex-[1.4] py-2.5 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide flex items-center justify-center gap-1.5 shadow-md transition-all active:scale-95"
+        onClick={() => openModal("partner")}
+        className="flex-[1.4] py-2.5 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide flex items-center justify-center gap-1.5 shadow-md transition-all active:scale-95 cursor-pointer"
       >
-        <Calendar className="w-3.5 h-3.5" />
-        <span>Book Consultation</span>
+        <Stethoscope className="w-3.5 h-3.5" />
+        <span>Partner With Us</span>
       </button>
     </div>
   );

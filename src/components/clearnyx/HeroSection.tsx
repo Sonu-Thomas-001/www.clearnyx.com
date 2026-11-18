@@ -110,10 +110,10 @@ export function HeroSection() {
             >
               <button
                 type="button"
-                onClick={() => openModal("consultation")}
+                onClick={() => openModal("partner")}
                 className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#00A6CE] to-[#0094BA] hover:from-[#0094BA] hover:to-[#007F9F] text-white font-bold text-base tracking-wide shadow-lg shadow-[#00A6CE]/30 hover:shadow-xl hover:shadow-[#00A6CE]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
               >
-                <span>Book a Consultation</span>
+                <span>Partner With Us</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
