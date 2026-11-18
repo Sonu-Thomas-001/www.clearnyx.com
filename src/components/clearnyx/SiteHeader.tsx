@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useBookModal } from "./BookModalContext";
 import {
   ChevronDown,
@@ -16,7 +17,53 @@ import {
   Menu,
   Activity,
   ArrowUpRight,
+  Sparkles,
+  BookOpen,
+  Mail,
+  Home,
+  ChevronRight,
 } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
+
+const drawerContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.038,
+      delayChildren: 0.06,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.02,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const drawerItemVariants: Variants = {
+  hidden: { opacity: 0, x: -16, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.32,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: -8,
+    transition: {
+      duration: 0.16,
+      ease: [0.32, 0, 0.67, 0],
+    },
+  },
+};
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,6 +93,22 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
+
+  // Close menu on route change
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
+  // Close menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleMouseEnter = (menu: "conditions") => {
     if (dropdownTimeoutRef.current) {
@@ -282,144 +345,220 @@ export function SiteHeader() {
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
 
-            {/* Mobile Hamburger Toggle Button */}
+            {/* Mobile Hamburger Toggle Button with Smooth Icon Morph */}
             <button
               type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] flex items-center justify-center text-[#071B2C] border border-[#E2EBF0] transition-colors"
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="lg:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] active:scale-95 flex items-center justify-center text-[#071B2C] border border-[#E2EBF0] transition-all overflow-hidden cursor-pointer shadow-xs"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+              <AnimatePresence mode="wait" initial={false}>
+                {isMobileMenuOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                    transition={{ duration: 0.22, ease: luxuryEase }}
+                    className="flex items-center justify-center"
+                  >
+                    <X className="w-5 h-5 text-[#071B2C]" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                    transition={{ duration: 0.22, ease: luxuryEase }}
+                    className="flex items-center justify-center"
+                  >
+                    <Menu className="w-5 h-5 text-[#071B2C]" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Modern Full-Screen Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[5000] lg:hidden bg-white flex flex-col overflow-hidden animate-fadeIn">
-          {/* Drawer Top Navigation Bar */}
-          <div className="px-5 py-4 border-b border-[#E2EBF0] flex items-center justify-between bg-white/95 backdrop-blur-md">
-            <Link href="/" onClick={closeMenu} className="flex items-center">
-              <Image
-                src="/brand/logo-primary.png"
-                alt="CLEARNYX"
-                width={140}
-                height={30}
-                priority
-                className="h-7 w-auto object-contain"
-              />
-            </Link>
-            <button
-              onClick={closeMenu}
-              className="w-9 h-9 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] border border-[#E2EBF0] flex items-center justify-center text-[#071B2C] active:scale-95 transition-all"
-              aria-label="Close menu"
+      {/* Modern Full-Screen Mobile Drawer with Smooth Luxury Switch Animations */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            key="mobile-nav-drawer"
+            initial={{ opacity: 0, y: -20, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -16, filter: "blur(4px)", transition: { duration: 0.22, ease: [0.32, 0, 0.67, 0] } }}
+            transition={{ duration: 0.36, ease: luxuryEase }}
+            className="fixed inset-0 z-[5000] lg:hidden bg-white/98 backdrop-blur-2xl flex flex-col overflow-hidden"
+          >
+            {/* Drawer Top Navigation Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.04, ease: luxuryEase }}
+              className="px-5 py-3.5 border-b border-[#E2EBF0] flex items-center justify-between bg-white/90 backdrop-blur-md shrink-0"
             >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+              <Link href="/" onClick={closeMenu} className="flex items-center">
+                <Image
+                  src="/brand/logo-primary.png"
+                  alt="CLEARNYX"
+                  width={132}
+                  height={28}
+                  priority
+                  className="h-7 w-auto object-contain"
+                />
+              </Link>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={closeMenu}
+                className="w-9 h-9 rounded-full bg-[#F8FBFD] hover:bg-[#EEF3F6] border border-[#E2EBF0] flex items-center justify-center text-[#071B2C] transition-colors cursor-pointer"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </motion.button>
+            </motion.div>
 
-            {/* Drawer Scrollable Links */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-4">
-              <div className="space-y-1">
-                <Link
-                  href="/"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <span>Home</span>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
-                <Link
-                  href="/how-it-works"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <span>How It Works</span>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
-                <Link
-                  href="/#conditions"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-cyan" />
-                    <span>Conditions We Treat</span>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
+            {/* Drawer Scrollable Links with Staggered Cascading Animation */}
+            <motion.div
+              variants={drawerContainerVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              className="flex-1 overflow-y-auto px-5 py-4 space-y-4"
+            >
+              {/* Doctor Priority Banner Card */}
+              <motion.div variants={drawerItemVariants}>
                 <Link
                   href="/for-dentists"
                   onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-brand-cyan bg-ice-blue/50 border border-brand-cyan/20"
+                  className={`flex items-center justify-between p-3.5 rounded-2xl border transition-all ${
+                    pathname === "/for-dentists"
+                      ? "bg-[#DDF7FC] border-[#00A6CE] text-[#00A6CE] shadow-sm"
+                      : "bg-[#F8FBFD] hover:bg-[#DDF7FC]/40 border-[#00A6CE]/20 text-[#071B2C]"
+                  }`}
                 >
-                  <div className="flex items-center gap-2.5">
-                    <Stethoscope className="w-4 h-4" />
-                    <span>For Dentists &amp; Clinics</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#00A6CE] text-white flex items-center justify-center shadow-xs shrink-0">
+                      <Stethoscope className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-extrabold text-sm text-[#071B2C]">For Dentists &amp; Clinics</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#00A6CE]/15 text-[#00A6CE]">
+                          B2B
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#556977]">Doctor portal, pricing &amp; 3D staging</p>
+                    </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-[#00A6CE] shrink-0" />
                 </Link>
+              </motion.div>
 
-                <Link
-                  href="/about"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <span>About CLEARNYX</span>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
-
-                <Link
-                  href="/contact"
-                  onClick={closeMenu}
-                  className="flex items-center justify-between p-3 rounded-2xl font-bold text-navy-deep hover:bg-soft-white transition-colors"
-                >
-                  <span>Contact</span>
-                  <ArrowRight className="w-4 h-4 text-slate" />
-                </Link>
+              {/* Core Links List */}
+              <div className="space-y-1">
+                {[
+                  { href: "/", label: "Home", icon: Home, desc: "Overview & technology" },
+                  { href: "/technology", label: "Dual-Polymer Tech", icon: Layers, desc: "Standard PETG & Multi-Layer Pro" },
+                  { href: "/how-it-works", label: "How It Works", icon: Sparkles, desc: "6-step clinical protocol" },
+                  { href: "/#conditions", label: "Conditions We Treat", icon: Activity, desc: "Crowding, spacing, open bite & more" },
+                  { href: "/become-a-partner", label: "Become a Partner", icon: ArrowUpRight, desc: "Join our doctor network" },
+                  { href: "/resources", label: "Clinical Resources", icon: BookOpen, desc: "Orthodontic guides & whitepapers" },
+                  { href: "/about", label: "About CLEARNYX", icon: ShieldCheck, desc: "Lab precision & clinical philosophy" },
+                  { href: "/contact", label: "Contact Us", icon: Mail, desc: "Clinic support & partner enquiries" },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  const isActive = pathname === item.href;
+                  return (
+                    <motion.div key={item.href} variants={drawerItemVariants}>
+                      <Link
+                        href={item.href}
+                        onClick={closeMenu}
+                        className={`group flex items-center justify-between p-3 rounded-2xl transition-all ${
+                          isActive
+                            ? "bg-[#DDF7FC]/70 text-[#00A6CE] font-bold"
+                            : "text-[#071B2C] hover:bg-[#F8FBFD] active:scale-[0.99]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                              isActive
+                                ? "bg-[#00A6CE] text-white"
+                                : "bg-[#F8FBFD] text-[#556977] group-hover:bg-[#DDF7FC] group-hover:text-[#00A6CE]"
+                            }`}
+                          >
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold block leading-tight">
+                              {item.label}
+                            </span>
+                            <span className="text-[11px] text-[#647887]">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </div>
+                        <ChevronRight
+                          className={`w-4 h-4 transition-transform group-hover:translate-x-0.5 ${
+                            isActive ? "text-[#00A6CE]" : "text-[#94A3B8]"
+                          }`}
+                        />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              {/* Trust Badges */}
-              <div className="p-4 rounded-2xl bg-soft-white border border-light-grey space-y-2">
-                <div className="flex items-center gap-2 text-xs font-semibold text-navy-deep">
-                  <ShieldCheck className="w-4 h-4 text-brand-cyan shrink-0" />
-                  <span>Doctor-Directed Orthodontics</span>
+              {/* B2B Trust Badge */}
+              <motion.div
+                variants={drawerItemVariants}
+                className="p-3.5 rounded-2xl bg-[#F8FBFD] border border-[#E2EBF0] flex items-center gap-3"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#DDF7FC] text-[#00A6CE] flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <p className="text-[11px] text-slate leading-relaxed">
-                  Precision digital treatment planning and medical-grade polymers. Customized for licensed dentists across India.
-                </p>
-              </div>
-            </div>
+                <div>
+                  <p className="text-xs font-bold text-[#071B2C]">Strict B2B Aligner Provider</p>
+                  <p className="text-[11px] text-[#556977]">Exclusively empowering certified dental practices</p>
+                </div>
+              </motion.div>
+            </motion.div>
 
             {/* Drawer Footer Action Buttons */}
-            <div className="p-5 border-t border-light-grey space-y-2.5 bg-soft-white/60">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.2, ease: luxuryEase }}
+              className="p-4 border-t border-[#E2EBF0] space-y-2 bg-[#F8FBFD]/80 backdrop-blur-md shrink-0"
+            >
               <button
                 type="button"
                 onClick={() => {
                   closeMenu();
                   openModal("partner");
                 }}
-                className="w-full py-3 px-4 rounded-full bg-brand-cyan hover:bg-electric-cyan text-white text-xs font-bold tracking-wide shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 px-4 rounded-full bg-[#00A6CE] hover:bg-[#008fb3] active:scale-[0.98] text-white text-xs font-bold tracking-wide shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
-                <span>Partner Onboarding</span>
+                <Stethoscope className="w-4 h-4" />
+                <span>Partner Onboarding / Demo Kit</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <a
                 href="tel:+919072334032"
-                className="w-full py-2.5 px-4 rounded-full bg-white border border-light-grey text-navy-deep text-xs font-bold flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-[#F8FBFD] active:scale-[0.98] border border-[#E2EBF0] text-[#071B2C] text-xs font-bold flex items-center justify-center gap-2 transition-all"
               >
-                <Phone className="w-3.5 h-3.5 text-brand-cyan" />
-                <span>Call Clinical Support: +91 9072334032</span>
+                <Phone className="w-3.5 h-3.5 text-[#00A6CE]" />
+                <span>Doctor Hotline: +91 9072334032</span>
               </a>
-            </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
