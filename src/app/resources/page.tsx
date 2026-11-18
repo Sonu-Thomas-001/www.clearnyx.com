@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { RESOURCE_ARTICLES } from "@/content/resources";
 import { ResourcesExplorer } from "@/components/sections/ResourcesExplorer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Orthodontic Clinical Knowledge Hub | CLEARNYX Aligner Provider",
@@ -40,9 +41,11 @@ export default function ResourcesPage() {
         breadcrumbs={breadcrumbs}
       />
 
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ResourcesExplorer articles={RESOURCE_ARTICLES} />
+          <ScrollReveal direction="up" distance={24}>
+            <ResourcesExplorer articles={RESOURCE_ARTICLES} />
+          </ScrollReveal>
         </div>
       </section>
     </>

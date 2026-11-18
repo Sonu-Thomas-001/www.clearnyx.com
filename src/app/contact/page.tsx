@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { SITE_CONFIG } from "@/config/site";
 import { Mail, MapPin, ShieldCheck, Clock } from "lucide-react";
 import { LocationMapSection } from "@/components/clearnyx/LocationMapSection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Contact CLEARNYX | Clear Aligner Provider Support & Enquiries",
@@ -42,11 +43,11 @@ export default function ContactPage() {
         breadcrumbs={breadcrumbs}
       />
 
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Contact Channels & Business Details */}
-            <div className="lg:col-span-5 space-y-8">
+            {/* Left Column: Contact Channels & Business Details with Scroll Reveal */}
+            <ScrollReveal direction="left" distance={30} className="lg:col-span-5 space-y-8">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
                   Professional Inquiries & Support
@@ -148,12 +149,12 @@ export default function ContactPage() {
                   <strong>Clinical Notice:</strong> Please do not submit patient identifiable health records (PHI) via general website contact forms. Approved case files should only be transmitted via encrypted doctor portal channels.
                 </span>
               </div>
-            </div>
+            </ScrollReveal>
 
-            {/* Right Column: Contact Form */}
-            <div className="lg:col-span-7">
+            {/* Right Column: Contact Form with Scroll Reveal */}
+            <ScrollReveal direction="right" distance={30} className="lg:col-span-7">
               <ContactForm />
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -162,4 +163,3 @@ export default function ContactPage() {
     </>
   );
 }
-

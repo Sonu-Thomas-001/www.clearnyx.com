@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Scan,
   FileCode,
@@ -11,6 +12,8 @@ import {
   ArrowRight,
   Clock,
 } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 const STEPS = [
   {
@@ -49,10 +52,16 @@ const STEPS = [
 
 export function DoctorWorkflowSection() {
   return (
-    <section id="workflow" className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0]">
+    <section id="workflow" className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: luxuryEase }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
             PRACTICE ROUTINE
           </div>
@@ -62,16 +71,20 @@ export function DoctorWorkflowSection() {
           <p className="mt-4 text-base sm:text-lg text-[#556977]">
             A predictable, transparent digital workflow designed to integrate smoothly into your clinic schedule.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 4-Step Grid */}
+        {/* 4-Step Grid with Scroll-Triggered Stagger */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {STEPS.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className="rounded-3xl bg-white border border-[#E2EBF0] p-7 shadow-subtle hover:shadow-card transition-shadow flex flex-col justify-between"
+                initial={{ opacity: 0, y: 28, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: luxuryEase }}
+                className="rounded-3xl bg-white border border-[#E2EBF0] p-7 shadow-subtle hover:shadow-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
@@ -96,13 +109,19 @@ export function DoctorWorkflowSection() {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Packaging Showcase Banner */}
-        <div className="rounded-3xl bg-gradient-to-r from-[#071B2C] via-[#0A243A] to-[#071B2C] text-white p-8 sm:p-12 shadow-xl border border-navy-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Packaging Showcase Banner with Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: luxuryEase }}
+          className="rounded-3xl bg-gradient-to-r from-[#071B2C] via-[#0A243A] to-[#071B2C] text-white p-8 sm:p-12 shadow-xl border border-navy-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+        >
           <div className="lg:col-span-7 space-y-4">
             <span className="text-xs font-mono font-bold text-[#12C8E8] uppercase tracking-wider">
               COMPLETE PATIENT PRESENTATION KIT
@@ -125,19 +144,24 @@ export function DoctorWorkflowSection() {
           </div>
 
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full max-w-[360px] aspect-square">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: luxuryEase }}
+              className="relative w-full max-w-[360px] aspect-square"
+            >
               <Image
                 src="/images/showcase/clearnyx-box.png"
                 alt="CLEARNYX Luxury Clear Aligner Practice Presentation Box"
                 fill
                 sizes="(max-width: 1024px) 100vw, 360px"
-                className="object-contain"
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

@@ -1,25 +1,29 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import { PartnerEnquiryForm } from "@/components/forms/PartnerEnquiryForm";
 import {
   Gift,
-  ShieldCheck,
-  Package,
-  Headphones,
   CheckCircle2,
-  FileText,
   Mail,
 } from "lucide-react";
 
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
+
 export function DoctorOnboardingSection() {
   return (
-    <section id="partner-form" className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0]">
+    <section id="partner-form" className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Onboarding Perks & Starter Kit */}
-          <div className="lg:col-span-5 space-y-8">
+          {/* Left Column: Onboarding Perks & Starter Kit with Reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: -30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.75, ease: luxuryEase }}
+            className="lg:col-span-5 space-y-8"
+          >
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
                 PRACTICE REGISTRATION
@@ -84,15 +88,20 @@ export function DoctorOnboardingSection() {
               <p>Email our team directly at <strong className="text-[#00A6CE]">partners@clearnyx.com</strong></p>
               <p>Clinical liaison available Monday to Saturday, 9:00 AM – 7:00 PM IST.</p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: The Partner Enquiry Form */}
-          <div className="lg:col-span-7">
+          {/* Right Column: The Partner Enquiry Form with Reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: luxuryEase }}
+            className="lg:col-span-7"
+          >
             <PartnerEnquiryForm />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

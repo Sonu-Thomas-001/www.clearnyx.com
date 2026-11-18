@@ -3,29 +3,36 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   ShieldCheck,
-  Stethoscope,
   ScanLine,
   PhoneCall,
-  CheckCircle2,
   ArrowRight,
 } from "lucide-react";
 
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
+
 export function DoctorPhilosophySection() {
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0]">
+    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Clinic Photography */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-[#E2EBF0] bg-slate-100">
+          {/* Left Column: Clinic Photography with Reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: -30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, ease: luxuryEase }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-[#E2EBF0] bg-slate-100 group">
               <Image
                 src="/images/editorial/clearnyx-dental-clinic.jpg"
                 alt="Modern dental clinic treatment room"
                 fill
                 sizes="(max-width: 1024px) 100vw, 500px"
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#071B2C]/75 via-transparent to-transparent" />
 
@@ -38,10 +45,16 @@ export function DoctorPhilosophySection() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Editorial Philosophy & Standards */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* Right Column: Editorial Philosophy & Standards with Staggered Reveals */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: luxuryEase }}
+            className="lg:col-span-7 space-y-8"
+          >
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
                 DOCTOR AUTONOMY
@@ -56,7 +69,13 @@ export function DoctorPhilosophySection() {
 
             <div className="space-y-6">
               {/* Feature 1 */}
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2, ease: luxuryEase }}
+                className="flex items-start gap-4 p-4 rounded-2xl bg-[#F8FBFD] border border-[#EEF3F6] hover:border-[#00A6CE]/30 transition-colors"
+              >
                 <div className="w-11 h-11 rounded-2xl bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 mt-1">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
@@ -68,10 +87,16 @@ export function DoctorPhilosophySection() {
                     We never sell impression putty kits online, solicit your patients for treatment, or bypass in-person clinic appointments. Every aligner prescription begins and ends under your direct clinical oversight.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Feature 2 */}
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3, ease: luxuryEase }}
+                className="flex items-start gap-4 p-4 rounded-2xl bg-[#F8FBFD] border border-[#EEF3F6] hover:border-[#00A6CE]/30 transition-colors"
+              >
                 <div className="w-11 h-11 rounded-2xl bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 mt-1">
                   <ScanLine className="w-5 h-5" />
                 </div>
@@ -83,10 +108,16 @@ export function DoctorPhilosophySection() {
                     Ingest raw STL, OBJ, or PLY files from virtually any intraoral scanner—including iTero, 3Shape TRIOS, Medit, Carestream, and Primescan. Zero file conversion penalties and zero hardware lock-ins.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Feature 3 */}
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4, ease: luxuryEase }}
+                className="flex items-start gap-4 p-4 rounded-2xl bg-[#F8FBFD] border border-[#EEF3F6] hover:border-[#00A6CE]/30 transition-colors"
+              >
                 <div className="w-11 h-11 rounded-2xl bg-[#E7F6FA] text-[#00A6CE] flex items-center justify-center shrink-0 mt-1">
                   <PhoneCall className="w-5 h-5" />
                 </div>
@@ -98,7 +129,7 @@ export function DoctorPhilosophySection() {
                     Direct phone and screen-share access to your assigned orthodontic CAD technician. Discuss velocity limits, attachments, and IPR staging live without dealing with offshore call centers.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <div className="pt-2">
@@ -110,10 +141,9 @@ export function DoctorPhilosophySection() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

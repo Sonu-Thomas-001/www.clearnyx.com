@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Crosshair,
   Layers,
   HeartHandshake,
-  ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 const PILLARS = [
   {
@@ -55,10 +55,16 @@ const PILLARS = [
 
 export function AboutPillarsSection() {
   return (
-    <section className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0]">
+    <section className="py-20 md:py-28 bg-[#F8FBFD] border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: luxuryEase }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
             OUR METHODOLOGY
           </div>
@@ -68,16 +74,20 @@ export function AboutPillarsSection() {
           <p className="mt-4 text-base sm:text-lg text-[#556977]">
             How we combine orthodontic biomechanics, advanced material science, and collaborative practice logistics.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 3 Pillars Grid */}
+        {/* 3 Pillars Grid with Scroll-Triggered Stagger */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {PILLARS.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className="rounded-3xl bg-white border border-[#E2EBF0] p-8 sm:p-9 shadow-subtle hover:shadow-card transition-shadow flex flex-col justify-between"
+                initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: luxuryEase }}
+                className="rounded-3xl bg-white border border-[#E2EBF0] p-8 sm:p-9 shadow-subtle hover:shadow-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -110,7 +120,7 @@ export function AboutPillarsSection() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -118,4 +128,3 @@ export function AboutPillarsSection() {
     </section>
   );
 }
-

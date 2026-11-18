@@ -2,7 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Check, X, Minus, ArrowRight } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 interface ComparisonRow {
   parameter: string;
@@ -52,10 +55,16 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 
 export function DoctorComparisonSection() {
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0]">
+    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: luxuryEase }}
+          className="max-w-3xl mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
             CLEAR CLINICAL ADVANTAGE
           </div>
@@ -65,10 +74,16 @@ export function DoctorComparisonSection() {
           <p className="mt-4 text-base sm:text-lg text-[#556977]">
             Examine how our doctor-first operational model contrasts with traditional foreign aligner manufacturers and direct-to-consumer alternatives.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Comparison Table */}
-        <div className="rounded-3xl border border-[#E2EBF0] shadow-card overflow-hidden bg-white">
+        {/* Comparison Table with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.75, delay: 0.15, ease: luxuryEase }}
+          className="rounded-3xl border border-[#E2EBF0] shadow-card overflow-hidden bg-white"
+        >
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[700px]">
               <thead>
@@ -143,9 +158,8 @@ export function DoctorComparisonSection() {
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

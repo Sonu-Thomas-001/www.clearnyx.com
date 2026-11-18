@@ -2,15 +2,23 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Layers, CheckCircle2, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function DoctorMaterialsSection() {
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0]">
+    <section className="py-20 md:py-28 bg-white border-b border-[#E2EBF0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: luxuryEase }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase mb-3">
             POLYMER ARCHITECTURES
           </div>
@@ -20,12 +28,18 @@ export function DoctorMaterialsSection() {
           <p className="mt-4 text-base sm:text-lg text-[#556977]">
             Because no single material architecture fits every malocclusion, CLEARNYX gives you the clinical choice between high-clarity PETG and engineered multi-layer polymers.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 2-Card Material Grid */}
+        {/* 2-Card Material Grid with Staggered Scroll-Triggered Animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {/* Card 1: Standard PETG */}
-          <div className="rounded-3xl border border-[#E2EBF0] bg-[#F8FBFD] p-8 sm:p-10 flex flex-col justify-between shadow-card hover:shadow-elevated transition-shadow">
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: luxuryEase }}
+            className="rounded-3xl border border-[#E2EBF0] bg-[#F8FBFD] p-8 sm:p-10 flex flex-col justify-between shadow-card hover:shadow-elevated transition-shadow group"
+          >
             <div>
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-white border border-[#E2EBF0]">
                 <Image
@@ -33,7 +47,7 @@ export function DoctorMaterialsSection() {
                   alt="CLEARNYX Standard High-Clarity PETG Clear Aligner"
                   fill
                   sizes="(max-width: 768px) 100vw, 550px"
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
@@ -69,10 +83,16 @@ export function DoctorMaterialsSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2: Multi-Layer Pro */}
-          <div className="rounded-3xl border border-[#00A6CE]/30 bg-gradient-to-b from-[#F0FAFD] to-[#E7F6FA] p-8 sm:p-10 flex flex-col justify-between shadow-card hover:shadow-elevated transition-shadow">
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: luxuryEase }}
+            className="rounded-3xl border border-[#00A6CE]/30 bg-gradient-to-b from-[#F0FAFD] to-[#E7F6FA] p-8 sm:p-10 flex flex-col justify-between shadow-card hover:shadow-elevated transition-shadow group"
+          >
             <div>
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-white border border-[#E2EBF0]">
                 <Image
@@ -80,7 +100,7 @@ export function DoctorMaterialsSection() {
                   alt="CLEARNYX Multi-Layer Pro Composite Aligner"
                   fill
                   sizes="(max-width: 768px) 100vw, 550px"
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
@@ -116,10 +136,9 @@ export function DoctorMaterialsSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

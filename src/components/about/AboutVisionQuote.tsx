@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function AboutVisionQuote() {
   return (
@@ -12,7 +15,13 @@ export function AboutVisionQuote() {
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#12C8E8]/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.85, ease: luxuryEase }}
+        className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6"
+      >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold tracking-wider uppercase mb-2">
           <Sparkles className="w-3.5 h-3.5 text-[#12C8E8]" />
           <span>OUR GUIDING PHILOSOPHY</span>
@@ -30,8 +39,7 @@ export function AboutVisionQuote() {
             Pure B2B Orthodontic Laboratory &bull; India
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
-

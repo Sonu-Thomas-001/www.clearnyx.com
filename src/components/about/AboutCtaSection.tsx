@@ -2,12 +2,21 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight, Mail, Stethoscope } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function AboutCtaSection() {
   return (
-    <section className="py-20 md:py-28 bg-[#F8FBFD]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+    <section className="py-20 md:py-28 bg-[#F8FBFD] overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.75, ease: luxuryEase }}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8"
+      >
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDF7FC] text-[#0087AB] text-xs font-bold tracking-wider uppercase">
           PRACTICE COLLABORATION
         </div>
@@ -44,8 +53,7 @@ export function AboutCtaSection() {
           <span>&bull; Open STL Compatibility</span>
           <span>&bull; Free First Case Setup</span>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
-

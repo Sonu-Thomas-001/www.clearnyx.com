@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronDown, MessageSquare } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 interface FAQ {
   category: "Workflow" | "Biomechanics" | "Economics";
@@ -74,10 +77,16 @@ export function DoctorFaqSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-surface-soft border-b border-surface-border">
+    <section className="py-20 md:py-28 bg-surface-soft border-b border-surface-border overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: luxuryEase }}
+          className="text-center mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold tracking-wide mb-3">
             CLINICAL & OPERATIONAL FAQS
           </div>
@@ -87,10 +96,16 @@ export function DoctorFaqSection() {
           <p className="mt-4 text-base text-slate-secondary">
             Everything you need to know about integrating CLEARNYX into your daily clinical practice.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1, ease: luxuryEase }}
+          className="flex flex-wrap items-center justify-center gap-2 mb-10"
+        >
           {(["All", "Workflow", "Biomechanics", "Economics"] as const).map((cat) => (
             <button
               key={cat}
@@ -108,15 +123,19 @@ export function DoctorFaqSection() {
               {cat === "All" ? "All Questions" : cat}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* FAQ Accordion List */}
+        {/* FAQ Accordion List with Scroll Stagger */}
         <div className="space-y-3">
           {filteredFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.3), ease: luxuryEase }}
                 className="rounded-2xl bg-white border border-surface-border overflow-hidden transition-all shadow-subtle hover:shadow-card"
               >
                 <button
@@ -142,13 +161,19 @@ export function DoctorFaqSection() {
                     {faq.answer}
                   </div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Still have questions? */}
-        <div className="mt-12 text-center p-6 rounded-2xl bg-white border border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2, ease: luxuryEase }}
+          className="mt-12 text-center p-6 rounded-2xl bg-white border border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
           <div className="text-left">
             <h4 className="text-sm font-bold text-navy-900">Have a specific case to discuss?</h4>
             <p className="text-xs text-slate-secondary">Our orthodontic CAD staging consultants are available for direct clinical review.</p>
@@ -160,9 +185,8 @@ export function DoctorFaqSection() {
             <MessageSquare className="w-3.5 h-3.5" />
             <span>Consult an Orthodontist</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
