@@ -10,7 +10,7 @@ import { PageTransition } from "@/components/clearnyx/PageTransition";
 import { ClariChatWidget } from "@/components/chat/ClariChatWidget";
 import { ScrollToTop } from "@/components/clearnyx/ScrollToTop";
 import { ScrollAnimationObserver } from "@/components/clearnyx/ScrollAnimationObserver";
-import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
+import { OrganizationSchema, WebSiteSchema, MedicalBusinessSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
 const inter = Inter({
@@ -36,23 +36,28 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "CLEARNYX | Premium Clear Aligner Solutions for Dentists",
-    template: "%s | CLEARNYX Orthodontic Solutions",
+    default: "CLEARNYX | Leading Clear Aligner Provider in India — B2B Orthodontic Lab",
+    template: "%s | CLEARNYX — Clear Aligner Provider",
   },
   description:
-    "Discover CLEARNYX premium clear aligner solutions for dentists and orthodontists in India. Explore Standard and Multi-Layer aligners, digital treatment planning, and professional clinical partnerships.",
+    "CLEARNYX is India's premier B2B clear aligner provider and digital orthodontic laboratory. Delivering precision PETG & Multi-Layer clear aligners, 3D CAD staging, and dedicated clinical support exclusively for certified dentists and clinics.",
   keywords: [
-    "clear aligner solutions India",
-    "clear aligner provider for dentists",
-    "clear aligner company India",
-    "clear aligner solutions for orthodontists",
+    "clear aligner provider",
+    "clear aligner provider in India",
+    "clear aligners for dentists",
+    "b2b clear aligner manufacturer",
+    "orthodontic aligner provider",
+    "dental clear aligner lab",
+    "custom clear aligner supplier",
     "standard clear aligners",
     "multi-layer clear aligners",
     "digital orthodontic treatment planning",
-    "clear aligner partnership",
-    "dental aligner solutions",
+    "clear aligner solutions India",
+    "aligner manufacturer Bengaluru",
+    "clear aligner laboratory India",
+    "orthodontic clear aligners for clinics",
   ],
-  authors: [{ name: "CLEARNYX" }],
+  authors: [{ name: "CLEARNYX Orthodontic Technologies" }],
   creator: "CLEARNYX",
   publisher: "CLEARNYX",
   formatDetection: {
@@ -67,24 +72,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: SITE_CONFIG.url,
-    siteName: SITE_CONFIG.name,
-    title: "CLEARNYX | Premium Clear Aligner Solutions for Dentists",
+    siteName: "CLEARNYX Clear Aligner Provider",
+    title: "CLEARNYX | Leading Clear Aligner Provider in India — B2B Orthodontic Lab",
     description:
-      "Precision-engineered clear aligner solutions and digital treatment planning designed exclusively for certified dental professionals across India.",
+      "India's premier clear aligner provider and orthodontic lab. Precision CAD-engineered PETG & Multi-Layer clear aligners exclusively for certified dental clinics.",
     images: [
       {
         url: "/brand/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "CLEARNYX Premium Clear Aligner Solutions",
+        alt: "CLEARNYX Clear Aligner Provider India",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CLEARNYX | Premium Clear Aligner Solutions for Dentists",
+    title: "CLEARNYX | Leading Clear Aligner Provider in India",
     description:
-      "Precision clear aligner solutions and digital orthodontic collaboration for dental clinics across India.",
+      "India's premier B2B clear aligner provider and orthodontic lab. Precision CAD staging & custom aligners for certified dentists.",
     images: ["/brand/og-image.jpg"],
   },
   icons: {
@@ -121,6 +126,7 @@ export default function RootLayout({
     >
       <head>
         <OrganizationSchema />
+        <MedicalBusinessSchema />
         <WebSiteSchema />
       </head>
       <body

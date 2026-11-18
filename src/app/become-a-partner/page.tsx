@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Badge } from "@/components/ui/Badge";
-import { BreadcrumbSchema } from "@/components/seo/JsonLd";
+import { BreadcrumbSchema, FAQPageSchema } from "@/components/seo/JsonLd";
 import { PartnerEnquiryForm } from "@/components/forms/PartnerEnquiryForm";
 import { Accordion } from "@/components/ui/Accordion";
 import { FAQS } from "@/content/faqs";
@@ -16,12 +16,19 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Become a Partner | Clear Aligner Practice Onboarding",
+  title: "Partner with CLEARNYX | Premier Clear Aligner Provider in India",
   description:
-    "Join the CLEARNYX professional network. Partner with an advanced B2B clear aligner provider offering digital treatment planning, Standard PETG and Multi-Layer aligners in India.",
+    "Join the CLEARNYX dental clinic network. Onboard your practice with India's premier B2B clear aligner provider for digital treatment planning, doctor autonomy, and dedicated clinical support.",
   alternates: {
     canonical: "https://www.clearnyx.com/become-a-partner",
   },
+  keywords: [
+    "partner with clear aligner provider",
+    "b2b clear aligner lab",
+    "clear aligner partnership India",
+    "aligner supplier for dental clinics",
+    "orthodontic aligner onboarding",
+  ],
 };
 
 export default function BecomeAPartnerPage() {
@@ -38,6 +45,7 @@ export default function BecomeAPartnerPage() {
           { name: "Become a Partner", url: "/become-a-partner" },
         ]}
       />
+      <FAQPageSchema customFaqs={partnerFaqs} />
 
       <PageHeader
         eyebrow="PRACTICE COLLABORATION"

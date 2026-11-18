@@ -9,12 +9,19 @@ import { AboutVisionQuote } from "@/components/about/AboutVisionQuote";
 import { AboutCtaSection } from "@/components/about/AboutCtaSection";
 
 export const metadata: Metadata = {
-  title: "About CLEARNYX | Rethinking the Clear Aligner Experience",
+  title: "About CLEARNYX | Doctor-Directed Clear Aligner Provider in India",
   description:
-    "Learn about CLEARNYX, a premium B2B clear aligner solutions brand built around precision, innovation, and professional collaboration with dentists and orthodontists across India.",
+    "Learn about CLEARNYX: India's premier B2B clear aligner provider combining orthodontic biomechanics, advanced thermoforming polymer engineering, and doctor-first collaboration.",
   alternates: {
     canonical: "https://www.clearnyx.com/about",
   },
+  keywords: [
+    "about CLEARNYX",
+    "clear aligner provider India",
+    "b2b aligner company",
+    "orthodontic aligner manufacturer",
+    "doctor directed aligners",
+  ],
 };
 
 export default function AboutPage() {

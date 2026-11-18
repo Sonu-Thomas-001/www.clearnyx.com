@@ -22,12 +22,19 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Clinical Workflow | 6 Stages from Diagnosis to Aligner Delivery",
+  title: "Clear Aligner Workflow for Dental Clinics | CLEARNYX Aligner Provider",
   description:
-    "Explore the CLEARNYX 6-stage clear aligner workflow designed for practicing dentists: Diagnosis, Digital Treatment Planning, Approval, Fabrication, Practice Delivery, and Alignment.",
+    "Explore the CLEARNYX 6-stage clear aligner workflow for dental clinics: Digital intraoral scanning, 48-72h CAD treatment staging, doctor review, precision thermoforming, and clinic delivery.",
   alternates: {
     canonical: "https://www.clearnyx.com/how-it-works",
   },
+  keywords: [
+    "clear aligner workflow",
+    "clear aligner provider process",
+    "orthodontic treatment staging",
+    "dental aligner turnaround",
+    "b2b aligner workflow",
+  ],
 };
 
 const STAGE_ICONS = [

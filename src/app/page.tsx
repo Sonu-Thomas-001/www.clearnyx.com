@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/clearnyx/HeroSection";
 import { BenefitsStrip } from "@/components/clearnyx/BenefitsStrip";
 import { HomeAlignerParallax } from "@/components/clearnyx/HomeAlignerParallax";
@@ -11,10 +12,32 @@ import { StatsSection } from "@/components/clearnyx/StatsSection";
 import { ComparisonSection } from "@/components/clearnyx/ComparisonSection";
 import DemoOne from "@/components/ui/demo";
 import { FaqCtaSection } from "@/components/clearnyx/FaqCtaSection";
+import { FAQPageSchema, MedicalDeviceProductSchema } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "CLEARNYX | Leading Clear Aligner Provider in India — B2B Orthodontic Lab",
+  description:
+    "India's premier clear aligner provider and orthodontic lab. CLEARNYX delivers precision-engineered PETG & Multi-Layer clear aligners exclusively for certified dentists and clinics across India.",
+  alternates: {
+    canonical: "https://www.clearnyx.com",
+  },
+  keywords: [
+    "clear aligner provider",
+    "clear aligner provider in India",
+    "b2b clear aligner manufacturer",
+    "clear aligners for dentists",
+    "orthodontic clear aligners",
+    "dental aligner lab India",
+  ],
+};
 
 export default function HomePage() {
   return (
     <>
+      {/* Search Engine Rich Snippet Schemas */}
+      <FAQPageSchema />
+      <MedicalDeviceProductSchema />
+
       {/* 1. Hero Section with Eyebrow, Heading, Lead, Dual CTA, Aligner Visual & Overlapping Trust Strip */}
       <HeroSection />
 

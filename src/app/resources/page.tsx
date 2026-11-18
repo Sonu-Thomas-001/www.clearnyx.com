@@ -6,12 +6,19 @@ import { RESOURCE_ARTICLES } from "@/content/resources";
 import { ResourcesExplorer } from "@/components/sections/ResourcesExplorer";
 
 export const metadata: Metadata = {
-  title: "Clinical Insights & Clear Aligner Knowledge Hub",
+  title: "Orthodontic Clinical Knowledge Hub | CLEARNYX Aligner Provider",
   description:
-    "Explore clinical orthodontic perspectives, digital treatment planning strategies, polymer material dynamics, and practice management insights published by CLEARNYX.",
+    "Clinical orthodontic perspectives, clear aligner biomechanics, digital treatment staging guides, and polymer science published by CLEARNYX aligner provider.",
   alternates: {
     canonical: "https://www.clearnyx.com/resources",
   },
+  keywords: [
+    "clear aligner resources",
+    "orthodontic clinical guides",
+    "clear aligner provider articles",
+    "digital aligner staging guide",
+    "clear aligner biomechanics",
+  ],
 };
 
 export default function ResourcesPage() {

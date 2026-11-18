@@ -10,12 +10,20 @@ import { ArrowRight, Cpu, Layers, Scan, FileCheck } from "lucide-react";
 import { TechPolymerParallax } from "@/components/clearnyx/TechPolymerParallax";
 
 export const metadata: Metadata = {
-  title: "Orthodontic Technology & Digital Treatment Planning",
+  title: "Clear Aligner Polymer Technology & 3D Staging | CLEARNYX Aligner Provider",
   description:
-    "Explore the digital planning architecture behind CLEARNYX customized clear aligner solutions. 3D visualization, biomechanical tooth staging, and certified medical polymer fabrication.",
+    "Explore CLEARNYX clear aligner technology: High-clarity PETG and engineered Multi-Layer polymers, 3D sub-millimeter biomechanical staging, and open intraoral scanner integration.",
   alternates: {
     canonical: "https://www.clearnyx.com/technology",
   },
+  keywords: [
+    "clear aligner technology",
+    "clear aligner provider India",
+    "multi-layer aligner material",
+    "orthodontic 3D treatment planning",
+    "PETG clear aligner manufacturing",
+    "dual polymer aligners",
+  ],
 };
 
 export default function TechnologyPage() {

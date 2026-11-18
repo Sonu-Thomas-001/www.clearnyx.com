@@ -11,12 +11,20 @@ import { DoctorOnboardingSection } from "@/components/dentists/DoctorOnboardingS
 import { DoctorFaqSection } from "@/components/dentists/DoctorFaqSection";
 
 export const metadata: Metadata = {
-  title: "For Dentists & Orthodontists | B2B Clear Aligner Manufacturing & 3D Staging",
+  title: "Clear Aligner Provider for Dentists & Orthodontists | CLEARNYX B2B Lab",
   description:
-    "Partner with CLEARNYX: Sub-millimeter 3D digital planning, open STL/PLY scanner interoperability, Class IIa medical polymers, and strict B2B doctor autonomy with zero DTC disintermediation.",
+    "CLEARNYX is the trusted clear aligner provider for dentists and orthodontists across India. Sub-millimeter 3D CAD staging, open STL/PLY scanner compatibility, and doctor-directed aligner manufacturing.",
   alternates: {
     canonical: "https://www.clearnyx.com/for-dentists",
   },
+  keywords: [
+    "clear aligner provider for dentists",
+    "b2b clear aligner manufacturer",
+    "dental clear aligner lab India",
+    "orthodontic clear aligners for clinics",
+    "clear aligner partnership",
+    "open stl aligner provider",
+  ],
 };
 
 export default function ForDentistsPage() {

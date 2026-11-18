@@ -8,12 +8,19 @@ import { Mail, MapPin, ShieldCheck, Clock } from "lucide-react";
 import { LocationMapSection } from "@/components/clearnyx/LocationMapSection";
 
 export const metadata: Metadata = {
-  title: "Contact CLEARNYX | Professional Clear Aligner Enquiries",
+  title: "Contact CLEARNYX | Clear Aligner Provider Support & Enquiries",
   description:
-    "Connect with the CLEARNYX team for clear aligner product specifications, clinical digital planning onboarding, and practice partnerships across India.",
+    "Connect with CLEARNYX: India's trusted clear aligner provider. Clinical digital planning onboarding, aligner specifications, and dental practice partnerships across India.",
   alternates: {
     canonical: "https://www.clearnyx.com/contact",
   },
+  keywords: [
+    "contact CLEARNYX",
+    "clear aligner provider contact",
+    "aligner lab Bengaluru",
+    "b2b clear aligner enquiry",
+    "dental clinic aligner support",
+  ],
 };
 
 export default function ContactPage() {

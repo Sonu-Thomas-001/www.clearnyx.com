@@ -67,7 +67,7 @@ export function HomeAlignerParallax() {
           >
             <Image
               src="/images/showcase/clearnyx-box.png"
-              alt="CLEARNYX Clinical Packaging"
+              alt="CLEARNYX Aligner Provider — Doctor Clinical Packaging Box"
               width={400}
               height={300}
               className="w-full h-auto object-contain drop-shadow-xl"
@@ -86,7 +86,7 @@ export function HomeAlignerParallax() {
           >
             <Image
               src="/images/showcase/aligner-cutout.png"
-              alt="CLEARNYX High Precision Clear Aligner"
+              alt="CLEARNYX Clear Aligner Provider — Precision Orthodontic Tray"
               width={640}
               height={500}
               priority

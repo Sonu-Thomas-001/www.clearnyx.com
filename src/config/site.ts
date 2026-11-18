@@ -65,7 +65,7 @@ export const SITE_CONFIG: SiteConfig = {
   tagline: "Redefining Smiles.",
   supportingStatement: "Precision. Comfort. Confidence.",
   description:
-    "CLEARNYX provides premium clear aligner solutions, digital treatment planning, and collaborative orthodontic workflows exclusively for certified dentists, orthodontists, and dental clinics across India.",
+    "CLEARNYX is India's leading B2B clear aligner provider and digital orthodontic laboratory, delivering precision CAD-engineered PETG and Multi-Layer clear aligners exclusively to certified dentists, orthodontists, and dental clinics across India.",
   url: "https://www.clearnyx.com",
   canonicalHost: "www.clearnyx.com",
   market: "India",

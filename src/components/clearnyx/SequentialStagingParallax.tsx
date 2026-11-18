@@ -65,7 +65,7 @@ export function SequentialStagingParallax() {
           >
             <Image
               src="/images/showcase/aligner-cutout.png"
-              alt="CLEARNYX Sequential Orthodontic Aligner"
+              alt="CLEARNYX Clear Aligner Provider — 3D Sequential Orthodontic Stage"
               width={600}
               height={420}
               className="w-full h-auto object-contain drop-shadow-2xl"

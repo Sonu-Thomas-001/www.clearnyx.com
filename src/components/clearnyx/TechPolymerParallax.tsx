@@ -66,7 +66,7 @@ export function TechPolymerParallax() {
             <div className="relative">
               <Image
                 src="/images/showcase/aligner-cutout.png"
-                alt="CLEARNYX Rigid Outer Shell"
+                alt="CLEARNYX Clear Aligner Provider — Polymer Outer Armor Shell"
                 width={500}
                 height={350}
                 className="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,166,206,0.3)] brightness-110"
@@ -82,7 +82,7 @@ export function TechPolymerParallax() {
             <div className="relative">
               <Image
                 src="/images/showcase/aligner-cutout.png"
-                alt="CLEARNYX Elastomeric Central Core"
+                alt="CLEARNYX Clear Aligner Provider — Elastomeric Central Core"
                 width={500}
                 height={350}
                 className="w-full h-auto object-contain filter hue-rotate-30 contrast-125 brightness-95"
@@ -98,7 +98,7 @@ export function TechPolymerParallax() {
             <div className="relative">
               <Image
                 src="/images/showcase/aligner-cutout.png"
-                alt="CLEARNYX Inner Tooth Contact Interface"
+                alt="CLEARNYX Clear Aligner Provider — Inner Tooth Contact Interface"
                 width={500}
                 height={350}
                 className="w-full h-auto object-contain opacity-70 filter brightness-75 hue-rotate-180"

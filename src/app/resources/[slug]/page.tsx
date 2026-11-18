@@ -30,7 +30,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${article.title} | CLEARNYX Insights`,
+    title: `${article.title} | CLEARNYX Aligner Provider Insights`,
     description: article.excerpt,
     alternates: {
       canonical: `https://www.clearnyx.com/resources/${article.slug}`,
