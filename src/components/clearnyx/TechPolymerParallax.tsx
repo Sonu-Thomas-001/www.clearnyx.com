@@ -190,8 +190,8 @@ export function TechPolymerParallax() {
           <div className="flex items-center gap-2.5 sm:gap-3">
             <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
             <div>
-              <div className="text-xs sm:text-sm font-bold text-white">ISO 10993</div>
-              <div className="text-[10px] sm:text-[11px] text-slate-400">CDSCO Class B Certified</div>
+              <div className="text-xs sm:text-sm font-bold text-white">Biocompatible</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400">Medical Grade Resins</div>
             </div>
           </div>
         </motion.div>

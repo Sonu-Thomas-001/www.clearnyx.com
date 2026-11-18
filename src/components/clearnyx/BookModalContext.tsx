@@ -199,7 +199,7 @@ export function BookModalProvider({ children }: { children: ReactNode }) {
                   </button>
 
                   <p className="text-[11px] text-center text-slate">
-                    🔒 Certified Medical Grade ISO 13485 &amp; CDSCO Compliant.
+                    🔒 Strictly 100% Doctor-Directed Orthodontic Solutions.
                   </p>
                 </form>
               </div>

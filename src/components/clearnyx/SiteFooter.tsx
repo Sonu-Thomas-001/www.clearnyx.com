@@ -64,16 +64,16 @@ export function SiteFooter() {
               {/* Trust Pill Tags */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2 text-xs text-white/80">
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
-                  <span>CDSCO MD-5 Certified</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
-                  <span>ISO 13485 Assured</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <Stethoscope className="w-3.5 h-3.5 text-brand-cyan" />
-                  <span>Doctor-Led Protocols</span>
+                  <span>100% Doctor-Directed</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
+                  <span>Dual-Polymer Tech</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
+                  <span>48–72h CAD Staging</span>
                 </div>
               </div>
             </div>

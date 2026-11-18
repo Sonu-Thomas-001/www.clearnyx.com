@@ -388,10 +388,10 @@ export function SiteHeader() {
               <div className="p-4 rounded-2xl bg-soft-white border border-light-grey space-y-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-navy-deep">
                   <ShieldCheck className="w-4 h-4 text-brand-cyan shrink-0" />
-                  <span>Certified Medical Grade Orthodontics</span>
+                  <span>Doctor-Directed Orthodontics</span>
                 </div>
                 <p className="text-[11px] text-slate leading-relaxed">
-                  CDSCO MD-5 and ISO 13485 certified facilities. Customized for licensed dentists across India.
+                  Precision digital treatment planning and medical-grade polymers. Customized for licensed dentists across India.
                 </p>
               </div>
             </div>

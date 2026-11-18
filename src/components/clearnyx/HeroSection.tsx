@@ -12,6 +12,8 @@ import {
   ScanLine,
   CheckCircle2,
   Play,
+  Stethoscope,
+  Layers,
 } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
 
@@ -282,14 +284,14 @@ export function HeroSection() {
               aria-hidden="true"
               className="w-12 h-12 rounded-2xl bg-[#DDF7FC] text-[#00A6CE] flex items-center justify-center shrink-0 shadow-xs"
             >
-              <CheckCircle2 className="w-6 h-6 stroke-[2.2]" />
+              <Stethoscope className="w-6 h-6 stroke-[2.2]" />
             </span>
             <div>
               <p className="text-xs sm:text-sm font-black tracking-wider uppercase text-[#071B2C]">
-                CDSCO MD-5 CERTIFIED
+                100% DOCTOR-DIRECTED
               </p>
               <p className="text-xs sm:text-sm text-[#647887]">
-                Medical Grade Quality &amp; Safety
+                Exclusively For Certified Clinics
               </p>
             </div>
           </motion.div>
@@ -306,14 +308,14 @@ export function HeroSection() {
               aria-hidden="true"
               className="w-12 h-12 rounded-2xl bg-[#DDF7FC] text-[#00A6CE] flex items-center justify-center shrink-0 shadow-xs"
             >
-              <CheckCircle2 className="w-6 h-6 stroke-[2.2]" />
+              <Layers className="w-6 h-6 stroke-[2.2]" />
             </span>
             <div>
               <p className="text-xs sm:text-sm font-black tracking-wider uppercase text-[#071B2C]">
-                ISO 13485 CERTIFIED
+                DUAL-POLYMER TECHNOLOGY
               </p>
               <p className="text-xs sm:text-sm text-[#647887]">
-                International Standards Assured
+                Standard PETG &amp; Multi-Layer Pro
               </p>
             </div>
           </motion.div>
@@ -330,14 +332,14 @@ export function HeroSection() {
               aria-hidden="true"
               className="w-12 h-12 rounded-2xl bg-[#DDF7FC] text-[#00A6CE] flex items-center justify-center shrink-0 shadow-xs"
             >
-              <CheckCircle2 className="w-6 h-6 stroke-[2.2]" />
+              <Clock className="w-6 h-6 stroke-[2.2]" />
             </span>
             <div>
               <p className="text-xs sm:text-sm font-black tracking-wider uppercase text-[#071B2C]">
-                CUSTOM 3D ENGINEERED
+                48–72H 3D CAD STAGING
               </p>
               <p className="text-xs sm:text-sm text-[#647887]">
-                0.01mm Sub-Millimeter Precision
+                Predictable Digital Turnaround
               </p>
             </div>
           </motion.div>
