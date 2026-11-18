@@ -3,14 +3,23 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 export function DualPolymerSection() {
   return (
     <section className="py-16 sm:py-24 bg-[#F8FAFC] border-b border-[#E2EBF0] text-[#071B2C]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Minimal Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: luxuryEase }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14"
+        >
           <div className="max-w-xl">
             <span className="text-xs font-bold uppercase tracking-wider text-[#00A6CE] block mb-2">
               Polymer Engineering
@@ -26,12 +35,18 @@ export function DualPolymerSection() {
             <span>Explore Engineering Specifications</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-        </div>
+        </motion.div>
 
         {/* 2 Clean Material Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* 1. Standard Medical PETG */}
-          <div className="bg-white rounded-2xl border border-[#D5E2EC] p-6 sm:p-8 shadow-[0_4px_24px_rgba(7,27,44,0.04)] flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.08, ease: luxuryEase }}
+            className="bg-white rounded-2xl border border-[#D5E2EC] p-6 sm:p-8 shadow-[0_4px_24px_rgba(7,27,44,0.04)] flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#718594] bg-[#F4F8FA] px-2.5 py-1 rounded">
@@ -46,7 +61,7 @@ export function DualPolymerSection() {
                   alt="Standard High-Clarity CLEARNYX Aligner"
                   fill
                   sizes="(max-width: 768px) 100vw, 480px"
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
@@ -73,57 +88,62 @@ export function DualPolymerSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* 2. Multi-Layer Pro Composite */}
-          <div className="bg-white rounded-2xl border border-[#00A6CE]/40 p-6 sm:p-8 shadow-[0_6px_28px_rgba(0,166,206,0.08)] flex flex-col justify-between relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.16, ease: luxuryEase }}
+            className="bg-white rounded-2xl border border-[#00A6CE]/40 p-6 sm:p-8 shadow-[0_6px_28px_rgba(0,166,206,0.08)] flex flex-col justify-between relative overflow-hidden"
+          >
             <div className="absolute top-0 right-0 w-28 h-28 bg-[#00A6CE]/5 rounded-bl-full pointer-events-none" />
 
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00A6CE] bg-[#E7F6FA] px-2.5 py-1 rounded">
-                  Elastomeric Multi-Layer
+                  Tri-Laminate Composite
                 </span>
-                <span className="text-xs font-bold text-[#00A6CE]">Pro Composite</span>
+                <span className="text-xs font-bold text-[#00A6CE]">Multi-Layer Pro</span>
               </div>
 
-              <div className="relative h-44 sm:h-52 w-full my-4 rounded-xl overflow-hidden bg-[#F0F8FA] flex items-center justify-center p-4">
+              <div className="relative h-44 sm:h-52 w-full my-4 rounded-xl overflow-hidden bg-[#F8FAFC] flex items-center justify-center p-4">
                 <Image
                   src="/images/products/clearnyx-multilayer-aligner.webp"
                   alt="Multi-Layer Pro CLEARNYX Aligner"
                   fill
                   sizes="(max-width: 768px) 100vw, 480px"
-                  className="object-contain p-4"
+                  className="object-contain p-4 transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
               <h3 className="text-xl font-extrabold text-[#071B2C] mb-2">
-                Multi-Layer Pro
+                Multi-Layer Pro Composite
               </h3>
               <p className="text-xs sm:text-sm text-[#556977] leading-relaxed mb-5">
-                Composite construction with an elastomeric inner core encased in dual protective
-                shells for continuous low-magnitude biological force.
+                Features an elastomeric central core between rigid shells, ensuring gentle, continuous
+                force transmission over 14 days.
               </p>
 
               <div className="space-y-2 text-xs text-[#071B2C] font-semibold">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#00A6CE] shrink-0" />
-                  <span>Sustained gentle forces for deep bites &amp; root torque</span>
+                  <span>Sustained force delivery without acute insertion pressure</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#00A6CE] shrink-0" />
-                  <span>High crack resistance and elastomeric recovery</span>
+                  <span>Enhanced elasticity prevents permanent deformation</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#00A6CE] shrink-0" />
-                  <span>Comfortable tooth seating across the full 14-day cycle</span>
+                  <span>Predictable biological control for complex rotations &amp; torque</span>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

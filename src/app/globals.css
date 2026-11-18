@@ -115,5 +115,97 @@
   .text-slate-muted {
     color: #647887;
   }
+
+  /* -------------------------------------------------------------
+     SCROLL-TRIGGERED MOTION SYSTEM (MEDICAL EDITORIAL AESTHETIC)
+     ------------------------------------------------------------- */
+  [data-reveal="true"],
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(4px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+
+  [data-reveal="true"].is-revealed,
+  .reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Directional variants */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-left.is-revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-right.is-revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Image & media zoom/scale reveal */
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-scale.is-revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger container children */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-stagger.is-revealed > *:nth-child(1) { transition-delay: 0.04s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(3) { transition-delay: 0.20s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(4) { transition-delay: 0.28s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(5) { transition-delay: 0.36s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(6) { transition-delay: 0.44s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(7) { transition-delay: 0.52s; opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-revealed > *:nth-child(8) { transition-delay: 0.60s; opacity: 1; transform: translateY(0); }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal="true"],
+    .reveal-on-scroll,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    .reveal-stagger > * {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
 }
 

@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Check, X, ArrowRight } from "lucide-react";
 import { useBookModal } from "./BookModalContext";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 interface ComparisonRow {
   aspect: string;
@@ -45,7 +48,13 @@ export function AlignerVsBracesSection() {
     <section className="py-16 sm:py-24 bg-white border-b border-[#E2EBF0] text-[#071B2C]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Minimal Editorial Header */}
-        <div className="max-w-2xl mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: luxuryEase }}
+          className="max-w-2xl mb-10 sm:mb-14"
+        >
           <span className="text-xs font-bold uppercase tracking-wider text-[#00A6CE] block mb-2">
             Clinical Comparison
           </span>
@@ -55,10 +64,16 @@ export function AlignerVsBracesSection() {
           <p className="mt-3 text-base text-[#556977] leading-relaxed">
             Modern digital orthodontic therapy compared against traditional fixed appliances.
           </p>
-        </div>
+        </motion.div>
 
         {/* Comparison Matrix Table */}
-        <div className="rounded-2xl border border-[#D5E2EC] bg-[#F8FAFC] overflow-hidden shadow-[0_4px_24px_rgba(7,27,44,0.04)]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, delay: 0.1, ease: luxuryEase }}
+          className="rounded-2xl border border-[#D5E2EC] bg-[#F8FAFC] overflow-hidden shadow-[0_4px_24px_rgba(7,27,44,0.04)]"
+        >
           {/* Header Row */}
           <div className="grid grid-cols-12 bg-[#071B2C] text-white px-5 py-4 text-xs font-bold uppercase tracking-wider">
             <div className="col-span-4 sm:col-span-3 text-slate-300">Feature</div>
@@ -116,9 +131,8 @@ export function AlignerVsBracesSection() {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

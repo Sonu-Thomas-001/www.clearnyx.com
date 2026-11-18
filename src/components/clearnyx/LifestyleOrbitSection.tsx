@@ -98,7 +98,13 @@ export function LifestyleOrbitSection() {
     <section className="py-16 sm:py-24 bg-white text-[#071B2C] border-b border-[#E2EBF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Clean, Concise, Editorial */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mx-auto text-center mb-10 sm:mb-14"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7F6FA] text-[#00A6CE] text-xs font-bold tracking-wider uppercase mb-3 border border-[#C5ECF5]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00A6CE]" />
             <span>Lifestyle Integration</span>
@@ -135,10 +141,16 @@ export function LifestyleOrbitSection() {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Interactive Showcase Card (Split Image + Concise Narrative) */}
-        <div className="max-w-5xl mx-auto bg-[#F8FAFC] rounded-2xl border border-[#D5E2EC] p-5 sm:p-8 lg:p-10 shadow-[0_8px_30px_rgba(7,27,44,0.04)]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-5xl mx-auto bg-[#F8FAFC] rounded-2xl border border-[#D5E2EC] p-5 sm:p-8 lg:p-10 shadow-[0_8px_30px_rgba(7,27,44,0.04)]"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left: Lifestyle Photograph */}
             <div className="lg:col-span-5 relative">
@@ -248,7 +260,7 @@ export function LifestyleOrbitSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

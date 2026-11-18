@@ -85,17 +85,29 @@ export function ComparisonSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Minimal Editorial Header */}
-        <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-xl mx-auto mb-10 sm:mb-12"
+        >
           <span className="text-xs font-bold uppercase tracking-wider text-[#00A6CE] block mb-2">
             Real Transformations
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#071B2C] tracking-tight">
             Before &amp; After.
           </h2>
-        </div>
+        </motion.div>
 
         {/* Centered Large Photographic Comparison Viewer with Smooth Animation */}
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 28, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl mx-auto"
+        >
           <div
             ref={containerRef}
             onPointerDown={handlePointerDown}
@@ -179,7 +191,7 @@ export function ComparisonSection() {
           <p className="text-center text-xs text-[#718594] mt-4 font-medium">
             Drag or slide to compare transformation
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

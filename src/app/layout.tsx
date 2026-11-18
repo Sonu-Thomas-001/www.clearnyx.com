@@ -9,6 +9,7 @@ import { CinematicPreloader } from "@/components/clearnyx/CinematicPreloader";
 import { PageTransition } from "@/components/clearnyx/PageTransition";
 import { ClariChatWidget } from "@/components/chat/ClariChatWidget";
 import { ScrollToTop } from "@/components/clearnyx/ScrollToTop";
+import { ScrollAnimationObserver } from "@/components/clearnyx/ScrollAnimationObserver";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/config/site";
 
@@ -136,6 +137,7 @@ export default function RootLayout({
           <MobileStickyBar />
           <ClariChatWidget />
           <ScrollToTop />
+          <ScrollAnimationObserver />
         </BookModalProvider>
       </body>
     </html>

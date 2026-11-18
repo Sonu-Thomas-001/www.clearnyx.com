@@ -1,6 +1,9 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
+
+const luxuryEase = [0.16, 1, 0.3, 1] as const;
 
 const STATS = [
   {
@@ -31,8 +34,16 @@ export function StatsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-[#EAEFF3]">
           {STATS.map((stat, idx) => (
-            <div
+            <motion.div
               key={stat.label}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.08,
+                ease: luxuryEase,
+              }}
               className={`flex flex-col items-center text-center ${
                 idx === 0 ? "lg:pl-0" : "lg:px-6"
               }`}
@@ -46,7 +57,7 @@ export function StatsSection() {
               <span className="text-xs text-[#718594] mt-0.5 font-medium">
                 {stat.sub}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
